@@ -39,13 +39,20 @@ Take a moment to identify the parts required for assembly (see figure 1)
 
 The content for this documentation was contributed by
 
-Jacob Gil
+Jacob Gil, Undergraduate Researcher at HeRoLab
 
-Madhurya Gajula
-
-Sanjay Sarma O V
+Sanjay Sarma O V, Graduate Research Assistant at HeRoLab
 
 
+This project is a part of Swarms project at the Heterogeneous Robotics Reserach Lab (HeRoLab) of the University of Georgia.
+
+Please contact hero at uga . edu for any queries
+
+http://hero.uga.edu/
+
+<p align="center">
+<img src="http://hero.uga.edu/wp-content/uploads/2019/04/HeRo-Logo-3.png" width="600">
+</p>
 
 
 
