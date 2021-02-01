@@ -1,6 +1,6 @@
 
 <p align="center">
-<img src="https://github.com/herolab-uga/heroswarm_v1/blob/main/images/HeroSwarm%20Logo.png" width="600">
+<img src="https://github.com/herolab-uga/heroswarm_v1/blob/master/images/HeroSwarm%20Logo.png" width="600">
 </p>
 
 
@@ -12,8 +12,8 @@ This page provides you instructions in assembling your robot for the HeRoSwarm.
 Before we start, take a moment to name your robot and print a label for it (You can use the label printer in the lab).
 A fully assembled bot looks something like this
 <p align="center">
-<img src="https://github.com/herolab-uga/heroswarm_v1/blob/main/images/renderV1_1.png" width="350" height ="300">
-  <img src="https://github.com/herolab-uga/heroswarm_v1/blob/main/images/botV1.jpg" width="350" height ="300">
+<img src="https://github.com/herolab-uga/heroswarm_v1/blob/master/images/renderV1_1.png" width="350" height ="300">
+  <img src="https://github.com/herolab-uga/heroswarm_v1/blob/master/images/botV1.jpg" width="350" height ="300">
 </p>
 
 **Note:** You can right click and open the image in a new page for clarity.
@@ -32,7 +32,7 @@ Steps for assembling the robot
 ## Required parts
 Take a moment to identify the parts required for assembly (see figure 1)
 <p align="center">
-<img src="https://github.com/herolab-uga/heroswarm_v1/blob/main/images/Picture1.png" width="600">
+<img src="https://github.com/herolab-uga/heroswarm_v1/blob/master/images/Picture1.png" width="600">
 </p>
 
 
