@@ -1,6 +1,6 @@
 
 <p align="center">
-<img src="https://github.com/sanjayovs/HeRoSwarm_Assembly_Version1/blob/master/HeroSwarm%20Logo.png" width="600">
+<img src="https://github.com/herolab-uga/heroswarm_v1/blob/master/HeroSwarm%20Logo.png" width="600">
 </p>
 
 
@@ -12,8 +12,8 @@ This page provides you instructions in assembling your robot for the HeRoSwarm.
 Before we start, take a moment to name your robot and print a label for it (You can use the label printer in the lab).
 A fully assembled bot looks something like this
 <p align="center">
-<img src="https://github.com/sanjayovs/HeRoSwarm_Assembly_Version1/blob/master/renderV1_1.png" width="350" height ="300">
-  <img src="https://github.com/sanjayovs/HeRoSwarm_Assembly_Version1/blob/master/botV1.jpg" width="350" height ="300">
+<img src="https://github.com/herolab-uga/heroswarm_v1/blob/master/renderV1_1.png" width="350" height ="300">
+  <img src="https://github.com/herolab-uga/heroswarm_v1/blob/master/botV1.jpg" width="350" height ="300">
 </p>
 
 **Note:** You can right click and open the image in a new page for clarity.
@@ -22,17 +22,17 @@ There are five steps in assembling this robot and it should take anywhere from o
 
 Steps for assembling the robot
 ---------------------------------
-1. [Frame 3D Printing](https://github.com/herolab-uga/HeRoSwarm_Assembly/wiki/Frame-3D-Printing)
-2. [Soldering and making connections.](https://github.com/sanjayovs/HeRoSwarm_Assembly/wiki/Soldering-and-Making-Connections)
-3. [Assembling the frame, electronics and motors.](https://github.com/sanjayovs/HeRoSwarm_Assembly/wiki/Assembling-the-frame,-electronics-and-motors)
-4. [Installing software and configuring raspberry pi.](https://github.com/sanjayovs/HeRoSwarm_Assembly_Version1/wiki/Installing-software-and-configuring-raspberry-pi)
-5. [Testing basic control programs](https://github.com/sanjayovs/HeRoSwarm_Assembly_Version1/wiki/Testing-basic-control-programs)
-6. Integration with the localization system.
+1. [Frame 3D Printing](https://github.com/herolab-uga/heroswarm_v1/wiki/Frame-3D-Printing)
+2. [Soldering and making connections.](https://github.com/herolab-uga/heroswarm_v1/wiki/Soldering-and-Making-Connections)
+3. [Assembling the frame, electronics and motors.](https://github.com/herolab-uga/heroswarm_v1/wiki/Assembling-the-frame,-electronics-and-motors)
+4. [Installing software and configuring raspberry pi.](https://github.com/herolab-uga/heroswarm_v1/wiki/Installing-software-and-configuring-raspberry-pi)
+5. [Testing basic control programs](https://github.com/herolab-uga/heroswarm_v1/wiki/Testing-basic-control-programs)
+6. Integration with the localization system. (to be updated)
 
 ## Required parts
 Take a moment to identify the parts required for assembly (see figure 1)
 <p align="center">
-<img src="https://github.com/sanjayovs/HeRoSwarm_Assembly/blob/master/Picture1.png" width="600">
+<img src="https://github.com/herolab-uga/heroswarm_v1/blob/master/Picture1.png" width="600">
 </p>
 
 
