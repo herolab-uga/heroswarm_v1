@@ -1,6 +1,6 @@
 
 <p align="center">
-<img src="http://github.com/herolab-uga/heroswarm_v1/blob/master/HeroSwarm%20Logo.png" width="600">
+<img src="http://github.com/herolab-uga/heroswarm_v1/HeroSwarm%20Logo.png" width="600">
 </p>
 
 
