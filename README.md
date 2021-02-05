@@ -24,10 +24,10 @@ Steps for assembling the robot
 ---------------------------------
 1. [Frame 3D Printing](http://github.com/herolab-uga/heroswarm_v1/wiki/Frame-3D-Printing)
 2. [Soldering and making connections.](http://github.com/herolab-uga/heroswarm_v1/wiki/Soldering-and-Making-Connections)
-3. [Assembling the frame, electronics and motors.](http://github.com/herolab-uga/heroswarm_v1/wiki/Assembling-the-frame,-electronics-and-motors)
+3. [Assembling the frame, electronics and motors.](http://github.com/herolab-uga/heroswarm_v1/wiki/Assembling-the-frame,-electronics,-and-motors)
 4. [Installing software and configuring raspberry pi.](http://github.com/herolab-uga/heroswarm_v1/wiki/Installing-software-and-configuring-raspberry-pi)
 5. [Testing basic control programs](http://github.com/herolab-uga/heroswarm_v1/wiki/Testing-basic-control-programs)
-6. Integration with the localization system. (to be updated)
+6. [Integration with the localization system](http://github.com/herolab-uga/heroswarm_v1/wiki/Integration-with-the-localization-system)
 
 ## Required parts
 Take a moment to identify the parts required for assembly (see figure 1)
@@ -37,14 +37,14 @@ Take a moment to identify the parts required for assembly (see figure 1)
 
 
 
-The content for this documentation was contributed by
+The content for this documentation was contributed by several students, including:
 
-Jacob Gil, Undergraduate Researcher at HeRoLab
+Jacob Gil, Undergraduate Researcher at HeRoLab, University of Georgia
 
-Sanjay Sarma O V, Graduate Research Assistant at HeRoLab
+Sanjay Sarma O V, Graduate Research Assistant at HeRoLab and DICE Lab, University of Georgia
 
 
-This project is a part of Swarms project at the Heterogeneous Robotics Reserach Lab (HeRoLab) of the University of Georgia.
+This project is a part of Swarms project at the Heterogeneous Robotics Research Lab (HeRoLab) of the University of Georgia.
 
 Please contact hero at uga . edu for any queries
 
