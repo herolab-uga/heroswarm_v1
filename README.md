@@ -60,7 +60,7 @@ Please contact hero at uga . edu for any queries
 http://hero.uga.edu/
 
 <p align="center">
-<img src="http://hero.uga.edu/wp-content/uploads/2019/04/HeRo-Logo-3.png" width="600">
+<img src="http://hero.uga.edu/wp-content/uploads/2019/04/HeRo-Logo-3.png" width="300">
 </p>
 
 
