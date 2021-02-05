@@ -1,3 +1,8 @@
+# Welcome to the HeRoSwarm Robot V1!
+
+
+Welcome to the wiki page of the open-sourced materials and process of HeRoSwarm V1 design and development.
+
 
 <p align="center">
 <img src="https://github.com/herolab-uga/heroswarm_v1/blob/master/images/HeroSwarm%20Logo.png" width="600">
@@ -5,7 +10,6 @@
 
 
 
-# Welcome to the HeRoSwarm Robot Assembly wiki!
 
 
 This page provides you instructions in assembling your robot for the HeRoSwarm.
@@ -16,9 +20,9 @@ A fully assembled bot looks something like this
   <img src="https://github.com/herolab-uga/heroswarm_v1/blob/master/images/botV1.jpg" width="350" height ="300">
 </p>
 
-**Note:** You can right click and open the image in a new page for clarity.
+**Note:** You can right-click and open the image in a new page for clarity.
 
-There are five steps in assembling this robot and it should take anywhere from one hour to 3.5 hours in assembling it. You can take breaks and do it on multiple days.
+There are five steps in assembling this robot, and it should take anywhere from one hour to a few hours in assembling it. You can take breaks and do it on multiple days.
 
 Steps for assembling the robot
 ---------------------------------
@@ -36,13 +40,18 @@ Take a moment to identify the parts required for assembly (see figure 1)
 </p>
 
 
+## Contributors
 
-The content for this documentation was contributed by several students, including:
+
+
+The content for this documentation was contributed by several students of the HeRoLab, including:
 
 Jacob Gil, Undergraduate Researcher at HeRoLab, University of Georgia
 
 Sanjay Sarma O V, Graduate Research Assistant at HeRoLab and DICE Lab, University of Georgia
 
+
+## Heterogeneous Robotics (HeRoLab)
 
 This project is a part of Swarms project at the Heterogeneous Robotics Research Lab (HeRoLab) of the University of Georgia.
 
@@ -53,6 +62,12 @@ http://hero.uga.edu/
 <p align="center">
 <img src="http://hero.uga.edu/wp-content/uploads/2019/04/HeRo-Logo-3.png" width="600">
 </p>
+
+
+
+
+
+
 
 
 
