@@ -1,8 +1,7 @@
-from motorControl import MotorControl as MC
 import socket, pickle
 import math
 import numpy as np
-import SwarmRobot
+from SwarmRobot import SwarmRobot
 
 robot = SwarmRobot()
 

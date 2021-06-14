@@ -1,7 +1,7 @@
 # All linear distnaces in meters
 import time
 import math
-import motorControl
+from motorControl import MotorControl
 
 class SwarmRobot:
     # A list of conversion factors
