@@ -2,8 +2,9 @@ from motorControl import MotorControl as MC
 import socket, pickle
 import math
 import numpy as np
+import SwarmRobot
 
-MovCnt=MC()
+robot = SwarmRobot()
 
 def main():
     robotID='6'
@@ -38,7 +39,7 @@ def setMotion(robotData,endPtData):
             hx=int(float(robotData[2]))
             hy=int(float(robotData[3]))
 
-            ex=int(float(endPtData[0]))
+            ex=int(f.loat(endPtData[0]))
             ey=int(float(endPtData[1]))
             trgDist=(math.sqrt((x-ex)**2)+(y-ey)**2)
             strtPt=np.array([x,y])
@@ -49,7 +50,7 @@ def setMotion(robotData,endPtData):
 
             MovOnTheta(theta)
     else:
-        MovCnt.Stopper()
+        robot.stop()
 
 def MovOnTheta (theta):
      stpFlag=False
@@ -57,18 +58,14 @@ def MovOnTheta (theta):
      eStatus=True
      thetaMargin=20        
      if not stpFlag and eStatus:     
-          if theta>thetaMargin and theta<180:
-            #print('Turn Left')
-            MovCnt.SteerLeft()
-          elif theta<360-thetaMargin and theta >=180 :
-            #print('Turn Right')
-            MovCnt.SteerRight()
+          if np.abs(theta-robot.get_theta) < thetaMargin:
+            robot.turn(angle=theta)
           else:
             #print('Go Straight')
-            MovCnt.MoveForward()
+            robot.forward()
      else:
           #print('Stop')
-          MovCnt.Stopper()
+          robot.stop()
 
 
 
