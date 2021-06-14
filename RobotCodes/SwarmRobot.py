@@ -1,7 +1,7 @@
 # All linear distnaces in meters
 import time
 import math
-from motorControl import MotorControl
+import motorControl
 
 class SwarmRobot:
     # A list of conversion factors
@@ -14,6 +14,26 @@ class SwarmRobot:
         "mile":3218.69,
         "meters":1
     }
+
+    def __init__(self,name,linear_speed,rotational_speed,x=0.0,y=0.0,theta=0.0):
+        # Names each robot
+        self.name = name
+        # Current Robot Position
+        self.current_pos = {
+            "x":x,
+            "y":y,
+            "theta":theta
+        }
+        # Currenet Speed of bot this is set in the motor library for now
+        self.current_speed = 0
+        # Batttery Charge amount from 0 to 1
+        self.battery_charge = 1
+        # Linear Speed in meters per second
+        self.linear_speed = linear_speed
+        # Rotation Speed in radians per second
+        self.rotational_speed = rotational_speed
+        self.mc = motorControl.MotorControl()
+        # self.mc.Stopper()
 
     def __del__(self):
         self.mc.Stopper()
@@ -166,26 +186,6 @@ class SwarmRobot:
         # Turns the robot back to the desired postion
         if not (theta == None):
             self.turn(angle=theta)
-
-    def __init__(self,name,linear_speed,rotational_speed,x=0.0,y=0.0,theta=0.0):
-        # Names each robot
-        self.name = name
-        # Current Robot Position
-        self.current_pos = {
-            "x":x,
-            "y":y,
-            "theta":theta
-        }
-        # Currenet Speed of bot this is set in the motor library for now
-        self.current_speed = 0
-        # Batttery Charge amount from 0 to 1
-        self.battery_charge = 1
-        # Linear Speed in meters per second
-        self.linear_speed = linear_speed
-        # Rotation Speed in radians per second
-        self.rotational_speed = rotational_speed
-        self.mc = motorControl.MotorControl()
-        # self.mc.Stopper()
 
 if __name__ == "__main__":
     test = SwarmRobot(name="Hiro",linear_speed=0.21082,rotational_speed=7.0)
