@@ -30,7 +30,7 @@ def main():
 def setup():
     data = None
     host = os.environ.get("HOST")
-    with open("config/swarm_v1_config.JSON") as file:
+    with open("config/swarm_v1_config.JSON","r",encoding='utf-8') as file:
         data = json.load(file)[host]
     robot = SwarmRobot(
                         host,
@@ -45,6 +45,7 @@ def setMotion(robotData,endPtData):
     thetaMargin=10
     #print(data)
     stpFlag=False
+    theta = None
 
     if not endPtData is None and not robotData is None:
             x=int(float(robotData[0]))
@@ -63,6 +64,9 @@ def setMotion(robotData,endPtData):
 
             MovOnTheta(theta)
     else:
+        robot.set_x(endPtData[0])
+        robot.set_y(endPtData[1])
+        robot.set_theta(theta)
         robot.stop()
 
 def MovOnTheta (theta):
