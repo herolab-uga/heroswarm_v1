@@ -30,7 +30,7 @@ def main():
 def setup():
     data = None
     host = os.environ.get("HOST")
-    with open("../config/swarm_v1_config.JSON") as file:
+    with open("config/swarm_v1_config.JSON") as file:
         data = json.load(file)[host]
     robot = SwarmRobot(
                         host,
