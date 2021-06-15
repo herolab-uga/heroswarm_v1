@@ -1,0 +1,72 @@
+{
+    "jgil": {
+        "id": 1,
+        "linear_speed": 0.3591,
+        "angular_speed": 7.0686,
+        "left_duty": 0.0,
+        "right_duty": 0.0,
+        "x_pos": 0.0,
+        "y_pos": 0.0,
+        "theta": 0.0
+    },
+    "devil": {
+        "id": 2,
+        "linear_speed": 0.3703,
+        "angular_speed": 7.2885,
+        "left_duty": 0.0,
+        "right_duty": 0.0,
+        "x_pos": 0.0,
+        "y_pos": 0.0,
+        "theta": 0.0
+    },
+    "hedwig": {
+        "id": 3,
+        "linear_speed": 0.3458,
+        "angular_speed": 6.8066,
+        "left_duty": 0.0,
+        "right_duty": 0.0,
+        "x_pos": 0.0,
+        "y_pos": 0.0,
+        "theta": 0.0
+    },
+    "thalaiva": {
+        "id": 4,
+        "linear_speed": 0.3990,
+        "angular_speed": 7.8540,
+        "left_duty": 0.0,
+        "right_duty": 0.0,
+        "x_pos": 0.0,
+        "y_pos": 0.0,
+        "theta": 0.0
+    },
+    "dawg": {
+        "id": 5,
+        "linear_speed": 0.3990,
+        "angular_speed": 7.8540,
+        "left_duty": 0.0,
+        "right_duty": 0.0,
+        "x_pos": 0.0,
+        "y_pos": 0.0,
+        "theta": 0.0
+    },
+    "hiro": {
+        "id": 6,
+        "linear_speed": 0.3591,
+        "angular_speed": 7.0686,
+        "left_duty": 0.0,
+        "right_duty": 0.0,
+        "x_pos": 0.0,
+        "y_pos": 0.0,
+        "theta": 0.0
+    },
+    "baymax": {
+        "id": 7,
+        "linear_speed": 0.3458,
+        "angular_speed": 6.8066,
+        "left_duty": 0.0,
+        "right_duty": 0.0,
+        "x_pos": 0.0,
+        "y_pos": 0.0,
+        "theta": 0.0
+    }
+}

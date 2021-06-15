@@ -1,7 +1,9 @@
 # All linear distnaces in meters
-import time
 import math
+import time
+
 import motorControl
+
 
 class SwarmRobot:
     # A list of conversion factors
@@ -15,9 +17,10 @@ class SwarmRobot:
         "meters":1
     }
 
-    def __init__(self,name,linear_speed,rotational_speed,x=0.0,y=0.0,theta=0.0):
+    def __init__(self,name,id,linear_speed,angular_speed,x=0.0,y=0.0,theta=0.0):
         # Names each robot
         self.name = name
+        self.id = id
         # Current Robot Position
         self.current_pos = {
             "x":x,
@@ -30,8 +33,8 @@ class SwarmRobot:
         self.battery_charge = 1
         # Linear Speed in meters per second
         self.linear_speed = linear_speed
-        # Rotation Speed in radians per second
-        self.rotational_speed = rotational_speed
+        # Angular Speed in radians per second
+        self.angular_speed = angular_speed
         self.mc = motorControl.MotorControl()
         # self.mc.Stopper()
 
@@ -49,6 +52,12 @@ class SwarmRobot:
 
     def set_name(self,name):
         self.name = name
+
+    def get_id(self):
+        return id
+    
+    def set_id(self,id):
+        self.id = id
 
     def get_x(self):
         return self.current_pos["x"]
@@ -74,11 +83,11 @@ class SwarmRobot:
     def set_linear_speed(self,linear_speed):
         self.linear_speed = linear_speed
 
-    def get_rotational_speed(self):
+    def get_angular_speed(self):
         return self.linear_speed
 
-    def set_rotational_speed(self,rotational_speed):
-        self.linear_speed = rotational_speed
+    def set_angular_speed(self,angular_speed):
+        self.linear_speed = angular_speed
 
     def reset_pos(self):
         self.current_pos["x"] = 0
@@ -107,7 +116,7 @@ class SwarmRobot:
             self.mc.MoveForward()
 
     # Moves the Robot Backward
-    def backward(self,distance=None):
+    def backward(self,distance=None,unit="in"):
         if not distance == None:
             # Converts the distance to meters
             distance = distance * SwarmRobot.unit_conversion[unit]
@@ -138,8 +147,8 @@ class SwarmRobot:
         if real:
             # Finds the change in theta needed to be at angle
             delta_theta = angle - self.current_pos["theta"]
-            # Finds the time needed to sleep to complete rotation
-            sleep = abs(delta_theta)/self.rotational_speed
+            # Finds the time needed to sleep to complete Angular
+            sleep = abs(delta_theta)/self.angular_speed
             # If the angle is positive turn left
             if delta_theta > 0:
                 self.mc.TankSteerLeft()
@@ -153,7 +162,7 @@ class SwarmRobot:
         # Uses a coordinate system relative to the robot where it is always facing theta=0
         else:
             # Finds the time need to sleep to turn through angle
-            sleep = abs(angle)/self.rotational_speed
+            sleep = abs(angle)/self.angular_speed
             # If the angle is positive turn left
             if angle > 0:
                 self.mc.TankSteerLeft()
@@ -188,4 +197,4 @@ class SwarmRobot:
             self.turn(angle=theta)
 
 if __name__ == "__main__":
-    test = SwarmRobot(name="Hiro",linear_speed=0.21082,rotational_speed=7.0)
+    test = SwarmRobot(name="Hiro",linear_speed=0.21082,angular_speed=7.0)

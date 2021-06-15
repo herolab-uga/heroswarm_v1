@@ -1,18 +1,20 @@
 import socket, pickle
 import math
 import numpy as np
+import json
+import os
 from SwarmRobot import SwarmRobot
 
-robot = SwarmRobot()
+robot = None
 
 def main():
-    robotID='6'
+    setup()
     HOST='192.168.1.78'
     PORT=12346
     CLIENT_SOCKET=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     CLIENT_SOCKET.connect((HOST,PORT))
     print("1 Connected!!")
-    CLIENT_SOCKET.send(robotID.encode('ascii'))
+    CLIENT_SOCKET.send(str(robot.get_id()).encode('ascii'))
     while True:
         query='o'
         CLIENT_SOCKET.send(query.encode('ascii'))
@@ -25,7 +27,19 @@ def main():
         setMotion(robotOdo,endPos)
 
 
-
+def setup():
+    data = None
+    host = os.environ.get("HOST")
+    with open("../config/swarm_v1_config.JSON") as file:
+        data = json.load(file)[host]
+    robot = SwarmRobot(
+                        host,
+                        data['id'],
+                        data['linear_speed'],
+                        data['angular_speed'],
+                        data['x_pos'],
+                        data['y_pos'],
+                        data['theta'])
 
 def setMotion(robotData,endPtData):
     thetaMargin=10
@@ -38,7 +52,7 @@ def setMotion(robotData,endPtData):
             hx=int(float(robotData[2]))
             hy=int(float(robotData[3]))
 
-            ex=int(f.loat(endPtData[0]))
+            ex=int(float(endPtData[0]))
             ey=int(float(endPtData[1]))
             trgDist=(math.sqrt((x-ex)**2)+(y-ey)**2)
             strtPt=np.array([x,y])
