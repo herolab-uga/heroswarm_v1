@@ -9,7 +9,7 @@ robot = None
 
 def main():
     setup()
-    HOST='192.168.1.78'
+    HOST='192.168.1.74'
     PORT=12346
     CLIENT_SOCKET=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     CLIENT_SOCKET.connect((HOST,PORT))
@@ -73,8 +73,8 @@ def MovOnTheta (theta):
      stpFlag=False
 
      eStatus=True
-     thetaMargin=20        
-     if not stpFlag and eStatus:     
+     thetaMargin=20
+     if not stpFlag and eStatus:
           if np.abs(theta-robot.get_theta) < thetaMargin:
             robot.turn(angle=theta)
           else:
@@ -102,5 +102,3 @@ def getTheta(pt11,pt12,pt21,pt22):
 
 if __name__ == '__main__':
     main()
-
-
