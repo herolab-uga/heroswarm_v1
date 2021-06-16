@@ -41,10 +41,10 @@ class SwarmRobot:
     def __del__(self):
         self.mc.Stopper()
         with open("config/swarm_v1_config.JSON","w",encoding='utf-8') as file:
-            data = json.load(file)
-            data[self.name]['x_pos'] = self.get_x()
-            data[self.name]['y_pos'] = self.get_y()
-            data[self.name]['theta'] = self.get_theta()
+            data = json.load(file)[self.name]
+            data['x_pos'] = self.get_x()
+            data['y_pos'] = self.get_y()
+            data['theta'] = self.get_theta()
             json.dump(data, file, ensure_ascii=False, indent=4)
             
     def dist(self,pos_i,pos_f):
@@ -186,7 +186,7 @@ class SwarmRobot:
         self.mc.Stopper()
 
     # Moves the robot to position [x,y]
-    def move_to(self,x,y,theta=None,unit="in"):
+    def move_to(self,x,y,return_theta=None,unit="in"):
         # Converts the coordinates to meters
         x = x * SwarmRobot.unit_conversion[unit]
         y = y * SwarmRobot.unit_conversion[unit]
@@ -199,8 +199,8 @@ class SwarmRobot:
         # Moves the robot to the correct position
         self.forward(distance=move_distance,unit="meters")
         # Turns the robot back to the desired postion
-        if not (theta == None):
-            self.turn(angle=theta)
+        if not (return_theta == None):
+            self.turn(angle=return_theta)
 
 if __name__ == "__main__":
     test = SwarmRobot(name="Hiro",linear_speed=0.21082,angular_speed=7.0)
