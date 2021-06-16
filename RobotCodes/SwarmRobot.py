@@ -40,7 +40,7 @@ class SwarmRobot:
 
     def __del__(self):
         self.mc.Stopper()
-        with open("config/swarm_v1_config.JSON","w") as file:
+        with open("config/swarm_v1_config.JSON",'r+') as file:
             data = json.load(file)[self.name]
             data['x_pos'] = self.get_x()
             data['y_pos'] = self.get_y()
