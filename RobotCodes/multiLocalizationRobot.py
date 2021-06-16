@@ -30,7 +30,7 @@ def main():
 def setup():
     data = None
     host = socket.gethostname()
-    with open("config/swarm_v1_config.JSON","r",encoding='utf-8') as file:
+    with open("config/swarm_v1_config.JSON","r") as file:
         data = json.load(file)[host]
     robot = SwarmRobot(
                         host,

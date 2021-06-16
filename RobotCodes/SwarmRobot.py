@@ -40,13 +40,13 @@ class SwarmRobot:
 
     def __del__(self):
         self.mc.Stopper()
-        with open("config/swarm_v1_config.JSON","w",encoding='utf-8') as file:
+        with open("config/swarm_v1_config.JSON","w") as file:
             data = json.load(file)[self.name]
             data['x_pos'] = self.get_x()
             data['y_pos'] = self.get_y()
             data['theta'] = self.get_theta()
             json.dump(data, file, ensure_ascii=False, indent=4)
-            
+
     def dist(self,pos_i,pos_f):
         delta_x = pos_f[0]- pos_i[0]
         delta_y = pos_f[1]- pos_i[1]
@@ -61,7 +61,7 @@ class SwarmRobot:
 
     def get_id(self):
         return id
-    
+
     def set_id(self,id):
         self.id = id
 
