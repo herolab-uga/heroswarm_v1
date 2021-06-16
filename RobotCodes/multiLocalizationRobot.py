@@ -66,9 +66,10 @@ def setMotion(robotData,endPtData):
 
             MovOnTheta(theta)
     else:
-        robot.set_x(endPtData[0])
-        robot.set_y(endPtData[1])
-        robot.set_theta(theta)
+        if not endPtData is None:
+            robot.set_x(endPtData[0])
+            robot.set_y(endPtData[1])
+            robot.set_theta(theta)
         robot.stop()
 
 def MovOnTheta (theta):
