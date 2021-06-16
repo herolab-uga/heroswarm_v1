@@ -38,7 +38,7 @@ class SwarmRobot:
         self.angular_speed = angular_speed
         self.mc = motorControl.MotorControl()
         # self.mc.Stopper()
-        atexit.register(self.save)
+        # atexit.register(self.save)
 
     def __del__(self):
         self.mc.Stopper()
