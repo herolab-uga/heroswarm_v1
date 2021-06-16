@@ -8,6 +8,7 @@ from SwarmRobot import SwarmRobot
 robot = None
 
 def main():
+    global robot
     setup()
     HOST='192.168.1.74'
     PORT=12346
@@ -28,6 +29,7 @@ def main():
 
 
 def setup():
+    global robot
     data = None
     host = socket.gethostname()
     with open("config/swarm_v1_config.JSON","r") as file:
