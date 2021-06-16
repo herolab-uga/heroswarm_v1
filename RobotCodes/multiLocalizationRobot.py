@@ -6,7 +6,7 @@ import os
 from SwarmRobot import SwarmRobot
 
 robot = None
-
+CLIENT_SOCKET = None
 def main():
     setup()
     HOST='192.168.1.74'
@@ -29,7 +29,7 @@ def main():
 
 def setup():
     data = None
-    host = socket.gethostname()
+    host = CLIENT_SOCKET.gethostname()
     with open("config/swarm_v1_config.JSON","r",encoding='utf-8') as file:
         data = json.load(file)[host]
     robot = SwarmRobot(
