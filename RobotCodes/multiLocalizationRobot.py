@@ -29,7 +29,7 @@ def main():
 
 def setup():
     data = None
-    host = os.environ.get("HOSTNAME")
+    host = socket.gethostname()
     with open("config/swarm_v1_config.JSON","r",encoding='utf-8') as file:
         data = json.load(file)[host]
     robot = SwarmRobot(
