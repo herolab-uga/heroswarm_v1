@@ -2,6 +2,7 @@
 import math
 import time
 import json
+import atexit
 import motorControl
 
 
@@ -37,9 +38,12 @@ class SwarmRobot:
         self.angular_speed = angular_speed
         self.mc = motorControl.MotorControl()
         # self.mc.Stopper()
+        atexit.register(self.save)
 
     def __del__(self):
         self.mc.Stopper()
+
+    def save(self):
         with open("config/swarm_v1_config.JSON",'r+') as file:
             data = json.load(file)[self.name]
             data['x_pos'] = self.get_x()
