@@ -9,13 +9,17 @@ robot = None
 
 def main():
     global robot
-    setup()
     HOST='192.168.1.74'
     PORT=12346
     CLIENT_SOCKET=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     CLIENT_SOCKET.connect((HOST,PORT))
     print("1 Connected!!")
     CLIENT_SOCKET.send(str(robot.get_id()).encode('ascii'))
+    query='o'
+    CLIENT_SOCKET.send(query.encode('ascii'))
+    robotOdoP=CLIENT_SOCKET.recv(4096)
+    robotOdo=pickle.loads(robotOdoP)
+    setup()
     while True:
         query='o'
         CLIENT_SOCKET.send(query.encode('ascii'))
@@ -28,7 +32,7 @@ def main():
         setMotion(robotOdo,endPos)
 
 
-def setup():
+def setup(robot_odo):
     global robot
     data = None
     host = socket.gethostname()
@@ -39,9 +43,10 @@ def setup():
                         data['id'],
                         data['linear_speed'],
                         data['angular_speed'],
-                        data['x_pos'],
-                        data['y_pos'],
+                        robot_odo[0],
+                        robot_odo[1],
                         data['theta'])
+    print(robot)
 
 def setMotion(robotData,endPtData):
     thetaMargin=10
@@ -49,6 +54,7 @@ def setMotion(robotData,endPtData):
     stpFlag=False
     theta = None
 
+    print((not endPtData is None and not robotData is None))
     if not endPtData is None and not robotData is None:
             x=int(float(robotData[0]))
             y=int(float(robotData[1]))

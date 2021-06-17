@@ -99,6 +99,17 @@ class SwarmRobot:
     def set_angular_speed(self,angular_speed):
         self.linear_speed = angular_speed
 
+    def __str__(self):
+        print(self.get_name())
+        print(self.get_id())
+        print(self.get_linear_speed())
+        print(self.get_angular_speed())
+        print(self.get_x())
+        print(self.get_y())
+        print(self.get_theta())
+
+
+
     def reset_pos(self):
         self.current_pos["x"] = 0
         self.current_pos["y"] = 0
