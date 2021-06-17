@@ -29,8 +29,8 @@ def main():
                         data['id'],
                         data['linear_speed'],
                         data['angular_speed'],
-                        robot_odo[0],
-                        robot_odo[1],
+                        robotOdo[0],
+                        robotOdo[1],
                         data['theta'])
     while True:
         query='o'
