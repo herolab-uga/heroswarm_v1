@@ -19,7 +19,7 @@ def main():
     CLIENT_SOCKET=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     CLIENT_SOCKET.connect((HOST,PORT))
     print("1 Connected!!")
-    CLIENT_SOCKET.send(data['id'].encode('ascii'))
+    CLIENT_SOCKET.send(str(data['id']).encode('ascii'))
     query='o'
     CLIENT_SOCKET.send(query.encode('ascii'))
     robotOdoP=CLIENT_SOCKET.recv(4096)
