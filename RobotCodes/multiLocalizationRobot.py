@@ -11,15 +11,27 @@ def main():
     global robot
     HOST='192.168.1.74'
     PORT=12346
+    host = socket.gethostname()
+    data = None
+    with open("config/swarm_v1_config.JSON","r") as file:
+        data = json.load(file)[host]
+
     CLIENT_SOCKET=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     CLIENT_SOCKET.connect((HOST,PORT))
     print("1 Connected!!")
-    CLIENT_SOCKET.send(str(robot.get_id()).encode('ascii'))
+    CLIENT_SOCKET.send(data['id'].encode('ascii'))
     query='o'
     CLIENT_SOCKET.send(query.encode('ascii'))
     robotOdoP=CLIENT_SOCKET.recv(4096)
     robotOdo=pickle.loads(robotOdoP)
-    setup()
+    robot = SwarmRobot(
+                        host,
+                        data['id'],
+                        data['linear_speed'],
+                        data['angular_speed'],
+                        robot_odo[0],
+                        robot_odo[1],
+                        data['theta'])
     while True:
         query='o'
         CLIENT_SOCKET.send(query.encode('ascii'))
@@ -31,22 +43,6 @@ def main():
         endPos=pickle.loads(endPosP)
         setMotion(robotOdo,endPos)
 
-
-def setup(robot_odo):
-    global robot
-    data = None
-    host = socket.gethostname()
-    with open("config/swarm_v1_config.JSON","r") as file:
-        data = json.load(file)[host]
-    robot = SwarmRobot(
-                        host,
-                        data['id'],
-                        data['linear_speed'],
-                        data['angular_speed'],
-                        robot_odo[0],
-                        robot_odo[1],
-                        data['theta'])
-    print(robot)
 
 def setMotion(robotData,endPtData):
     thetaMargin=10
