@@ -100,14 +100,8 @@ def MovOnTheta (theta):
 
 def getTheta(pt11,pt12,pt21,pt22):
     vec1=pt11-pt12
-    vec2=pt22-pt21
 
-    #vec12ds=math.degrees(math.asin2(np.cross(vec1,vec2)/(np.linalg.norm(vec1)*np.linalg.norm(vec2))))
-    #vec12dc=math.degrees(math.asin2(np.cross(vec1,vec2)/(np.linalg.norm(vec1)*np.linalg.norm(vec2))))
-
-    vec12dt=(math.degrees(math.atan2(np.cross(vec1,vec2),np.dot(vec1,vec2))))+180
-
-
+    vec12dt=math.atan(vec1[1]/vec1[0])
     return vec12dt
 
 if __name__ == '__main__':
