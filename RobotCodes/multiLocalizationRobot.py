@@ -3,6 +3,7 @@ import math
 import numpy as np
 import json
 import os
+import time
 from SwarmRobot import SwarmRobot
 
 robot = None
@@ -19,11 +20,14 @@ def main():
     CLIENT_SOCKET=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     CLIENT_SOCKET.connect((HOST,PORT))
     print("1 Connected!!")
+    time.sleep(10)
     CLIENT_SOCKET.send(str(data['id']).encode('ascii'))
     query='o'
     CLIENT_SOCKET.send(query.encode('ascii'))
     robotOdoP=CLIENT_SOCKET.recv(4096)
     robotOdo=pickle.loads(robotOdoP)
+    while robotOdo is None:
+        continue
     robot = SwarmRobot(
                         host,
                         data['id'],
@@ -50,8 +54,7 @@ def setMotion(robotData,endPtData):
     #print(data)
     stpFlag=False
     theta = None
-
-    print((not endPtData is None and not robotData is None))
+    
     if not endPtData is None and not robotData is None:
             x=int(float(robotData[0]))
             y=int(float(robotData[1]))
@@ -81,7 +84,7 @@ def MovOnTheta (theta):
      eStatus=True
      thetaMargin=20
      if not stpFlag and eStatus:
-          if np.abs(theta-robot.get_theta) < thetaMargin:
+          if np.abs(theta-robot.get_theta()) < thetaMargin:
             robot.turn(angle=theta)
           else:
             #print('Go Straight')
