@@ -178,11 +178,11 @@ class SwarmRobot:
         # Uses the real coordinate system to
         if real:
             # Finds the change in theta needed to be at angle
-            delta_theta = angle - self.current_pos["theta"]
+            delta_theta = float(angle) - float(self.current_pos["theta"])
             # Finds the time needed to sleep to complete Angular
-            sleep = abs(delta_theta)/self.angular_speed
+            sleep = abs(delta_theta)/float(self.angular_speed)
             # If the angle is positive turn left
-            if delta_theta < 0:
+            if delta_theta > 0:
                 self.mc.TankSteerLeft()
                 time.sleep(sleep)
             # If the angle is negative turn right
