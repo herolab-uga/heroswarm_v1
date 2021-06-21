@@ -79,20 +79,22 @@ def setMotion(robotData,endPtData):
         robot.stop()
 
 def MovOnTheta (theta):
-     stpFlag=False
-
-     eStatus=True
-     thetaMargin=25
-     if not stpFlag and eStatus:
-          if np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin):
-            print(theta)
-            robot.turn(angle=theta)
-          else:
-            #print('Go Straight')
-            robot.forward()
-     else:
-          #print('Stop')
-          robot.stop()
+    stpFlag=False
+    eStatus=True
+    thetaMargin=25
+    if not stpFlag and eStatus:
+        try:
+            if np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin):
+                print(theta)
+                robot.turn(angle=theta)
+            else:
+                #print('Go Straight')
+                robot.forward()
+        except Exception as e:
+         print(e)
+    else:
+        #print('Stop')
+        robot.stop()
 
 
 
