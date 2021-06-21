@@ -1,4 +1,5 @@
 import RPi.GPIO as gpio
+import atexit
 from time import sleep
 class MotorControl:
     PWMValue=12
@@ -15,6 +16,10 @@ class MotorControl:
         self.m2=gpio.PWM(5,50)
         self.m1.start(0)
         self.m2.start(0)
+        atexit.register(self.stop)
+
+    def stop(self):
+        gpio.cleanup()
     
     def MoveForward(self):
         self.m1.ChangeDutyCycle(12)
