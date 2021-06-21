@@ -67,7 +67,7 @@ def setMotion(robotData,endPtData):
             strtPt=np.array([x,y])
             endPt=np.array([ex,ey])
             headDir=np.array([hx,hy])
-            theta =getTheta(strtPt,endPt,strtPt,headDir)
+            theta =getTheta(strtPt,endPt)
             theta=int(theta)
 
             MovOnTheta(theta)
