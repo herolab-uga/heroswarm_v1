@@ -83,16 +83,13 @@ def MovOnTheta (theta):
     eStatus=True
     thetaMargin=25
     if not stpFlag and eStatus:
-        try:
+        print(np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin))
+        if np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin):
             print(np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin))
-            if np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin):
-                print(np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin))
-                robot.turn(angle=theta)
-            else:
-                #print('Go Straight')
-                robot.forward()
-        except Exception as e:
-         print(e)
+            robot.turn(angle=theta)
+        else:
+            #print('Go Straight')
+            robot.forward()
     else:
         #print('Stop')
         robot.stop()
