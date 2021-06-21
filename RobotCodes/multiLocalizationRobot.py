@@ -100,14 +100,14 @@ def MovOnTheta (theta):
 
 
 
-def getTheta(pt11,pt12,pt21,pt22):
-    print(pt11)
+def getTheta(pt11,pt12) -> float:
+    # print(pt11)
     vec1 = []
     vec1.append(pt12[0].astype(float)-pt11[0].astype(float))
     vec1.append(pt12[1].astype(float)-pt11[1].astype(float))
 
     vec12dt=math.atan(vec1[1]/vec1[0])
-    print(vec1)
+    print(vec12dt)
     return vec12dt
 
 if __name__ == '__main__':
