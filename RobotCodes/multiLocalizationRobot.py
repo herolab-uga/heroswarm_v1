@@ -105,7 +105,7 @@ def getTheta(pt11,pt12) -> float:
     vec1.append(pt12[1].astype(float)-pt11[1].astype(float))
 
     vec12dt=math.atan(vec1[1]/vec1[0])
-    print(vec12dt)
+    # print(vec12dt)
     return vec12dt
 
 if __name__ == '__main__':

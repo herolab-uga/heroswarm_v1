@@ -1,4 +1,5 @@
 # All linear distnaces in meters
+from io import StringIO
 import math
 import time
 import json
@@ -57,43 +58,43 @@ class SwarmRobot:
         return math.sqrt(delta_x**2 + delta_y**2)
 
     # Getters and Setters for the class instance variables
-    def get_name(self):
+    def get_name(self) -> str:
         return self.name
 
     def set_name(self,name):
         self.name = name
 
-    def get_id(self):
+    def get_id(self) -> int:
         return id
 
     def set_id(self,id):
         self.id = id
 
-    def get_x(self):
+    def get_x(self) -> float:
         return self.current_pos["x"]
 
     def set_x(self,x):
         self.current_pos["x"] = x
 
-    def get_y(self):
+    def get_y(self) -> float:
         return self.current_pos["y"]
 
     def set_y(self,y):
         self.current_pos["y"] = y
 
-    def get_theta(self):
+    def get_theta(self) -> float:
         return self.current_pos["theta"]
 
     def set_theta(self,theta):
         self.current_pos["theta"] = theta
 
-    def get_linear_speed(self):
+    def get_linear_speed(self) -> float:
         return self.linear_speed
 
     def set_linear_speed(self,linear_speed):
         self.linear_speed = linear_speed
 
-    def get_angular_speed(self):
+    def get_angular_speed(self) -> float:
         return self.linear_speed
 
     def set_angular_speed(self,angular_speed):
@@ -195,7 +196,7 @@ class SwarmRobot:
             # Finds the time need to sleep to turn through angle
             sleep = abs(angle)/self.angular_speed
             # If the angle is positive turn left
-            if angle > 0:
+            if angle < 0:
                 self.mc.TankSteerLeft()
                 time.sleep(sleep)
             # If the angle is negative turn right
