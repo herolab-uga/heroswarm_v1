@@ -83,9 +83,9 @@ def MovOnTheta (theta):
     eStatus=True
     thetaMargin=25
     if not stpFlag and eStatus:
-        print(np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin))
+        # print(np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin))
         if np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin):
-            print(np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin))
+            # print(np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin))
             robot.turn(angle=theta)
         else:
             #print('Go Straight')
@@ -105,7 +105,7 @@ def getTheta(pt11,pt12) -> float:
     vec1.append(pt12[1].astype(float)-pt11[1].astype(float))
 
     vec12dt=np.atan2(vec1[1],vec1[0])
-    # print(vec12dt)
+    print(vec12dt)
     return vec12dt
 
 if __name__ == '__main__':
