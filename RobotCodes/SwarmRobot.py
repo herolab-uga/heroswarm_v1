@@ -103,15 +103,15 @@ class SwarmRobot:
     def __str__(self):
         string = """
                 Name: {name},\n
-                ID" {id}, \n
+                ID" {robot_id}, \n
                 Linear Speed: {linear_speed}, \n
                 Angular Speed: {angular_speed}, \n
                 X Position: {x}, \n
                 Y Position: {y}, \n
-                Theta: {theta}, \n
+                Theta: {theta} \n
                 """ .format(
                     name = self.get_name(),
-                    id = self.get_id(),
+                    robot_id = self.get_id(),
                     linear_speed = self.get_linear_speed(),
                     angular_speed = self.get_angular_speed(),
                     x = self.get_x(),
@@ -228,4 +228,4 @@ class SwarmRobot:
             self.turn(angle=return_theta)
 
 if __name__ == "__main__":
-    test = SwarmRobot(name="Hiro",linear_speed=0.21082,angular_speed=7.0)
+    test = SwarmRobot(name="Hiro",id=1,linear_speed=0.21082,angular_speed=7.0)
