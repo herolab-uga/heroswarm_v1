@@ -100,9 +100,9 @@ def MovOnTheta (theta):
 
 def getTheta(pt11,pt12,pt21,pt22):
     print(pt11)
-    vec1=pt11-pt12
+    vec1=pt12-pt11
 
-    vec12dt=math.atan(vec1[1]/vec1[0]) + np.radians(180)
+    vec12dt=math.atan(vec1[1]/vec1[0])
     return vec12dt
 
 if __name__ == '__main__':
