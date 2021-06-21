@@ -103,6 +103,7 @@ def getTheta(pt11,pt12,pt21,pt22):
     vec1=pt12-pt11
 
     vec12dt=math.atan(vec1[1]/vec1[0])
+    print(vec12dt)
     return vec12dt
 
 if __name__ == '__main__':
