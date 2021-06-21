@@ -67,7 +67,7 @@ def setMotion(robotData,endPtData):
             strtPt=np.array([x,y])
             endPt=np.array([ex,ey])
             headDir=np.array([hx,hy])
-            theta =getTheta(strtPt,endPt)
+            theta = getTheta(strtPt,endPt)
 
             MovOnTheta(theta)
     else:
@@ -84,8 +84,9 @@ def MovOnTheta (theta):
     thetaMargin=25
     if not stpFlag and eStatus:
         try:
+            print(np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin))
             if np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin):
-                print(theta)
+                print(np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin))
                 robot.turn(angle=theta)
             else:
                 #print('Go Straight')
