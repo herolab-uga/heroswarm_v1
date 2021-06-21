@@ -101,13 +101,24 @@ class SwarmRobot:
 
     # Class String override
     def __str__(self):
-        print(self.get_name())
-        print(self.get_id())
-        print(self.get_linear_speed())
-        print(self.get_angular_speed())
-        print(self.get_x())
-        print(self.get_y())
-        print(self.get_theta())
+        string = """
+                Name: {name},\n
+                ID" {id}, \n
+                Linear Speed: {linear_speed}, \n
+                Angular Speed: {angular_speed}, \n
+                X Position: {x}, \n
+                Y Position: {y}, \n
+                Theta: {theta}, \n
+                """ .format(
+                    name = self.get_name(),
+                    id = self.get_id(),
+                    linear_speed = self.get_linear_speed(),
+                    angular_speed = self.get_angular_speed(),
+                    x = self.get_x(),
+                    y = self.get_y(),
+                    theta = self.get_theta()
+                )
+        return string
 
     def reset_pos(self):
         self.current_pos["x"] = 0

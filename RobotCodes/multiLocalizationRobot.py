@@ -54,7 +54,7 @@ def setMotion(robotData,endPtData):
     #print(data)
     stpFlag=False
     theta = None
-    
+
     if not endPtData is None and not robotData is None:
             x=int(float(robotData[0]))
             y=int(float(robotData[1]))
@@ -83,6 +83,7 @@ def MovOnTheta (theta):
 
      eStatus=True
      thetaMargin=20
+     print((not stpFlag and eStatus))
      if not stpFlag and eStatus:
           if np.abs(theta-robot.get_theta()) < thetaMargin:
             robot.turn(angle=theta)
