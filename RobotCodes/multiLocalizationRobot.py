@@ -9,7 +9,7 @@ robot = None
 
 def main():
     global robot
-    HOST='192.168.1.74'
+    HOST='192.168.1.78'
     PORT=12346
     host = socket.gethostname()
     data = None
@@ -32,6 +32,7 @@ def main():
                         robotOdo[0],
                         robotOdo[1],
                         data['theta'])
+    print(robot)
     while True:
         query='o'
         CLIENT_SOCKET.send(query.encode('ascii'))
