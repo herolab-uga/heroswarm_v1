@@ -41,7 +41,7 @@ def ThreadedConnection(connectedClient):
         connectedClient.send(dataToSendP)
 
 def Main():
-    maxBots=3
+    maxBots=1
     global odoData
     print(odoData)
     odoData1={'robot1': 170, 'robot2': 650}
@@ -53,7 +53,7 @@ def Main():
     endpt=[0,0]
 
     endptFlag=True
-    HOST = '192.168.1.77'  # The server's hostname or IP address
+    HOST = '192.168.1.78'  # The server's hostname or IP address
     PORT=12346
     SERVER_SOCKET= socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     SERVER_SOCKET.bind((HOST,PORT))
@@ -103,14 +103,18 @@ def Main():
 
 
         for i, detection in enumerate(detections):
+            center_meters = []
             dimg1 = draw(frame,detection.corners)
             center=detection.center
+            center_meters.append((((center[0]-164.0)/1453.0)*2.4892))
+            center_meters.append((((center[1]-25.0)/951.0)*1.626))
+            posString = "({x:.0f},{y:.0f})".format(x=center[0],y=center[1])
             forwardDir=headingDir(detection.corners,center)
             centerTxt=((center.ravel()).astype(int)).astype(str)
             
             
             dimg1=draw1(dimg1,forwardDir,center,(0,0,255))
-            cv2.putText(dimg1,'('+centerTxt[0]+','+centerTxt[1]+')', tuple((center.ravel()).astype(int)+10),font,fontScale,(255,0,0),lineType)
+            cv2.putText(dimg1,posString, tuple((center.ravel()).astype(int)+10),font,fontScale,(255,0,0),lineType)
             
             
 
