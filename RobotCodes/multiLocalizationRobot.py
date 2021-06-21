@@ -82,7 +82,7 @@ def MovOnTheta (theta):
      stpFlag=False
 
      eStatus=True
-     thetaMargin=20
+     thetaMargin=25
      if not stpFlag and eStatus:
           if np.abs(theta-np.degrees(robot.get_theta())) > thetaMargin:
             print(theta)
