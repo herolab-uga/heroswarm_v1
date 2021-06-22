@@ -10,7 +10,7 @@ robot = None
 
 def main():
     global robot
-    HOST='192.168.1.78'
+    HOST='192.168.1.208'
     PORT=12346
     host = socket.gethostname()
     data = None
@@ -76,7 +76,7 @@ def setMotion(robotData,endPtData):
             robot.set_y(endPtData[1])
             robot.set_theta(theta)
         robot.stop()
-    
+
 
 def MovOnTheta (theta):
     stpFlag=False
