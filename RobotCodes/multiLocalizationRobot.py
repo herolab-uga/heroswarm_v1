@@ -35,7 +35,7 @@ def main():
                         data['angular_speed'],
                         robotOdo[0],
                         robotOdo[1],
-                        data['theta'])
+                        robotOdo[2])
     print(robot)
     while True:
         query='o'
@@ -50,11 +50,12 @@ def main():
 
 
 def setMotion(robotData,endPtData):
+    global robot
     thetaMargin=10
     #print(data)
     stpFlag=False
     theta = None
-
+    
     if not endPtData is None and not robotData is None:
             x=int(float(robotData[0]))
             y=int(float(robotData[1]))
@@ -68,7 +69,7 @@ def setMotion(robotData,endPtData):
             endPt=np.array([ex,ey])
             headDir=np.array([hx,hy])
             theta = getTheta(strtPt,endPt)
-
+            robot.set_theta(robotData[2])
             MovOnTheta(theta)
     else:
         if not endPtData is None:
@@ -78,7 +79,8 @@ def setMotion(robotData,endPtData):
         robot.stop()
 
 
-def MovOnTheta (theta):
+def MovOnTheta(theta):
+    global robot
     stpFlag=False
     eStatus=True
     thetaMargin=5
