@@ -10,11 +10,11 @@ import math
 import numpy as np
 import time
 
-        
+
 
 # Handling through dictionaries
-odoData={'robot1': 170, 'robot2': 650} 
-endPtID='4'
+odoData={'robot1': 170, 'robot2': 650}
+endPtID='1'
 
 
 def QueryHandler(query,clientID):
@@ -27,9 +27,9 @@ def QueryHandler(query,clientID):
         requestedData=odoData.get(endPtID)
     else:
         requestedData='nah'
-    
 
-    
+
+
     return requestedData
 
 
@@ -49,11 +49,11 @@ def Main():
 
     cv2.namedWindow(window)
 
-    
+
     endpt=[0,0]
 
     endptFlag=True
-    HOST = '192.168.1.78'  # The server's hostname or IP address
+    HOST = '192.168.1.208'  # The server's hostname or IP address
     PORT=12346
     SERVER_SOCKET= socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     SERVER_SOCKET.bind((HOST,PORT))
@@ -61,15 +61,15 @@ def Main():
     SERVER_SOCKET.listen(5)
     cnnCntr=0
     while True:
-        
+
         clientConnection, addr = SERVER_SOCKET.accept()
         clientThread=threading.Thread(target=ThreadedConnection,args=(clientConnection,))
         clientThread.start()
         cnnCntr+=1
         if cnnCntr==maxBots: # Change this to how many ever number of clients you would like to connect to
             break
-    
-    
+
+
     # Localization Code Here
     parser = ArgumentParser(description='test apriltag Python bindings')
     parser.add_argument('device_or_movie', metavar='INPUT', nargs='?', default=0, help='Movie to load or integer ID of camera device')
@@ -109,21 +109,21 @@ def Main():
             center_meters.append((((center[0]-164.0)/1453.0)*2.4892))
             center_meters.append((((center[1]-25.0)/951.0)*1.626))
             posString = "({x:.0f},{y:.0f})".format(x=center[0],y=center[1])
-            forwardDir=headingDir(detection.corners,center)
+            forwardDir,angle=headingDir(detection.corners,center)
             centerTxt=((center.ravel()).astype(int)).astype(str)
-            
-            
+            if not detection.tag_id=='4':
+                print(angle)
             dimg1=draw1(dimg1,forwardDir,center,(0,0,255))
             cv2.putText(dimg1,posString, tuple((center.ravel()).astype(int)+10),font,fontScale,(255,0,0),lineType)
-            
-            
 
-            if detection.tag_id==endPtID:
+
+
+            if detection.tag_id=='4':
                 dimg1=cv2.putText(dimg1,'End Point', tuple((center.ravel()).astype(int)),font,0.8,fontColor,2)
                 dimg1 = cv2.circle(dimg1, tuple((center.ravel()).astype(int)),30, (0,128,255), 2)
             else:
                 cv2.putText(dimg1,'Id:'+str(detection.tag_id), tuple((center.ravel()).astype(int)),font,0.8,(0,0,0),2)
-                
+
 
 
             overlay=dimg1
@@ -131,22 +131,22 @@ def Main():
         if(len(detections)==0 and odoData1==0):
             overlay=frame
             odoData=odoData1.copy()
-            
+
         elif odoData1:
             odoData=odoData1.copy()
 
-            
+
         #print('frame')
-        
-        
+
+
         cv2.imshow(window, overlay)
         cv2.waitKey(1)
 # Change the following line to get back the connection part.
-        
-    
+
+
 
     #sndString=str(strtPt[0])+' '+str(strtPt[1])+' '+str(headDir[0])+' '+str(headDir[1])+' '+str(endptFlag)+' '+str(endpt[0])+' '+str(endpt[1])
-    
+
     #k = cv2.waitKey(1)
 
 
@@ -154,7 +154,7 @@ def Main():
 
 
 
-        
+
 
 
 
@@ -201,12 +201,7 @@ def headingDir(corners,center):
     cMidPt[0]=cMidPt[0]+50*math.cos(math.radians(thta))
     cMidPt[1]=cMidPt[1]+50*math.sin(math.radians(thta))
     newmidPt=cMidPt+center
-    return newmidPt
-
-
-
-
-
+    return newmidPt,thta
 
 
 
