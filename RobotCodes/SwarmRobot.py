@@ -179,12 +179,14 @@ class SwarmRobot:
         # Converts the angle to radians
         if not radians:
             angular_speed = self.angular_speed
+            current_pos = self.current_pos["theta"]
         else:
             angular_speed = np.degrees(self.angular_speed)
+            current_pos = np.degrees(self.current_pos["theta"])
         # Uses the real coordinate system to
         if real:
             # Finds the change in theta needed to be at angle
-            delta_theta = float(angle) - float(self.current_pos["theta"])
+            delta_theta = float(angle) - float(current_pos)
             # Finds the time needed to sleep to complete Angular
             sleep = abs(delta_theta)/float(angular_speed)
             # If the angle is positive turn left
