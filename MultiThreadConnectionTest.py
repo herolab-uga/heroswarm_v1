@@ -127,7 +127,7 @@ def Main():
 
 
             overlay=dimg1
-            odoData1[str(detection.tag_id)]=(tuple(detection.center)+tuple(forwardDir),angle)
+            odoData1[str(detection.tag_id)]=[tuple(detection.center)+tuple(forwardDir),angle]
         if(len(detections)==0 and odoData1==0):
             overlay=frame
             odoData=odoData1.copy()
