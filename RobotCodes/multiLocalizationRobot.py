@@ -4,6 +4,8 @@ import numpy as np
 import json
 import os
 import time
+
+from numpy.lib.type_check import real
 from SwarmRobot import SwarmRobot
 
 robot = None
@@ -118,7 +120,7 @@ def getTheta(pt11,pt12) -> float:
     vec1.append(pt12[0].astype(float)-pt11[0].astype(float))
     vec1.append(pt12[1].astype(float)-pt11[1].astype(float))
 
-    vec12dt=np.abs(np.arctan2(vec1[1],vec1[0]))
+    vec12dt=np.arctan2(vec1[1],vec1[0])
     print("Theta: " + str(vec12dt))
     return vec12dt
 
