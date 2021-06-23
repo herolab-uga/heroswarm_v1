@@ -46,6 +46,10 @@ def main():
         CLIENT_SOCKET.send(query.encode('ascii'))
         endPosP=CLIENT_SOCKET.recv(4096)
         endPos=pickle.loads(endPosP)
+        print("Robot")
+        print(robotOdo)
+        print("End")
+        print(endPos)
         setMotion(robotOdo,endPos)
 
 
