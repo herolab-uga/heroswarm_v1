@@ -66,8 +66,8 @@ def setMotion(robotData,endPtData):
             hx=int(float(robotData[0][2]))
             hy=int(float(robotData[0][3]))
 
-            ex=int(float(endPtData[0]))
-            ey=int(float(endPtData[1]))
+            ex=int(float(endPtData[0][0]))
+            ey=int(float(endPtData[0][1]))
             trgDist=(math.sqrt((x-ex)**2)+(y-ey)**2)
             strtPt=np.array([x,y])
             endPt=np.array([ex,ey])
@@ -80,8 +80,8 @@ def setMotion(robotData,endPtData):
                 robot.stop()
     else:
         if not endPtData is None:
-            robot.set_x(endPtData[0])
-            robot.set_y(endPtData[1])
+            robot.set_x(endPtData[0][0])
+            robot.set_y(endPtData[0][1])
             robot.set_theta(robotData[1])
         robot.stop()
 
