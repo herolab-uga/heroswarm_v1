@@ -14,7 +14,7 @@ import time
 
 # Handling through dictionaries
 odoData={'robot1': 170, 'robot2': 650}
-endPtID='1'
+endPtID='4'
 
 
 def QueryHandler(query,clientID):
@@ -53,7 +53,7 @@ def Main():
     endpt=[0,0]
 
     endptFlag=True
-    HOST = '192.168.1.208'  # The server's hostname or IP address
+    HOST = '192.168.1.78'  # The server's hostname or IP address
     PORT=12346
     SERVER_SOCKET= socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     SERVER_SOCKET.bind((HOST,PORT))
@@ -111,14 +111,14 @@ def Main():
             posString = "({x:.0f},{y:.0f})".format(x=center[0],y=center[1])
             forwardDir,angle=headingDir(detection.corners,center)
             centerTxt=((center.ravel()).astype(int)).astype(str)
-            if not detection.tag_id=='4':
-                print(angle)
+            # if not detection.tag_id==:
+            #     print(angle)
             dimg1=draw1(dimg1,forwardDir,center,(0,0,255))
             cv2.putText(dimg1,posString, tuple((center.ravel()).astype(int)+10),font,fontScale,(255,0,0),lineType)
 
 
 
-            if detection.tag_id=='4':
+            if detection.tag_id==endPtID:
                 dimg1=cv2.putText(dimg1,'End Point', tuple((center.ravel()).astype(int)),font,0.8,fontColor,2)
                 dimg1 = cv2.circle(dimg1, tuple((center.ravel()).astype(int)),30, (0,128,255), 2)
             else:
