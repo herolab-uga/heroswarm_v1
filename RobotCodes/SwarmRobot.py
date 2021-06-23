@@ -23,6 +23,9 @@ class SwarmRobot:
         # Names each robot
         self.name = name
         self.id = id
+
+        if theta < 0:
+            theta = 2*math.pi + theta
         # Current Robot Position
         self.current_pos = {
             "x":x,
@@ -182,7 +185,7 @@ class SwarmRobot:
             # Finds the time needed to sleep to complete Angular
             sleep = abs(delta_theta)/float(self.angular_speed)
             # If the angle is positive turn left
-            if delta_theta < 0:
+            if delta_theta > 0:
                 self.mc.TankSteerLeft()
                 time.sleep(sleep)
             # If the angle is negative turn right
