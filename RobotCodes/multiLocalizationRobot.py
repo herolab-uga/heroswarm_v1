@@ -70,12 +70,15 @@ def setMotion(robotData,endPtData):
             headDir=np.array([hx,hy])
             theta = getTheta(strtPt,endPt)
             robot.set_theta(robotData[2])
-            MovOnTheta(theta)
+            if not theta is None:
+                MovOnTheta(theta)
+            else:
+                robot.stop()
     else:
         if not endPtData is None:
             robot.set_x(endPtData[0])
             robot.set_y(endPtData[1])
-            robot.set_theta(theta)
+            robot.set_theta(robotData[2])
         robot.stop()
 
 
