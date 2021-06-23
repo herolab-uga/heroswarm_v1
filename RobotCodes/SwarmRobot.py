@@ -68,7 +68,7 @@ class SwarmRobot:
         self.name = name
 
     def get_id(self) -> int:
-        return id
+        return self.id
 
     def set_id(self,id):
         self.id = id
