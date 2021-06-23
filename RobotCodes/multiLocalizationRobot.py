@@ -46,10 +46,10 @@ def main():
         CLIENT_SOCKET.send(query.encode('ascii'))
         endPosP=CLIENT_SOCKET.recv(4096)
         endPos=pickle.loads(endPosP)
-        print("Robot")
-        print(robotOdo)
-        print("End")
-        print(endPos)
+        # print("Robot")
+        # print(robotOdo)
+        # print("End")
+        # print(endPos)
         setMotion(robotOdo,endPos)
 
 
@@ -90,9 +90,10 @@ def MovOnTheta(theta):
     global robot
     stpFlag=False
     eStatus=True
-    thetaMargin=5
+    thetaMargin=10
     if not stpFlag and eStatus:
         try:
+            print(theta-robot.get_theta())
             # print(np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin))
             if np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin):
                 # print(np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin))
@@ -118,7 +119,7 @@ def getTheta(pt11,pt12) -> float:
     vec1.append(pt12[1].astype(float)-pt11[1].astype(float))
 
     vec12dt=np.arctan2(vec1[1],vec1[0])
-    print(vec12dt)
+    # print(vec12dt)
     return vec12dt
 
 if __name__ == '__main__':
