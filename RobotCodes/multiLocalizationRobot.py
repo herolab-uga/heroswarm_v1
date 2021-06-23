@@ -29,13 +29,13 @@ def main():
     while robotOdo is None:
         continue
     robot = SwarmRobot(
-                        host,
-                        data['id'],
-                        data['linear_speed'],
-                        data['angular_speed'],
-                        robotOdo[0][0],
-                        robotOdo[0][1],
-                        robotOdo[1])
+                        name=host,
+                        id=data['id'],
+                        linear_speed=data['linear_speed'],
+                        angular_speed=data['angular_speed'],
+                        x=robotOdo[0][0],
+                        y=robotOdo[0][1],
+                        theta=np.deg2rad(robotOdo[1]))
     print(robot)
     while True:
         query='o'
@@ -82,7 +82,7 @@ def setMotion(robotData,endPtData):
         if not endPtData is None:
             robot.set_x(endPtData[0][0])
             robot.set_y(endPtData[0][1])
-            robot.set_theta(robotData[1])
+            robot.set_theta(np.deg2rad(robotData[1]))
         robot.stop()
 
 
