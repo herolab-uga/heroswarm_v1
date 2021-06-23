@@ -10,7 +10,7 @@ robot = None
 
 def main():
     global robot
-    HOST='192.168.1.208'
+    HOST='192.168.1.78'
     PORT=12346
     host = socket.gethostname()
     data = None
@@ -33,9 +33,9 @@ def main():
                         data['id'],
                         data['linear_speed'],
                         data['angular_speed'],
-                        robotOdo[0],
-                        robotOdo[1],
-                        robotOdo[2])
+                        robotOdo[0][0],
+                        robotOdo[0][1],
+                        robotOdo[1])
     print(robot)
     while True:
         query='o'
@@ -57,10 +57,10 @@ def setMotion(robotData,endPtData):
     theta = None
     
     if not endPtData is None and not robotData is None:
-            x=int(float(robotData[0]))
-            y=int(float(robotData[1]))
-            hx=int(float(robotData[2]))
-            hy=int(float(robotData[3]))
+            x=int(float(robotData[0][0]))
+            y=int(float(robotData[0][1]))
+            hx=int(float(robotData[0][2]))
+            hy=int(float(robotData[0][3]))
 
             ex=int(float(endPtData[0]))
             ey=int(float(endPtData[1]))
@@ -69,7 +69,7 @@ def setMotion(robotData,endPtData):
             endPt=np.array([ex,ey])
             headDir=np.array([hx,hy])
             theta = getTheta(strtPt,endPt)
-            robot.set_theta(robotData[2])
+            robot.set_theta(robotData[1])
             if not theta is None:
                 MovOnTheta(theta)
             else:
@@ -78,7 +78,7 @@ def setMotion(robotData,endPtData):
         if not endPtData is None:
             robot.set_x(endPtData[0])
             robot.set_y(endPtData[1])
-            robot.set_theta(robotData[2])
+            robot.set_theta(robotData[1])
         robot.stop()
 
 
