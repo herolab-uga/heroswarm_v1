@@ -98,7 +98,7 @@ class SwarmRobot:
         self.linear_speed = linear_speed
 
     def get_angular_speed(self) -> float:
-        return self.linear_speed
+        return self.angular_speed
 
     def set_angular_speed(self,angular_speed):
         self.linear_speed = angular_speed
