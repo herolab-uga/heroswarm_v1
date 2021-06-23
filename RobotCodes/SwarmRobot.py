@@ -5,6 +5,7 @@ import time
 import json
 import atexit
 import motorControl
+import numpy as np
 
 
 class SwarmRobot:
@@ -177,13 +178,15 @@ class SwarmRobot:
     def turn(self,real=True,radians=True,angle=0):
         # Converts the angle to radians
         if not radians:
-            angle = math.radians(angle)
+            angular_speed = self.angular_speed
+        else:
+            angular_speed = np.degrees(self.angular_speed)
         # Uses the real coordinate system to
         if real:
             # Finds the change in theta needed to be at angle
             delta_theta = float(angle) - float(self.current_pos["theta"])
             # Finds the time needed to sleep to complete Angular
-            sleep = abs(delta_theta)/float(self.angular_speed)
+            sleep = abs(delta_theta)/float(angular_speed)
             # If the angle is positive turn left
             if delta_theta > 0:
                 self.mc.TankSteerLeft()
