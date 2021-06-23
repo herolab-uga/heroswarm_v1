@@ -1,6 +1,7 @@
 from __future__ import division
 from __future__ import print_function
 from argparse import ArgumentParser
+import enum
 import threading
 import getch
 import socket, pickle
@@ -41,6 +42,11 @@ def ThreadedConnection(connectedClient):
         connectedClient.send(dataToSendP)
 
 def Main():
+    orig_id = 2
+    ref_y_id = 11
+    ref_x_id = 6
+    x_distance = 2.0447
+    y_distance = 1.2192
     maxBots=1
     global odoData
     print(odoData)
@@ -49,25 +55,6 @@ def Main():
 
     cv2.namedWindow(window)
 
-
-    endpt=[0,0]
-
-    endptFlag=True
-    HOST = '192.168.1.78'  # The server's hostname or IP address
-    PORT=12346
-    SERVER_SOCKET= socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    SERVER_SOCKET.bind((HOST,PORT))
-    print("Socket Bound to Port ",PORT)
-    SERVER_SOCKET.listen(5)
-    cnnCntr=0
-    while True:
-
-        clientConnection, addr = SERVER_SOCKET.accept()
-        clientThread=threading.Thread(target=ThreadedConnection,args=(clientConnection,))
-        clientThread.start()
-        cnnCntr+=1
-        if cnnCntr==maxBots: # Change this to how many ever number of clients you would like to connect to
-            break
 
 
     # Localization Code Here
@@ -101,18 +88,40 @@ def Main():
         num_detections = len(detections)
         dimg1=dimg
 
+        ref_x = None
+        ref_y = None
+        orig = None
+        transform = []
+
+        for k,tag in enumerate(detections):
+            # print(type(tag.tag_id))
+            if tag.tag_id == ref_x_id:
+                ref_x = tag.center
+                # print("x")
+            elif tag.tag_id == ref_y_id:
+                ref_y = tag.center
+                # print("y")
+            elif tag.tag_id == orig_id:
+                orig = tag.center
+                # print("orig")
+        
+        if ref_y is None or ref_x is None or orig is None:
+            print("Showing")
+            continue
+        
+        transform.append(np.abs(x_distance)/np.abs(ref_x[0]-orig[0]))
+        transform.append(np.abs(y_distance)/np.abs(orig[1] -ref_y[1]))
+
+        print(transform)
 
         for i, detection in enumerate(detections):
-            center_meters = []
             dimg1 = draw(frame,detection.corners)
             center=detection.center
-            center_meters.append((((center[0]-164.0)/1453.0)*2.4892))
-            center_meters.append((((center[1]-25.0)/951.0)*1.626))
-            posString = "({x:.0f},{y:.0f})".format(x=center[0],y=center[1])
+            center_meters = (transform[0] * (float(center[0]) - orig[0]),transform[1] * (orig[1] - float(center[1])) )
+            print(center)
+            posString = "({x:.2f},{y:.2f})".format(x=center_meters[0],y=center_meters[1])
             forwardDir,angle=headingDir(detection.corners,center)
             centerTxt=((center.ravel()).astype(int)).astype(str)
-            # if not detection.tag_id==:
-            #     print(angle)
             dimg1=draw1(dimg1,forwardDir,center,(0,0,255))
             cv2.putText(dimg1,posString, tuple((center.ravel()).astype(int)+10),font,fontScale,(255,0,0),lineType)
 
@@ -127,7 +136,7 @@ def Main():
 
 
             overlay=dimg1
-            odoData1[str(detection.tag_id)]=[tuple(detection.center)+tuple(forwardDir),angle]
+            odoData1[str(detection.tag_id)]=[tuple(center_meters)+tuple(forwardDir),angle]
         if(len(detections)==0 and odoData1==0):
             overlay=frame
             odoData=odoData1.copy()
@@ -137,7 +146,6 @@ def Main():
 
 
         #print('frame')
-
 
         cv2.imshow(window, overlay)
         cv2.waitKey(1)
