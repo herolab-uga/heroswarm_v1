@@ -90,7 +90,7 @@ def MovOnTheta(theta):
     global robot
     stpFlag=False
     eStatus=True
-    thetaMargin=10
+    thetaMargin=20
     if not stpFlag and eStatus:
         try:
             print("Delta: " + str(theta-robot.get_theta()))
