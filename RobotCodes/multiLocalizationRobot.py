@@ -73,7 +73,7 @@ def setMotion(robotData,endPtData):
             endPt=np.array([ex,ey])
             headDir=np.array([hx,hy])
             theta = getTheta(strtPt,endPt)
-            robot.set_theta(robotData[1])
+            robot.set_theta(np.deg2rad(robotData[1]))
             if not theta is None:
                 MovOnTheta(theta)
             else:
