@@ -99,7 +99,7 @@ def MovOnTheta(theta):
                 # print(np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin))
                 robot.turn(angle=theta)
             else:
-                #print('Go Straight')
+                print('Go Straight')
                 robot.forward()
         except Exception as e:
             print(e)
