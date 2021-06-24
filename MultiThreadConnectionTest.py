@@ -42,11 +42,11 @@ def ThreadedConnection(connectedClient):
         connectedClient.send(dataToSendP)
 
 def Main():
-    orig_id = 2
-    ref_y_id = 11
-    ref_x_id = 6
-    x_distance = 2.0447
-    y_distance = 1.2192
+    orig_id = 0
+    ref_y_id = 1
+    ref_x_id = 2
+    x_distance = 86 #2.1844
+    y_distance = 47#1.1938
     maxBots=1
     global odoData
     print(odoData)
@@ -88,22 +88,17 @@ def Main():
         num_detections = len(detections)
         dimg1=dimg
 
+        # Sets up variables to store the x and posistions of the reference tags
         ref_x = None
         ref_y = None
         orig = None
-        transform = []
+        # Variable for storing the transform
+        transform = [] 
 
-        for k,tag in enumerate(detections):
-            # print(type(tag.tag_id))
-            if tag.tag_id == ref_x_id:
-                ref_x = tag.center
-                # print("x")
-            elif tag.tag_id == ref_y_id:
-                ref_y = tag.center
-                # print("y")
-            elif tag.tag_id == orig_id:
-                orig = tag.center
-                # print("orig")
+        # Gets the x and y positions of the reference tags
+        ref_x = detections[ref_x_id].center
+        ref_y = detections[ref_y_id].center
+        orig = detections[orig_id].center
         
         if ref_y is None or ref_x is None or orig is None:
             print("Showing")
@@ -112,15 +107,13 @@ def Main():
         transform.append(np.abs(x_distance)/np.abs(ref_x[0]-orig[0]))
         transform.append(np.abs(y_distance)/np.abs(orig[1] -ref_y[1]))
 
-        print(transform)
-
         for i, detection in enumerate(detections):
             dimg1 = draw(frame,detection.corners)
             center=detection.center
             center_meters = (transform[0] * (float(center[0]) - orig[0]),transform[1] * (orig[1] - float(center[1])) )
-            print(center)
             posString = "({x:.2f},{y:.2f})".format(x=center_meters[0],y=center_meters[1])
             forwardDir,angle=headingDir(detection.corners,center)
+            forwardDir_meters = (transform[0] * (float(forwardDir[0] - orig[0])), transform[1] * (float(orig[0] -forwardDir[0])) )
             centerTxt=((center.ravel()).astype(int)).astype(str)
             dimg1=draw1(dimg1,forwardDir,center,(0,0,255))
             cv2.putText(dimg1,posString, tuple((center.ravel()).astype(int)+10),font,fontScale,(255,0,0),lineType)
