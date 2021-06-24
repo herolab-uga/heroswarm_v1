@@ -122,7 +122,7 @@ def getTheta(pt11,pt12) -> float:
     angle = np.degrees(np.arctan2(pt12[1]-pt11[1], pt12[0]-pt11[0]))
 
     if angle < 0:
-        angle = 360 - angle 
+        angle = angle + 360 
 
     print("Theta: " + str(angle))
     return angle
