@@ -1,6 +1,7 @@
 from __future__ import division
 from __future__ import print_function
 from argparse import ArgumentParser
+import enum
 import threading
 import getch
 import socket, pickle
@@ -41,6 +42,9 @@ def ThreadedConnection(connectedClient):
         connectedClient.send(dataToSendP)
 
 def Main():
+    reference_tags = [0,1,2]
+    x_distance = 86 #2.1844
+    y_distance = 47#1.1938
     maxBots=1
     global odoData
     print(odoData)
@@ -48,7 +52,6 @@ def Main():
     window = 'Overlay1'
 
     cv2.namedWindow(window)
-
 
     endpt=[0,0]
 
@@ -68,7 +71,6 @@ def Main():
         cnnCntr+=1
         if cnnCntr==maxBots: # Change this to how many ever number of clients you would like to connect to
             break
-
 
     # Localization Code Here
     parser = ArgumentParser(description='test apriltag Python bindings')
@@ -101,19 +103,36 @@ def Main():
         num_detections = len(detections)
         dimg1=dimg
 
+        # Sets up variables to store the x and posistions of the reference tags
+        ref_x = None
+        ref_y = None
+        orig = None
+        
+        # Variable for storing the transform
+        transform = [] 
+
+        try:
+            # Gets the x and y positions of the reference tags
+            ref_x = detections[reference_tags[1]].center
+            ref_y = detections[reference_tags[2]].center
+            orig = detections[reference_tags[0]].center
+        except IndexError:
+            continue
+        
+        
+        transform.append(np.abs(x_distance)/np.abs(ref_x[0]-orig[0]))
+        transform.append(np.abs(y_distance)/np.abs(orig[1] -ref_y[1]))
 
         for i, detection in enumerate(detections):
-            center_meters = []
             dimg1 = draw(frame,detection.corners)
             center=detection.center
-            center_meters.append((((center[0]-164.0)/1453.0)*2.4892))
-            center_meters.append((((center[1]-25.0)/951.0)*1.626))
-            posString = "({x:.0f},{y:.0f})".format(x=center[0],y=center[1])
-            forwardDir,angle=headingDir(detection.corners,center)
+            center_meters = (transform[0] * (float(center[0]) - orig[0]),transform[1] * (orig[1] - float(center[1])) )
+            posString = "({x:.2f},{y:.2f})".format(x=center_meters[0],y=center_meters[1])
+            if not detection.tag_id in reference_tags:
+                forwardDir,angle=headingDir(detection.corners,center)
+                forwardDir_meters = (transform[0] * (float(forwardDir[0] - orig[0])), transform[1] * (float(orig[0] -forwardDir[0])) )
+                dimg1=draw1(dimg1,forwardDir,center,(0,0,255))
             centerTxt=((center.ravel()).astype(int)).astype(str)
-            # if not detection.tag_id==:
-            #     print(angle)
-            dimg1=draw1(dimg1,forwardDir,center,(0,0,255))
             cv2.putText(dimg1,posString, tuple((center.ravel()).astype(int)+10),font,fontScale,(255,0,0),lineType)
 
 
@@ -127,7 +146,10 @@ def Main():
 
 
             overlay=dimg1
-            odoData1[str(detection.tag_id)]=[tuple(detection.center)+tuple(forwardDir),angle]
+            if not detection.tag_id in reference_tags:
+                odoData1[str(detection.tag_id)]=[tuple(center_meters)+tuple(forwardDir),angle]
+            else:
+                odoData1[str(detection.tag_id)]=[tuple(center_meters)]
         if(len(detections)==0 and odoData1==0):
             overlay=frame
             odoData=odoData1.copy()
@@ -137,7 +159,6 @@ def Main():
 
 
         #print('frame')
-
 
         cv2.imshow(window, overlay)
         cv2.waitKey(1)

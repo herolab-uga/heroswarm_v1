@@ -62,6 +62,9 @@ def setMotion(robotData,endPtData):
     stpFlag=False
     theta = None
     
+    if robotData is None or robotData[1] is None:
+        return
+
     if not endPtData is None and not robotData is None:
             x=int(float(robotData[0][0]))
             y=int(float(robotData[0][1]))
