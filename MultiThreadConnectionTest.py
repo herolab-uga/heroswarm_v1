@@ -53,7 +53,24 @@ def Main():
 
     cv2.namedWindow(window)
 
+    endpt=[0,0]
 
+    endptFlag=True
+    HOST = '192.168.1.78'  # The server's hostname or IP address
+    PORT=12346
+    SERVER_SOCKET= socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    SERVER_SOCKET.bind((HOST,PORT))
+    print("Socket Bound to Port ",PORT)
+    SERVER_SOCKET.listen(5)
+    cnnCntr=0
+    while True:
+
+        clientConnection, addr = SERVER_SOCKET.accept()
+        clientThread=threading.Thread(target=ThreadedConnection,args=(clientConnection,))
+        clientThread.start()
+        cnnCntr+=1
+        if cnnCntr==maxBots: # Change this to how many ever number of clients you would like to connect to
+            break
 
     # Localization Code Here
     parser = ArgumentParser(description='test apriltag Python bindings')
