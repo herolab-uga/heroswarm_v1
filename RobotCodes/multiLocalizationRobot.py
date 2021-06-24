@@ -95,8 +95,8 @@ def MovOnTheta(theta):
     thetaMargin=10
     if not stpFlag and eStatus:
         try:
-            delta = np.abs(theta) - np.degrees(robot.get_theta())
-            # print("Delta: " + str(delta))
+            delta = theta
+            print("Delta: " + str(delta))
             # print(np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin))
             # if np.abs(delta) > thetaMargin:
             #     # print(np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin))
@@ -117,9 +117,9 @@ def MovOnTheta(theta):
 
 def getTheta(pt11,pt12) -> float:
     angle = np.degrees(np.arctan2(pt12[1]-pt11[1], pt12[0]-pt11[0]))
-
+    delta_angle = np.dot(pt11,pt12)
     print("Theta: " + str(angle))
-    return angle
+    return delta_angle
 
 if __name__ == '__main__':
     main()
