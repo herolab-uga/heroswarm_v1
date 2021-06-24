@@ -177,7 +177,7 @@ class SwarmRobot:
 
     def turn(self,real=True,radians=True,angle=0):
         # Converts the angle to radians
-        if not radians:
+        if radians:
             angular_speed = self.angular_speed
             current_pos = self.current_pos["theta"]
         else:
