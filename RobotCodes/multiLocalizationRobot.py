@@ -101,12 +101,12 @@ def MovOnTheta(theta):
             delta = np.abs(theta) - np.abs(np.degrees(robot.get_theta()))
             print("Delta: " + str(delta))
             # print(np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin))
-            if np.abs(delta) > thetaMargin:
-                # print(np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin))
-                robot.turn(angle=delta,radians=False,real=False)
-            else:
-                print('Go Straight')
-                robot.forward()
+            # if np.abs(delta) > thetaMargin:
+            #     # print(np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin))
+            #     robot.turn(angle=delta,radians=False,real=False)
+            # else:
+            #     print('Go Straight')
+            #     robot.forward()
         except Exception as e:
             print(e)
             robot.stop()
