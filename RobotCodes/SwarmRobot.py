@@ -208,7 +208,7 @@ class SwarmRobot:
             # Finds the time need to sleep to turn through angle
             sleep = abs(angle)/angular_speed
             # If the angle is positive turn left
-            if angle < 0:
+            if angle > 0:
                 self.mc.TankSteerLeft()
                 time.sleep(sleep)
             # If the angle is negative turn right
