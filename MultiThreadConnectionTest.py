@@ -42,9 +42,7 @@ def ThreadedConnection(connectedClient):
         connectedClient.send(dataToSendP)
 
 def Main():
-    orig_id = 0
-    ref_y_id = 1
-    ref_x_id = 2
+    reference_tags = [0,1,2]
     x_distance = 86 #2.1844
     y_distance = 47#1.1938
     maxBots=1
@@ -92,17 +90,18 @@ def Main():
         ref_x = None
         ref_y = None
         orig = None
+        
         # Variable for storing the transform
         transform = [] 
 
-        # Gets the x and y positions of the reference tags
-        ref_x = detections[ref_x_id].center
-        ref_y = detections[ref_y_id].center
-        orig = detections[orig_id].center
-        
-        if ref_y is None or ref_x is None or orig is None:
-            print("Showing")
+        try:
+            # Gets the x and y positions of the reference tags
+            ref_x = detections[reference_tags[1]].center
+            ref_y = detections[reference_tags[2]].center
+            orig = detections[reference_tags[0]].center
+        except IndexError:
             continue
+        
         
         transform.append(np.abs(x_distance)/np.abs(ref_x[0]-orig[0]))
         transform.append(np.abs(y_distance)/np.abs(orig[1] -ref_y[1]))
@@ -112,10 +111,11 @@ def Main():
             center=detection.center
             center_meters = (transform[0] * (float(center[0]) - orig[0]),transform[1] * (orig[1] - float(center[1])) )
             posString = "({x:.2f},{y:.2f})".format(x=center_meters[0],y=center_meters[1])
-            forwardDir,angle=headingDir(detection.corners,center)
-            forwardDir_meters = (transform[0] * (float(forwardDir[0] - orig[0])), transform[1] * (float(orig[0] -forwardDir[0])) )
+            if not detection.tag_id in reference_tags:
+                forwardDir,angle=headingDir(detection.corners,center)
+                forwardDir_meters = (transform[0] * (float(forwardDir[0] - orig[0])), transform[1] * (float(orig[0] -forwardDir[0])) )
+                dimg1=draw1(dimg1,forwardDir,center,(0,0,255))
             centerTxt=((center.ravel()).astype(int)).astype(str)
-            dimg1=draw1(dimg1,forwardDir,center,(0,0,255))
             cv2.putText(dimg1,posString, tuple((center.ravel()).astype(int)+10),font,fontScale,(255,0,0),lineType)
 
 
@@ -129,7 +129,10 @@ def Main():
 
 
             overlay=dimg1
-            odoData1[str(detection.tag_id)]=[tuple(center_meters)+tuple(forwardDir),angle]
+            if not detection.tag_id in reference_tags:
+                odoData1[str(detection.tag_id)]=[tuple(center_meters)+tuple(forwardDir),angle]
+            else:
+                odoData1[str(detection.tag_id)]=[tuple(center_meters)]
         if(len(detections)==0 and odoData1==0):
             overlay=frame
             odoData=odoData1.copy()
