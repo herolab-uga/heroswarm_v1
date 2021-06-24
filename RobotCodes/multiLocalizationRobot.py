@@ -118,7 +118,7 @@ def MovOnTheta(theta):
 
 
 def getTheta(pt11,pt12) -> float:
-    print(pt11)
+    print(pt12)
     vec1 = []
     vec1.append(pt12[0].astype(float)-pt11[0].astype(float))
     vec1.append(pt12[1].astype(float)-pt11[1].astype(float))
