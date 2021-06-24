@@ -37,7 +37,7 @@ def main():
                         angular_speed=data['angular_speed'],
                         x=robotOdo[0][0],
                         y=robotOdo[0][1],
-                        theta=np.deg2rad(robotOdo[1]))
+                        theta=np.radians(robotOdo[1]))
     print(robot)
     while True:
         query='o'
@@ -48,10 +48,6 @@ def main():
         CLIENT_SOCKET.send(query.encode('ascii'))
         endPosP=CLIENT_SOCKET.recv(4096)
         endPos=pickle.loads(endPosP)
-        # print("Robot")
-        # print(robotOdo)
-        # print("End")
-        # print(endPos)
         setMotion(robotOdo,endPos)
 
 
@@ -65,7 +61,7 @@ def setMotion(robotData,endPtData):
     if robotData is None or robotData[1] is None:
         return
 
-    print("Robot Heading: " + str(np.degrees(robotData[1])))
+    print("Robot Heading: " + str(robotData[1]))
     if not endPtData is None and not robotData is None:
             x=int(float(robotData[0][0]))
             y=int(float(robotData[0][1]))
@@ -79,7 +75,7 @@ def setMotion(robotData,endPtData):
             endPt=np.array([ex,ey])
             headDir=np.array([hx,hy])
             theta = getTheta(strtPt,endPt)
-            robot.set_theta(np.deg2rad(robotData[1]))
+            robot.set_theta(robotData[1])
             if not theta is None:
                 MovOnTheta(theta)
             else:
@@ -88,7 +84,7 @@ def setMotion(robotData,endPtData):
         if not endPtData is None:
             robot.set_x(endPtData[0][0])
             robot.set_y(endPtData[0][1])
-            robot.set_theta(np.deg2rad(robotData[1]))
+            robot.set_theta(robotData[1]))
         robot.stop()
 
 
