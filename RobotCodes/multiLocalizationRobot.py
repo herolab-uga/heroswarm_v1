@@ -102,7 +102,7 @@ def MovOnTheta(theta):
             # print(np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin))
             if np.abs(theta-np.degrees(robot.get_theta())) > thetaMargin:
                 # print(np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin))
-                robot.turn(angle=theta,radians=False)
+                robot.turn(angle=theta,radians=False,real=False)
             else:
                 print('Go Straight')
                 robot.forward()
@@ -119,13 +119,10 @@ def MovOnTheta(theta):
 
 def getTheta(pt11,pt12) -> float:
     print(pt12)
-    vec1 = []
-    vec1.append(pt12[0].astype(float)-pt11[0].astype(float))
-    vec1.append(pt12[1].astype(float)-pt11[1].astype(float))
+    angle = np.arctan2(pt12[1], pt12[0]) - np.arctan2(pt11[1], pt11[0])
 
-    vec12dt=np.degrees(np.arctan2(vec1[1],vec1[0]))
-    print("Theta: " + str(vec12dt))
-    return vec12dt
+    print("Theta: " + str(angle))
+    return angle
 
 if __name__ == '__main__':
     main()
