@@ -181,7 +181,9 @@ class SwarmRobot:
             angular_speed = self.angular_speed
             current_pos = self.current_pos["theta"]
         else:
+            print(self.get_angular_speed)
             angular_speed = np.degrees(self.angular_speed)
+            print(angular_speed)
             current_pos = np.degrees(self.current_pos["theta"])
         # Uses the real coordinate system to
         if real:
