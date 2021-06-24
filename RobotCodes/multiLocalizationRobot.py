@@ -1,4 +1,3 @@
-from MultiThreadConnectionTest import headingDir
 import socket, pickle
 import math
 import numpy as np
@@ -75,7 +74,7 @@ def setMotion(robotData,endPtData):
             strtPt=np.array([x,y])
             endPt=np.array([ex,ey])
             headDir=np.array([hx,hy])
-            theta = getTheta(strtPt,endPt,headingDir)
+            theta = getTheta(strtPt,endPt,headDir)
             robot.set_theta(robotData[1])
             if not theta is None:
                 MovOnTheta(theta)
