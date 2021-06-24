@@ -84,7 +84,7 @@ def setMotion(robotData,endPtData):
         if not endPtData is None:
             robot.set_x(endPtData[0][0])
             robot.set_y(endPtData[0][1])
-            robot.set_theta(robotData[1]))
+            robot.set_theta(robotData[1])
         robot.stop()
 
 
