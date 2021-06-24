@@ -100,7 +100,7 @@ def MovOnTheta(theta):
         try:
             print("Delta: " + str(theta-np.degrees(robot.get_theta())))
             # print(np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin))
-            if np.abs(theta-np.degrees(robot.get_theta())) > thetaMargin:
+            if np.abs(theta) > thetaMargin:
                 # print(np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin))
                 robot.turn(angle=theta,radians=False,real=False)
             else:
