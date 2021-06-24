@@ -34,6 +34,12 @@ def QueryHandler(query,clientID):
     return requestedData
 
 
+def find_connections(SERVER_SOCKET):
+    while True:
+        clientConnection, addr = SERVER_SOCKET.accept()
+        clientThread=threading.Thread(target=ThreadedConnection,args=(clientConnection,))
+        clientThread.start()
+
 def ThreadedConnection(connectedClient):
     clientID=connectedClient.recv(1024).decode('ascii')
     while True:
@@ -44,8 +50,7 @@ def ThreadedConnection(connectedClient):
 def Main():
     reference_tags = [0,1,2]
     x_distance = 86 #2.1844
-    y_distance = 47#1.1938
-    maxBots=1
+    y_distance = 47 #1.1938
     global odoData
     print(odoData)
     odoData1={'robot1': 170, 'robot2': 650}
@@ -62,15 +67,11 @@ def Main():
     SERVER_SOCKET.bind((HOST,PORT))
     print("Socket Bound to Port ",PORT)
     SERVER_SOCKET.listen(5)
-    cnnCntr=0
-    while True:
-
-        clientConnection, addr = SERVER_SOCKET.accept()
-        clientThread=threading.Thread(target=ThreadedConnection,args=(clientConnection,))
-        clientThread.start()
-        cnnCntr+=1
-        if cnnCntr==maxBots: # Change this to how many ever number of clients you would like to connect to
-            break
+    
+    # Starts a thread that looks for connections form the swarmbots 
+    connection_thread=threading.Thread(target=find_connections,args=(SERVER_SOCKET,))
+    connection_thread.start()
+    
 
     # Localization Code Here
     parser = ArgumentParser(description='test apriltag Python bindings')
