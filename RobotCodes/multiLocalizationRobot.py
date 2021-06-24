@@ -99,8 +99,8 @@ def MovOnTheta(theta):
     if not stpFlag and eStatus:
         try:
             delta = np.abs(theta) - np.degrees(robot.get_theta())
-            # if delta > 180:
-            #     delta = 180 - delta
+            if delta > 180:
+                delta = 180 - delta
             print("Delta: " + str(delta))
             # print(np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin))
             # if np.abs(delta) > thetaMargin:
