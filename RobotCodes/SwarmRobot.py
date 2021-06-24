@@ -205,7 +205,6 @@ class SwarmRobot:
                 self.current_pos["theta"] = np.radians(angle)
         # Uses a coordinate system relative to the robot where it is always facing theta=0
         else:
-            print(angle)
             # Finds the time need to sleep to turn through angle
             sleep = abs(angle)/angular_speed
             # If the angle is positive turn left
