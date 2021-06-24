@@ -198,11 +198,16 @@ class SwarmRobot:
                 self.mc.TankSteerRight()
                 time.sleep(sleep)
             # Updates the current postion
-            self.current_pos["theta"] = angle
+            # Updates the current position
+            if radians:
+                self.current_pos["theta"] = angle
+            else:
+                self.current_pos["theta"] = np.radians(angle)
         # Uses a coordinate system relative to the robot where it is always facing theta=0
         else:
             # Finds the time need to sleep to turn through angle
-            sleep = abs(angle)/self.angular_speed
+            sleep = abs(angle)/angular_speed
+            print(sleep)
             # If the angle is positive turn left
             if angle < 0:
                 self.mc.TankSteerLeft()
@@ -212,7 +217,10 @@ class SwarmRobot:
                 self.mc.TankSteerRight()
                 time.sleep(sleep)
             # Updates the current position
-            self.current_pos["theta"] = self.current_pos["theta"] + angle
+            if radians:
+                self.current_pos["theta"] = self.current_pos["theta"] + angle
+            else:
+                self.current_pos["theta"] = self.current_pos["theta"] + np.radians(angle)
             # If the position is nagative after the update convert to positive unit circle angle
             if self.current_pos["theta"] < 0:
                 self.current_pos["theta"] = 2*math.pi - self.current_pos["theta"]
