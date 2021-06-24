@@ -118,7 +118,7 @@ def MovOnTheta(theta):
 
 def getTheta(pt11,pt12,heading) -> float:
     dif = [pt12[1]-pt11[1], pt12[0]-pt11[0]]
-    angle = np.degrees(np.arctan2(dif[1],dif[0])
+    angle = np.degrees(np.arctan2(dif[1],dif[0]))
     delta_angle = np.dot(heading,dif)
     print("Theta: " + str(angle))
     return delta_angle
