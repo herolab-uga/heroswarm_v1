@@ -65,7 +65,7 @@ def setMotion(robotData,endPtData):
     if robotData is None or robotData[1] is None:
         return
 
-    print(np.degrees(robotData[1]))
+    print("Robot Heading: " + str(np.degrees(robotData[1])))
     if not endPtData is None and not robotData is None:
             x=int(float(robotData[0][0]))
             y=int(float(robotData[0][1]))
