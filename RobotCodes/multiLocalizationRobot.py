@@ -83,7 +83,7 @@ def setMotion(robotData,endPtData):
     if robotData is None or robotData[1] is None:
         return
 
-    print("Robot Heading: " + str(robotData[1]))
+    # print("Robot Heading: " + str(robotData[1]))
     if not endPtData is None and not robotData is None:
             x=int(float(robotData[0][0]))
             y=int(float(robotData[0][1]))
@@ -120,11 +120,12 @@ def MovOnTheta(theta):
     theta = theta - prev_theta
     if not stpFlag and eStatus:
         try:
-            print("Delta Theta: " + str(theta))
+            # print("Delta Theta: " + str(theta))
             error = np.insert(error[:-1],0,theta)
+            print(error)
             delta = PID.get_angle(error)
-            print("PID: " + str(delta))
-            # if np.abs(delta) > thetaMargin:
+            # print("PID: " + str(delta))
+            # if np.abs(theta) > thetaMargin:
             #     robot.turn_right(PID.get_speed(delta))
             # else:
             #     print('Go Straight')
