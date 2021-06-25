@@ -20,11 +20,11 @@ class PID():
     d_k = data["d"]
     max_speed = 22
 
-    def get_angle(error):
-        p = PID.p_k * error[0]
-        i = PID.i_k * np.sum(error)
+    def get_angle(delta_thetas):
+        p = PID.p_k * delta_thetas[0]
+        i = PID.i_k * np.sum(delta_thetas)
         d = 0
-        diff = np.diff(error, n=PID.diff)
+        diff = np.diff(delta_thetas, n=PID.diff)
         d = PID.d_k * -1 * diff[0]
         # d = PID.d_k * np.sum( -1 * np.diff(error, n=PID.diff))
         return (p + i + d)
@@ -130,11 +130,11 @@ def MovOnTheta(theta):
             # print(error)
             angle = PID.get_angle(error)
             # print("PID: " + str(angle))
-            if np.abs(theta) > thetaMargin:
-                robot.turn_right(PID.get_speed(angle))
-            else:
-                # print('Go Straight')
-                robot.forward()
+            # if np.abs(theta) > thetaMargin:
+            #     robot.turn_right(PID.get_speed(angle))
+            # else:
+            #     # print('Go Straight')
+            #     robot.forward()
             prev_theta = theta
         except Exception as e:
             print(e)
@@ -157,7 +157,7 @@ def getTheta(pt11,pt12,heading) -> float:
     heading_length = distance(heading)
     dif_dist = distance(dif)
     angle = np.degrees(np.arccos(np.dot(heading,dif)/(heading_length*dif_dist)))
-    # print(angle)
+    print(angle)
     return angle
 
 if __name__ == '__main__':
