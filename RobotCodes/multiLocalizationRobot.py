@@ -8,7 +8,30 @@ import time
 from numpy.lib.type_check import real
 from SwarmRobot import SwarmRobot
 
+class PID():
+    init = 5
+    diff = 2
+    p_k = 1
+    i_k = 1
+    d_k = 1
+    max_speed = 22
+
+    def get_angle(error):
+        angle = 0
+        p = PID.p_k * error[0]
+        i = PID.i_k * np.sum(error)
+        d = PID.d_k * np.diff(error, n=PID.diff)
+        return angle
+    
+    def get_speed(delta):
+        return (delta/359) * PID.max_speed
+
+
+
+
 robot = None
+error = np.zeros((PID.init if PID.init > PID.diff else PID.diff+1))
+
 
 def main():
     global robot
@@ -75,7 +98,7 @@ def setMotion(robotData,endPtData):
             endPt=np.array([ex,ey])
             headDir=np.array([hx,hy])
             theta = getTheta(strtPt,endPt,headDir)
-            robot.set_theta(robotData[1])
+            # robot.set_theta(robotData[1])
             if not theta is None:
                 MovOnTheta(theta)
             else:
@@ -89,21 +112,23 @@ def setMotion(robotData,endPtData):
 
 
 def MovOnTheta(theta):
+    global error
     global robot
     stpFlag=False
     eStatus=True
     thetaMargin=10
     if not stpFlag and eStatus:
         try:
-            delta = theta
-            print("Delta: " + str(delta))
-            # print(np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin))
-            # if np.abs(delta) > thetaMargin:
-            #     # print(np.abs(theta-robot.get_theta()) > np.deg2rad(thetaMargin))
-            #     robot.turn(angle=delta,radians=False,real=False)
-            # else:
-            #     print('Go Straight')
-            #     robot.forward()
+            print(theta)
+            np.insert(error,0,theta)
+            error = np.insert(error[:-1],0,theta)
+            delta = PID.get_angle(error)
+            print(delta)
+            if np.abs(delta) > thetaMargin:
+                robot.turn_right(PID.get_speed(delta))
+            else:
+                print('Go Straight')
+                robot.forward()
         except Exception as e:
             print(e)
             robot.stop()
@@ -117,12 +142,10 @@ def distance(vector):
     return np.sqrt(vector[0]**2 + vector[1]**2)
 
 def getTheta(pt11,pt12,heading) -> float:
-    dif = [pt12[1]-pt11[1], pt12[0]-pt11[0]]
-    angle = np.degrees(np.arctan2(dif[1],dif[0]))
+    dif = [pt12[0]-pt11[0], pt12[1]-pt11[1]]
     heading_length = distance(heading)
     dif_dist = distance(dif)
     delta_angle = np.degrees(np.arccos(np.dot(heading,dif)/(heading_length*dif_dist)))
-    print("Theta: " + str(angle))
     return delta_angle
 
 if __name__ == '__main__':
