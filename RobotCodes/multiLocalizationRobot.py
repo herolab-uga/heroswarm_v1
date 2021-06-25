@@ -146,12 +146,12 @@ def MovOnTheta(theta):
 
 
 def distance(vector):
-    return np.sqrt(vector[0]**2 + vector[1]**2)
+    return float(np.sqrt(float(vector[0])**2 + float(vector[1])**2))
 
 def getTheta(pt11,pt12,heading) -> float:
-    dif = [pt12[0]-pt11[0], pt12[1]-pt11[1]]
-    heading[0] = heading[0]-pt11[0]
-    heading[1] = heading[1]-pt11[1]
+    dif = [float(pt12[0])-float(pt11[0]), float(pt12[1])-float(pt11[1])]
+    heading[0] = float(heading[0])-float(pt11[0])
+    heading[1] = float(heading[1])-float(pt11[1])
     # print(heading)
     # print(dif)
     heading_length = distance(heading)
