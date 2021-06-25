@@ -9,8 +9,8 @@ from numpy.lib.type_check import real
 from SwarmRobot import SwarmRobot
 
 class PID():
-    init = 5
-    diff = 2
+    init = 10
+    diff = 5
     p_k = 1
     i_k = 1
     d_k = 1
@@ -23,7 +23,7 @@ class PID():
         return (p + i + d)
     
     def get_speed(delta):
-        return (delta/359) * PID.max_speed
+        return (delta/180) * PID.max_speed
 
 
 
@@ -129,7 +129,7 @@ def MovOnTheta(theta):
             if np.abs(theta) > thetaMargin:
                 robot.turn_right(PID.get_speed(angle))
             else:
-                print('Go Straight')
+                # print('Go Straight')
                 robot.forward()
             prev_theta = theta
         except Exception as e:
