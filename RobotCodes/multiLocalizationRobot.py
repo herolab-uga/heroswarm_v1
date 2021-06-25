@@ -27,7 +27,7 @@ class PID():
         return (p + i + d)
     
     def get_speed(delta):
-        return (delta/180) * PID.max_speed
+        return (delta/360) * PID.max_speed
 
 
 
