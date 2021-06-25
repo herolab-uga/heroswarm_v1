@@ -76,7 +76,7 @@ def main():
         endPosP=CLIENT_SOCKET.recv(4096)
         endPos=pickle.loads(endPosP)
         setMotion(robotOdo,endPos)
-        print(time.time() - start)
+        # print(time.time() - start)
 
 def setMotion(robotData,endPtData):
     global robot
@@ -157,7 +157,7 @@ def getTheta(pt11,pt12,heading) -> float:
     heading_length = distance(heading)
     dif_dist = distance(dif)
     angle = np.degrees(np.arccos(np.dot(heading,dif)/(heading_length*dif_dist)))
-    print(angle)
+    print("Correction Angle: " + str(angle))
     return angle
 
 if __name__ == '__main__':
