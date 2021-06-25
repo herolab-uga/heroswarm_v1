@@ -31,14 +31,15 @@ class MotorControl:
         self.m1.ChangeDutyCycle(3)
         self.m2.ChangeDutyCycle(12)
             
-    def TankSteerLeft(self):
-        self.m1.ChangeDutyCycle(3)
-        self.m2.ChangeDutyCycle(3)
+    def TankSteerLeft(self,rate=3):
+        self.m1.ChangeDutyCycle(rate)
+        self.m2.ChangeDutyCycle(rate)
         
     
-    def TankSteerRight(self):
-        self.m1.ChangeDutyCycle(12)
-        self.m2.ChangeDutyCycle(12)
+    def TankSteerRight(self, rate=12):
+        self.m1.ChangeDutyCycle(rate)
+        self.m2.ChangeDutyCycle(rate)
+
     def IncreaseSpeed(self):
         self.pwmSpeed+=1
         self.m1=gpio.PWM(3,self.pwmSpeed)

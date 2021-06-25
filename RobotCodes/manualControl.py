@@ -15,11 +15,7 @@ while 1:
     elif(ctl=="A"):
         MovCnt.TankSteerLeft()
     elif(ctl=="D"):
-        MovCnt.TankSteerRight()
-    elif(ctl=="a"):
-        MovCnt.SteerLeft()
-    elif(ctl=="d"):
-        MovCnt.SteerRight()    
+        MovCnt.TankSteerRight()   
     elif(ctl=="R"):
         MovCnt.PWMClean()
     elif(ctl=="i"):
