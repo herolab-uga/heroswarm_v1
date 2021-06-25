@@ -121,16 +121,16 @@ def MovOnTheta(theta):
     delta_theta = theta - prev_theta
     if not stpFlag and eStatus:
         try:
-            print("Delta Theta: " + str(theta))
+            # print("Delta Theta: " + str(theta))
             error = np.insert(error[:-1],0,delta_theta)
-            print(error)
-            angle = PID.get_angle(error)
-            print("PID: " + str(angle))
-            if np.abs(theta) > thetaMargin:
-                robot.turn_right(PID.get_speed(angle))
-            else:
-                print('Go Straight')
-                robot.forward()
+            # print(error)
+            # angle = PID.get_angle(error)
+            # print("PID: " + str(angle))
+            # if np.abs(theta) > thetaMargin:
+            #     robot.turn_right(PID.get_speed(angle))
+            # else:
+            #     print('Go Straight')
+            #     robot.forward()
             prev_theta = theta
         except Exception as e:
             print(e)
@@ -146,9 +146,12 @@ def distance(vector):
 
 def getTheta(pt11,pt12,heading) -> float:
     dif = [pt12[0]-pt11[0], pt12[1]-pt11[1]]
+    print(heading)
+    print(dif)
     heading_length = distance(heading)
     dif_dist = distance(dif)
     angle = np.degrees(np.arccos(np.dot(heading,dif)/(heading_length*dif_dist))) + 180
+    print(angle)
     return angle
 
 if __name__ == '__main__':
