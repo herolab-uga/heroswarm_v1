@@ -169,11 +169,11 @@ class SwarmRobot:
         else:
             self.mc.MoveBackward()
 
-    def turn_left(self):
-        self.mc.TankSteerLeft()
+    def turn_left(self,rate):
+        self.mc.TankSteerLeft(rate)
 
-    def turn_right(self):
-        self.mc.TankSteerRight()
+    def turn_right(self,rate):
+        self.mc.TankSteerRight(rate)
 
     def turn(self,real=True,radians=True,angle=0):
         # Converts the angle to radians
