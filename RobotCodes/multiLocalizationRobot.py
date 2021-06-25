@@ -123,6 +123,7 @@ def MovOnTheta(theta):
     eStatus=True
     thetaMargin=10
     delta_theta = -theta
+    print("Error: " + str(delta_theta))
     if not stpFlag and eStatus:
         try:
             # print("Delta Theta: " + str(theta))
@@ -158,7 +159,7 @@ def getTheta(pt11,pt12,heading) -> float:
     dif_dist = distance(end_point)
     angle = np.degrees(np.arctan2(end_point[1],end_point[0]) - np.arctan2(heading[1],heading[0]))
     # angle = np.degrees(np.arccos(np.dot(heading,dif)/(heading_length*dif_dist)))
-    print("Correction Angle: " + str(angle))
+    # print("Correction Angle: " + str(angle))
     return angle
 
 if __name__ == '__main__':
