@@ -30,6 +30,7 @@ class PID():
 
 robot = None
 error = np.zeros((PID.init if PID.init > PID.diff else PID.diff+1))
+prev_theta = 0
 
 
 def main():
@@ -113,6 +114,7 @@ def setMotion(robotData,endPtData):
 def MovOnTheta(theta):
     global error
     global robot
+    global prev_theta
     stpFlag=False
     eStatus=True
     thetaMargin=10
