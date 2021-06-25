@@ -156,7 +156,7 @@ def getTheta(pt11,pt12,heading) -> float:
     # print(dif)
     heading_length = distance(heading)
     dif_dist = distance(dif)
-    angle = np.degrees(np.arccos(np.dot(heading,dif)/(heading_length*dif_dist)))
+    angle = np.degrees(np.arccos(np.dot(heading,dif)/(heading_length*dif_dist))) - 180
     print("Correction Angle: " + str(angle))
     return angle
 
