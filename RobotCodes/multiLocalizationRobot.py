@@ -41,7 +41,7 @@ def main():
     global robot
     HOST='192.168.1.78'
     PORT=12346
-    data = None
+    global data
     CLIENT_SOCKET=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     CLIENT_SOCKET.connect((HOST,PORT))
     print("1 Connected!!")
