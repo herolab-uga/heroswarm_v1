@@ -20,7 +20,7 @@ class PID():
         p = PID.p_k * error[0]
         i = PID.i_k * np.sum(error)
         d = PID.d_k * np.diff(error, n=PID.diff)
-        return p + i + d
+        return (p + i + d)
     
     def get_speed(delta):
         return (delta/359) * PID.max_speed
@@ -119,7 +119,6 @@ def MovOnTheta(theta):
     if not stpFlag and eStatus:
         try:
             print("Delta Theta: " + str(theta))
-            np.insert(error,0,theta)
             error = np.insert(error[:-1],0,theta)
             delta = PID.get_angle(error)
             print("PID: " + str(delta))
