@@ -8,12 +8,16 @@ import time
 from numpy.lib.type_check import real
 from SwarmRobot import SwarmRobot
 
+host = socket.gethostname()
+with open("config/swarm_v1_config.JSON","r") as file:
+        data = json.load(file)[host]
+
 class PID():
     init = 10
     diff = 5
-    p_k = 1
-    i_k = 1
-    d_k = 1
+    p_k = data["p"]
+    i_k = data["i"]
+    d_k = data["d"]
     max_speed = 22
 
     def get_angle(error):
@@ -37,11 +41,7 @@ def main():
     global robot
     HOST='192.168.1.78'
     PORT=12346
-    host = socket.gethostname()
     data = None
-    with open("config/swarm_v1_config.JSON","r") as file:
-        data = json.load(file)[host]
-
     CLIENT_SOCKET=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     CLIENT_SOCKET.connect((HOST,PORT))
     print("1 Connected!!")
