@@ -118,7 +118,6 @@ def MovOnTheta(theta):
     stpFlag=False
     eStatus=True
     thetaMargin=10
-    prev_theta = 0
     theta = theta - prev_theta
     if not stpFlag and eStatus:
         try:
