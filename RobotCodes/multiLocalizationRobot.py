@@ -63,6 +63,7 @@ def main():
                         theta=np.radians(robotOdo[1]))
     print(robot)
     while True:
+        start = time.time()
         query='o'
         CLIENT_SOCKET.send(query.encode('ascii'))
         robotOdoP=CLIENT_SOCKET.recv(4096)
@@ -72,7 +73,7 @@ def main():
         endPosP=CLIENT_SOCKET.recv(4096)
         endPos=pickle.loads(endPosP)
         setMotion(robotOdo,endPos)
-
+        print(time.time() - start)
 
 def setMotion(robotData,endPtData):
     global robot
