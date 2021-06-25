@@ -146,6 +146,8 @@ def distance(vector):
 
 def getTheta(pt11,pt12,heading) -> float:
     dif = [pt12[0]-pt11[0], pt12[1]-pt11[1]]
+    heading[0] = heading[0]-pt11[0]
+    heading[1] = heading[1]-pt11[1]
     print(heading)
     print(dif)
     heading_length = distance(heading)
