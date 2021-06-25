@@ -17,11 +17,10 @@ class PID():
     max_speed = 22
 
     def get_angle(error):
-        angle = 0
         p = PID.p_k * error[0]
         i = PID.i_k * np.sum(error)
         d = PID.d_k * np.diff(error, n=PID.diff)
-        return angle
+        return p + i + d
     
     def get_speed(delta):
         return (delta/359) * PID.max_speed
@@ -123,7 +122,7 @@ def MovOnTheta(theta):
             np.insert(error,0,theta)
             error = np.insert(error[:-1],0,theta)
             delta = PID.get_angle(error)
-            print("PID: " + delta)
+            print("PID: " + str(delta))
             # if np.abs(delta) > thetaMargin:
             #     robot.turn_right(PID.get_speed(delta))
             # else:
