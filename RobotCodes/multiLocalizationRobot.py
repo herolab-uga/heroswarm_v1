@@ -23,7 +23,8 @@ class PID():
     def get_angle(error):
         p = PID.p_k * error[0]
         i = PID.i_k * np.sum(error)
-        d = PID.d_k * np.sum( -1 * np.diff(error, n=PID.diff))
+        d = 0
+        # d = PID.d_k * np.sum( -1 * np.diff(error, n=PID.diff))
         return (p + i + d)
     
     def get_speed(delta):
