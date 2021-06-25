@@ -118,14 +118,14 @@ def MovOnTheta(theta):
     stpFlag=False
     eStatus=True
     thetaMargin=10
-    theta = theta - prev_theta
+    delta_theta = theta - prev_theta
     if not stpFlag and eStatus:
         try:
             # print("Delta Theta: " + str(theta))
-            error = np.insert(error[:-1],0,theta)
+            error = np.insert(error[:-1],0,delta_theta)
             print(error)
-            delta = PID.get_angle(error)
-            # print("PID: " + str(delta))
+            angle = PID.get_angle(error)
+            # print("PID: " + str(angle))
             # if np.abs(theta) > thetaMargin:
             #     robot.turn_right(PID.get_speed(delta))
             # else:
@@ -148,8 +148,8 @@ def getTheta(pt11,pt12,heading) -> float:
     dif = [pt12[0]-pt11[0], pt12[1]-pt11[1]]
     heading_length = distance(heading)
     dif_dist = distance(dif)
-    delta_angle = np.degrees(np.arccos(np.dot(heading,dif)/(heading_length*dif_dist)))
-    return delta_angle
+    angle = np.degrees(np.arccos(np.dot(heading,dif)/(heading_length*dif_dist)))
+    return angle
 
 if __name__ == '__main__':
     main()
