@@ -12,7 +12,7 @@ class MotorControl:
         gpio.setup(40,gpio.IN)
         gpio.setup(3,gpio.OUT)
         gpio.setup(5,gpio.OUT)
-        self.m1=gpio.PWM(3,50)
+        self.m1=gpio.PWM(3,35)
         self.m2=gpio.PWM(5,50)
         self.m1.start(0)
         self.m2.start(0)
