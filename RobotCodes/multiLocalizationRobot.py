@@ -128,14 +128,14 @@ def MovOnTheta(theta):
             # print(error)
             angle = PID.get_angle(error)
             print("PID: " + str(angle)) 
-            # if np.abs(theta) > thetaMargin:
-            #     if delta_theta > 0:
-            #         robot.turn_right(1)
-            #     else:
-            #         robot.turn_left(20)
-            # else:
-            #     # print('Go Straight')
-            #     robot.forward()
+            if np.abs(theta) > thetaMargin:
+                if delta_theta > 45 or delta_theta < -45:
+                    robot.turn_left()
+                else:
+                    robot.turn_left(PID.get_speed(angle))
+            else:
+                # print('Go Straight')
+                robot.forward()
             prev_theta = theta
         except Exception as e:
             print(e)
@@ -157,22 +157,19 @@ def getTheta(startpoint,endpoint,heading) -> float:
     # print(dif)
     heading_length = distance(heading)
     dif_dist = distance(rob_end_vec)
-    angle_end = np.degrees(np.arctan2(rob_end_vec[1],rob_end_vec[0]))
-    angle_robot = np.degrees(np.arctan2(heading[1],heading[0]))
+    angle_end = np.arctan2(rob_end_vec[1],rob_end_vec[0])
+    angle_robot = np.arctan2(heading[1],heading[0])
 
     if angle_end < 0:
-        angle_end += 360
+        angle_end += 2*math.pi
     
     if angle_robot < 0:
-        angle_robot+=360
+        angle_robot += 2*math.pi
 
     print("Angle End: " + str(angle_end))
     print("Angle Robot: " + str(angle_robot))
 
-    # if angle_robot > angle_end:
-    #     rl_angle = 180 - (angle_robot - angle_end)
-    # else:
-    rl_angle =  angle_end - angle_robot
+    rl_angle =  np.degrees(angle_end - angle_robot)
     
     # angle = np.degrees(np.arccos(np.dot(heading,dif)/(heading_length*dif_dist)))
     # print("Correction Angle: " + str(angle))
