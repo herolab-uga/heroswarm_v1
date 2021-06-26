@@ -119,7 +119,7 @@ def MovOnTheta(theta):
     eStatus=True
     thetaMargin=10
     delta_theta = theta - prev_theta
-    # print("Error: " + str(delta_theta))
+    print("Error: " + str(delta_theta))
     if not stpFlag and eStatus:
         try:
             print("Theta: " + str(theta))
@@ -156,19 +156,19 @@ def getTheta(startpoint,endpoint,heading) -> float:
     # print(dif)
     heading_length = distance(heading)
     dif_dist = distance(rob_end_vec)
-    angle_end = np.degrees(np.arctan2(rob_end_vec[1],rob_end_vec[0]))
-    angle_robot = np.degrees(np.arctan2(heading[1],heading[0]))
+    angle_end = np.arctan2(rob_end_vec[1],rob_end_vec[0])
+    angle_robot = np.arctan2(heading[1],heading[0])
 
     if angle_end < 0:
-        angle_end += 360
+        angle_end += 2*math.pi
     
     if angle_robot < 0:
-        angle_robot += 360
+        angle_robot += 2*math.pi
 
     print("Angle End: " + str(angle_end))
     print("Angle Robot: " + str(angle_robot))
 
-    rl_angle =  angle_end - angle_robot
+    rl_angle =  np.degrees(angle_end - angle_robot)
     
     # angle = np.degrees(np.arccos(np.dot(heading,dif)/(heading_length*dif_dist)))
     # print("Correction Angle: " + str(angle))
