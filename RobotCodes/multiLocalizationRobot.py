@@ -160,6 +160,12 @@ def getTheta(startpoint,endpoint,heading) -> float:
     angle_end = np.degrees(np.arctan2(rob_end_vec[1],rob_end_vec[0]))
     angle_robot = np.degrees(np.arctan2(heading[1],heading[0]))
 
+    if angle_end < 0:
+        angle_end += 360
+    
+    if angle_robot < 0:
+        angle_robot+=360
+
     print("Angle End: " + str(angle_end))
     print("Angle Robot: " + str(angle_robot))
 
@@ -167,10 +173,6 @@ def getTheta(startpoint,endpoint,heading) -> float:
     #     rl_angle = 180 - (angle_robot - angle_end)
     # else:
     rl_angle =  angle_end - angle_robot
-    if startpoint[1] < endpoint[1] and rl_angle < -180:
-        rl_angle += 360
-    elif startpoint[1] > endpoint[1] and rl_angle > 180:
-        rl_angle += -360
     
     # angle = np.degrees(np.arccos(np.dot(heading,dif)/(heading_length*dif_dist)))
     # print("Correction Angle: " + str(angle))
