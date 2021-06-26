@@ -45,7 +45,6 @@ def main():
     CLIENT_SOCKET=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     CLIENT_SOCKET.connect((HOST,PORT))
     print("1 Connected!!")
-    time.sleep(10)
     CLIENT_SOCKET.send(str(data['id']).encode('ascii'))
     query='o'
     CLIENT_SOCKET.send(query.encode('ascii'))
