@@ -131,7 +131,8 @@ def MovOnTheta(theta):
             if np.abs(theta) > thetaMargin:
                 print(theta <=90 and theta > 0)
                 if theta <= 90 and theta > 0:
-                    robot.turn_right(PID.get_speed(PID_out))
+                    # robot.turn_right(PID.get_speed(PID_out))
+                    robot.turn_right(0)
                 else:
                     robot.turn_right(0)
             else:
