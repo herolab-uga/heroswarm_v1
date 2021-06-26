@@ -119,7 +119,7 @@ def MovOnTheta(theta):
     stpFlag=False
     eStatus=True
     thetaMargin=10
-    delta_theta = -theta
+    delta_theta = theta - prev_theta
     print("Error: " + str(delta_theta))
     if not stpFlag and eStatus:
         try:
@@ -129,10 +129,10 @@ def MovOnTheta(theta):
             angle = PID.get_angle(error)
             print("PID: " + str(angle)) 
             if np.abs(theta) > thetaMargin:
-                if delta_theta > 45:
-                    robot.turn_left()
+                if delta_theta > -45 and delta_theta < 0:
+                    robot.turn_right(PID.get_speed(angle))
                 else:
-                    robot.turn_left(PID.get_speed(angle))
+                    robot.turn_right(0)
             else:
                 # print('Go Straight')
                 robot.forward()
