@@ -23,7 +23,8 @@ class PID():
     def get_angle(errors):
         p = PID.p_k * errors[0]
         i = PID.i_k * np.sum(errors)
-        d = PID.d_k * np.sum( -1 * np.diff(errors, n=PID.diff))
+        # d = PID.d_k * np.sum( -1 * np.diff(errors, n=PID.diff))
+        d = 0
         return (p + i + d)
     
     def get_speed(PID_out):
@@ -156,22 +157,21 @@ def getTheta(startpoint,endpoint,heading) -> float:
     # print(dif)
     heading_dist = distance(heading)
     dif_dist = distance(rob_end_vec)
-    angle_end = np.arctan2(rob_end_vec[1],rob_end_vec[0])
-    angle_robot = np.arctan2(heading[1],heading[0])
+    angle_end = np.arctan(rob_end_vec[1]/rob_end_vec[0])
+    angle_robot = np.arctan(heading[1]/heading[0])
 
-    if angle_end < 0:
-        angle_end += 2*math.pi
-    
-    if angle_robot < 0:
-        angle_robot += 2*math.pi
+    if angle_end > angle_robot:
+        rl_angle = angle_end - angle_robot
+    else:
+        rl_angle = angle_robot - angle_end
 
     print("Angle End: " + str(angle_end))
     print("Angle Robot: " + str(angle_robot))
 
-    rl_angle =  np.degrees(angle_end - angle_robot)
-    if rl_angle < -math.pi:
-        print()
-        rl_angle = (2*math.pi) + rl_angle    
+    # rl_angle =  np.degrees(angle_end - angle_robot)
+    # if rl_angle < -math.pi:
+    #     print()
+    #     rl_angle = (2*math.pi) + rl_angle    
     # angle = np.degrees(np.arccos(np.dot(heading,dif)/(heading_length*dif_dist)))
     print("Correction Angle: " + str(rl_angle))
     return rl_angle
