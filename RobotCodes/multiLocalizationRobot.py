@@ -129,7 +129,7 @@ def MovOnTheta(theta):
             PID_out = PID.get_angle(errors)
             print("PID: " + str(PID_out)) 
             if np.abs(theta) > thetaMargin:
-                if theta > -90 and theta > 0:
+                if theta > -90 and theta < 0:
                     robot.turn_right(PID.get_speed(PID_out))
                 else:
                     robot.turn_right(0)
