@@ -28,7 +28,7 @@ class PID():
         return (p + i + d)
     
     def get_speed(PID_out):
-        return np.abs((PID_out/90)) * PID.max_speed
+        return np.abs((PID_out/180)) * PID.max_speed
 
 
 
