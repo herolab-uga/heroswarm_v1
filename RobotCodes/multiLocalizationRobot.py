@@ -122,7 +122,7 @@ def MovOnTheta(theta):
     print("Error: " + str(delta_theta))
     if not stpFlag and eStatus:
         try:
-            # print("Delta Theta: " + str(theta))
+            print("Theta: " + str(theta))
             error = np.insert(error[:-1],0,delta_theta)
             # print(error)
             angle = PID.get_angle(error)
