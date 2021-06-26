@@ -133,9 +133,9 @@ def MovOnTheta(theta):
             print("PID: " + str(angle)) 
             if np.abs(theta) > thetaMargin:
                 if delta_theta < 0:
-                    robot.turn_right(3)
+                    robot.turn_right(4)
                 else:
-                    robot.turn_left(20)
+                    robot.turn_left(25)
             else:
                 # print('Go Straight')
                 robot.forward()
