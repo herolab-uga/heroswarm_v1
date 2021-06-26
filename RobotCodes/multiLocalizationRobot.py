@@ -127,15 +127,15 @@ def MovOnTheta(theta):
             # print(error)
             angle = PID.get_angle(error)
             print("PID: " + str(angle)) 
-            if np.abs(theta) > thetaMargin:
-                if theta < 90 and theta > 0:
-                    robot.turn_right(PID.get_speed(angle))
-                else:
-                    robot.turn_right(5)
-            else:
-                # print('Go Straight')
-                robot.forward()
-            prev_theta = theta
+            # if np.abs(theta) > thetaMargin:
+            #     if theta < 90 and theta > 0:
+            #         robot.turn_right(PID.get_speed(angle))
+            #     else:
+            #         robot.turn_right(5)
+            # else:
+            #     # print('Go Straight')
+            #     robot.forward()
+            # prev_theta = theta
         except Exception as e:
             print(e)
             robot.stop()
