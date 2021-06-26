@@ -28,7 +28,7 @@ class PID():
         return (p + i + d)
     
     def get_speed(PID_out):
-        return np.abs((PID_out/180)) * PID.max_speed
+        return np.abs((PID_out/90)) * PID.max_speed
 
 
 
@@ -132,7 +132,7 @@ def MovOnTheta(theta):
                 if theta < 90 and theta > 0:
                     robot.turn_right(PID.get_speed(PID_out))
                 else:
-                    robot.turn_right(3)
+                    robot.turn_right(0)
             else:
                 # print('Go Straight')
                 robot.forward()
