@@ -122,11 +122,11 @@ def MovOnTheta(theta):
     print("Error: " + str(delta_theta))
     if not stpFlag and eStatus:
         try:
-            print("Theta: " + str(theta))
+            # print("Theta: " + str(theta))
             error = np.insert(error[:-1],0,delta_theta)
             # print(error)
             angle = PID.get_angle(error)
-            print("PID: " + str(angle)) 
+            # print("PID: " + str(angle)) 
             # if np.abs(theta) > thetaMargin:
             #     if theta < 90 and theta > 0:
             #         robot.turn_right(PID.get_speed(angle))
@@ -159,11 +159,11 @@ def getTheta(startpoint,endpoint,heading) -> float:
     angle_end = np.arctan2(rob_end_vec[1],rob_end_vec[0])
     angle_robot = np.arctan2(heading[1],heading[0])
 
-    if angle_end < 0:
-        angle_end += 2*math.pi
+    # if angle_end < 0:
+    #     angle_end += 2*math.pi
     
-    if angle_robot < 0:
-        angle_robot += 2*math.pi
+    # if angle_robot < 0:
+    #     angle_robot += 2*math.pi
 
     print("Angle End: " + str(angle_end))
     print("Angle Robot: " + str(angle_robot))
