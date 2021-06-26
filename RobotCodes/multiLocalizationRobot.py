@@ -154,12 +154,12 @@ def distance(vector):
     return float(np.sqrt(float(vector[0])**2 + float(vector[1])**2))
 
 def getTheta(startpoint,endpoint,heading) -> float:
+    heading_rob = []
     rob_end_vec = [float(endpoint[0])-float(startpoint[0]), float(endpoint[1])-float(startpoint[1])]
-    heading[0] = float(heading[0])-float(startpoint[0])
-    heading[1] = float(heading[1])-float(startpoint[1])
-    # print(heading)
+    heading_rob[0] = float(heading[0])-float(startpoint[0])
+    heading_rob[1] = float(heading[1])-float(startpoint[1])
+    # print(heading_rob)
     # print(dif)
-    heading_dist = distance(heading)
     dif_dist = distance(rob_end_vec)
 
     if rob_end_vec[0] == 0:
@@ -169,22 +169,16 @@ def getTheta(startpoint,endpoint,heading) -> float:
             rl_angle = np.deg2rad(-90)
     else:
         angle_end = np.arctan(rob_end_vec[1]/rob_end_vec[0])
-        angle_robot = np.arctan(heading[1]/heading[0])
+        angle_robot = np.arctan(heading_rob[1]/heading_rob[0])
 
         if angle_end > angle_robot:
             rl_angle = angle_end - angle_robot
         else:
             rl_angle = angle_robot - angle_end
+    
+    if (distance(heading - endpoint)) > dif_dist:
+        rl_angle = math.pi
 
-    # print("Angle End: " + str(angle_end))
-    # print("Angle Robot: " + str(angle_robot))
-
-    # rl_angle =  np.degrees(angle_end - angle_robot)
-    # if rl_angle < -math.pi:
-    #     print()
-    #     rl_angle = (2*math.pi) + rl_angle    
-    # angle = np.degrees(np.arccos(np.dot(heading,dif)/(heading_length*dif_dist)))
-    # print("Correction Angle: " + str(np.degrees(rl_angle)))
     return np.degrees(rl_angle)
 
 if __name__ == '__main__':
