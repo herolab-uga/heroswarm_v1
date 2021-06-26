@@ -135,7 +135,7 @@ def MovOnTheta(theta):
                 if delta_theta < 0:
                     robot.turn_right(3)
                 else:
-                    robot.turn_left(12)
+                    robot.turn_left(20)
             else:
                 # print('Go Straight')
                 robot.forward()
