@@ -123,12 +123,13 @@ def MovOnTheta(theta):
     # print("Error: " + str(error))
     if not stpFlag and eStatus:
         try:
-            # print("Theta: " + str(theta))
+            print("Theta: " + str(theta))
             errors = np.insert(errors[:-1],0,error)
             # print(error)
             PID_out = PID.get_angle(errors)
             print("PID: " + str(PID_out)) 
             if np.abs(theta) > thetaMargin:
+                print(theta > -90 and theta < 0)
                 if theta > -90 and theta < 0:
                     robot.turn_right(PID.get_speed(PID_out))
                 else:
@@ -165,15 +166,15 @@ def getTheta(startpoint,endpoint,heading) -> float:
     else:
         rl_angle = angle_robot - angle_end
 
-    print("Angle End: " + str(angle_end))
-    print("Angle Robot: " + str(angle_robot))
+    # print("Angle End: " + str(angle_end))
+    # print("Angle Robot: " + str(angle_robot))
 
     # rl_angle =  np.degrees(angle_end - angle_robot)
     # if rl_angle < -math.pi:
     #     print()
     #     rl_angle = (2*math.pi) + rl_angle    
     # angle = np.degrees(np.arccos(np.dot(heading,dif)/(heading_length*dif_dist)))
-    print("Correction Angle: " + str(np.degrees(rl_angle)))
+    # print("Correction Angle: " + str(np.degrees(rl_angle)))
     return np.degrees(rl_angle)
 
 if __name__ == '__main__':
