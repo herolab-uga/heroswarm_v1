@@ -159,8 +159,6 @@ def distance(vector):
 def getTheta(startpoint,endpoint,heading) -> float:
     heading_rob = []
     rob_end_vec = [float(endpoint[0])-float(startpoint[0]), float(endpoint[1])-float(startpoint[1])]
-    print(heading)
-    print(startpoint)
     heading_rob.append(float(heading[0])-float(startpoint[0]))
     heading_rob.append(float(heading[1])-float(startpoint[1]))
     # print(heading_rob)
