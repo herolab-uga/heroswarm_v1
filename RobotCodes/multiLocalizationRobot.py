@@ -128,20 +128,23 @@ def MovOnTheta(theta):
             print("Theta: " + str(theta))
             errors = np.insert(errors[:-1],0,error)
             # print(error)
-            PID_out = PID.get_angle(errors)
-            print("PID: " + str(PID_out)) 
+            # print("PID: " + str(PID_out)) 
             if np.abs(theta) > thetaMargin:
                 print(theta <=90 and theta > 0)
                 if theta <= 90 and theta > 0:
+                    print("PID")
+                    PID_out = PID.get_angle(errors)
                     robot.turn_right(PID.get_speed(PID_out))
                     # robot.turn_right(0)
                 else:
                     if theta < 0:
+                        print("Right")
                         robot.turn_right(0)
                     else:
+                        print("Left")
                         robot.turn_left(1)
             else:
-                # print('Go Straight')
+                print('Go Straight')
                 robot.forward()
             # prev_theta = theta
         except Exception as e:
