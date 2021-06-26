@@ -14,7 +14,7 @@ with open("config/swarm_v1_config.JSON","r") as file:
 
 class PID():
     init = 10
-    diff = 1
+    diff = 5
     p_k = data["p"]
     i_k = data["i"]
     d_k = data["d"]
@@ -23,10 +23,7 @@ class PID():
     def get_angle(delta_thetas):
         p = PID.p_k * delta_thetas[0]
         i = PID.i_k * np.sum(delta_thetas)
-        d = 0
-        diff = np.diff(delta_thetas, n=PID.diff)
-        d = PID.d_k * -1 * diff[0]
-        # d = PID.d_k * np.sum( -1 * np.diff(error, n=PID.diff))
+        d = PID.d_k * np.sum( -1 * np.diff(error, n=PID.diff))
         return (p + i + d)
     
     def get_speed(delta):
