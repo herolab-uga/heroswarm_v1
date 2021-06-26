@@ -37,8 +37,8 @@ class MotorControl:
         
     
     def TankSteerRight(self,rate):
-        self.m1.ChangeDutyCycle(8+rate)
-        self.m2.ChangeDutyCycle(8+rate)
+        self.m1.ChangeDutyCycle(25-rate)
+        self.m2.ChangeDutyCycle(25-rate)
 
     def IncreaseSpeed(self):
         self.pwmSpeed+=1
