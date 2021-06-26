@@ -20,20 +20,20 @@ class PID():
     d_k = data["d"]
     max_speed = 15
 
-    def get_angle(delta_thetas):
-        p = PID.p_k * delta_thetas[0]
-        i = PID.i_k * np.sum(delta_thetas)
-        d = PID.d_k * np.sum( -1 * np.diff(error, n=PID.diff))
+    def get_angle(errors):
+        p = PID.p_k * errors[0]
+        i = PID.i_k * np.sum(errors)
+        d = PID.d_k * np.sum( -1 * np.diff(errors, n=PID.diff))
         return (p + i + d)
     
-    def get_speed(delta):
-        return (delta/360) * PID.max_speed
+    def get_speed(PID_out):
+        return (PID_out/360) * PID.max_speed
 
 
 
 
 robot = None
-error = np.zeros((PID.init if PID.init > PID.diff else PID.diff+1))
+errors = np.zeros((PID.init if PID.init > PID.diff else PID.diff+1))
 prev_theta = 0
 
 
@@ -112,21 +112,21 @@ def setMotion(robotData,endPtData):
 
 
 def MovOnTheta(theta):
-    global error
+    global errors
     global robot
     global prev_theta
     stpFlag=False
     eStatus=True
     thetaMargin=10
-    delta_theta = theta - prev_theta
-    print("Error: " + str(delta_theta))
+    error = -theta
+    print("Error: " + str(error))
     if not stpFlag and eStatus:
         try:
-            print("Theta: " + str(theta))
-            error = np.insert(error[:-1],0,delta_theta)
+            # print("Theta: " + str(theta))
+            errors = np.insert(errors[:-1],0,error)
             # print(error)
-            angle = PID.get_angle(error)
-            print("PID: " + str(angle)) 
+            PID_out = PID.get_angle(error)
+            # print("PID: " + str(PID_out)) 
             # if np.abs(theta) > thetaMargin:
             #     if theta < 90 and theta > 0:
             #         robot.turn_right(PID.get_speed(angle))
@@ -154,7 +154,7 @@ def getTheta(startpoint,endpoint,heading) -> float:
     heading[1] = float(heading[1])-float(startpoint[1])
     # print(heading)
     # print(dif)
-    heading_length = distance(heading)
+    heading_dist = distance(heading)
     dif_dist = distance(rob_end_vec)
     angle_end = np.arctan2(rob_end_vec[1],rob_end_vec[0])
     angle_robot = np.arctan2(heading[1],heading[0])
@@ -165,8 +165,8 @@ def getTheta(startpoint,endpoint,heading) -> float:
     if angle_robot < 0:
         angle_robot += 2*math.pi
 
-    print("Angle End: " + str(angle_end))
-    print("Angle Robot: " + str(angle_robot))
+    # print("Angle End: " + str(angle_end))
+    # print("Angle Robot: " + str(angle_robot))
 
     rl_angle =  np.degrees(angle_end - angle_robot)
     
