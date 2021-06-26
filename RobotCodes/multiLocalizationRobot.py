@@ -165,8 +165,8 @@ def getTheta(startpoint,endpoint,heading) -> float:
     if angle_robot < 0:
         angle_robot += 2*math.pi
 
-    # print("Angle End: " + str(angle_end))
-    # print("Angle Robot: " + str(angle_robot))
+    print("Angle End: " + str(angle_end))
+    print("Angle Robot: " + str(angle_robot))
 
     rl_angle =  np.degrees(angle_end - angle_robot)
     
