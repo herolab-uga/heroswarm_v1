@@ -132,7 +132,7 @@ def MovOnTheta(theta):
                 if theta < 90 and theta > 0:
                     robot.turn_right(PID.get_speed(PID_out))
                 else:
-                    robot.turn_right(5)
+                    robot.turn_right(3)
             else:
                 # print('Go Straight')
                 robot.forward()
