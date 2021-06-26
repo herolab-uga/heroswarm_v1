@@ -28,7 +28,7 @@ class PID():
         return (p + i + d)
     
     def get_speed(PID_out):
-        return (PID_out/360) * PID.max_speed
+        return (PID_out/180) * PID.max_speed
 
 
 
@@ -118,7 +118,7 @@ def MovOnTheta(theta):
     global prev_theta
     stpFlag=False
     eStatus=True
-    thetaMargin=10
+    thetaMargin=20
     error = -theta
     # print("Error: " + str(error))
     if not stpFlag and eStatus:
