@@ -18,7 +18,7 @@ class PID():
     p_k = data["p"]
     i_k = data["i"]
     d_k = data["d"]
-    max_speed = 22
+    max_speed = 15
 
     def get_angle(delta_thetas):
         p = PID.p_k * delta_thetas[0]
@@ -131,7 +131,7 @@ def MovOnTheta(theta):
                 if theta > -45 and theta < 0:
                     robot.turn_right(PID.get_speed(angle))
                 else:
-                    robot.turn_right(10)
+                    robot.turn_right(5)
             else:
                 # print('Go Straight')
                 robot.forward()
