@@ -120,7 +120,7 @@ def MovOnTheta(theta,distance):
     global prev_theta
     stpFlag=False
     eStatus=True
-    thetaMargin= 91 - (((distance/116) * 90) + 1)
+    thetaMargin= 45 - (((distance/200) * 45))
     error = -theta
     # print("Error: " + str(error))
     if not stpFlag and eStatus:
@@ -163,8 +163,7 @@ def getTheta(startpoint,endpoint,heading) -> float:
     rob_end_vec = [float(endpoint[0])-float(startpoint[0]), float(endpoint[1])-float(startpoint[1])]
     heading_rob.append(float(heading[0])-float(startpoint[0]))
     heading_rob.append(float(heading[1])-float(startpoint[1]))
-    # print(heading_rob)
-    # print(dif)
+
     dif_dist = distance(rob_end_vec)
 
     if rob_end_vec[0] == 0:
