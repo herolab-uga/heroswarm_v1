@@ -100,10 +100,10 @@ def setMotion(robotData,endPtData):
             strtPt=np.array([x,y])
             endPt=np.array([ex,ey])
             headDir=np.array([hx,hy])
-            theta = getTheta(strtPt,endPt,headDir)
+            theta,distance = getTheta(strtPt,endPt,headDir)
             # robot.set_theta(robotData[1])
             if not theta is None:
-                MovOnTheta(theta)
+                MovOnTheta(theta, distance)
             else:
                 robot.stop()
     else:
@@ -114,13 +114,13 @@ def setMotion(robotData,endPtData):
         robot.stop()
 
 
-def MovOnTheta(theta):
+def MovOnTheta(theta,distance):
     global errors
     global robot
     global prev_theta
     stpFlag=False
     eStatus=True
-    thetaMargin=30
+    thetaMargin= 91 - (((distance/116) * 90) + 1)
     error = -theta
     # print("Error: " + str(error))
     if not stpFlag and eStatus:
@@ -190,7 +190,7 @@ def getTheta(startpoint,endpoint,heading) -> float:
     if (distance(heading - endpoint)) > dif_dist:
         rl_angle = math.pi
 
-    return np.degrees(rl_angle)
+    return np.degrees(rl_angle),dif_dist
 
 if __name__ == '__main__':
     main()
