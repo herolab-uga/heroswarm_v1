@@ -136,7 +136,7 @@ def MovOnTheta(theta):
                     robot.turn_right(PID.get_speed(PID_out))
                     # robot.turn_right(0)
                 else:
-                    if theta < 0:
+                    if theta > 0:
                         robot.turn_right(0)
                     else:
                         robot.turn_left(2)
