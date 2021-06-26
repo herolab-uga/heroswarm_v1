@@ -171,8 +171,13 @@ def getTheta(startpoint,endpoint,heading) -> float:
             rl_angle = np.deg2rad(-90)
     else:
         angle_end = np.arctan(rob_end_vec[1]/rob_end_vec[0])
-        # print(heading_rob)
-        angle_robot = np.arctan(heading_rob[1]/heading_rob[0])
+        try:
+            angle_robot = np.arctan(heading_rob[1]/heading_rob[0])
+        except ZeroDivisionError:
+            if heading[1] < startpoint[1]:
+                angle_robot = np.deg2rad(-90)
+            else:
+                angle_robot = np.deg2rad(90)
 
         if angle_end > angle_robot:
             rl_angle = angle_end - angle_robot
