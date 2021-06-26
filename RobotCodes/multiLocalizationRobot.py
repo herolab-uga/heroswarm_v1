@@ -173,8 +173,8 @@ def getTheta(startpoint,endpoint,heading) -> float:
     #     print()
     #     rl_angle = (2*math.pi) + rl_angle    
     # angle = np.degrees(np.arccos(np.dot(heading,dif)/(heading_length*dif_dist)))
-    print("Correction Angle: " + str(rl_angle))
-    return rl_angle
+    print("Correction Angle: " + str(np.degrees(rl_angle)))
+    return np.degrees(rl_angle)
 
 if __name__ == '__main__':
     main()
