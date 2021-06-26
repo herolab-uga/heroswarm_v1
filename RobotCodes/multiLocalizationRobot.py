@@ -118,7 +118,7 @@ def MovOnTheta(theta):
     global prev_theta
     stpFlag=False
     eStatus=True
-    thetaMargin=20
+    thetaMargin=30
     error = -theta
     # print("Error: " + str(error))
     if not stpFlag and eStatus:
