@@ -158,13 +158,20 @@ def getTheta(startpoint,endpoint,heading) -> float:
     # print(dif)
     heading_dist = distance(heading)
     dif_dist = distance(rob_end_vec)
-    angle_end = np.arctan(rob_end_vec[1]/rob_end_vec[0])
-    angle_robot = np.arctan(heading[1]/heading[0])
 
-    if angle_end > angle_robot:
-        rl_angle = angle_end - angle_robot
+    if rob_end_vec[0] == 0:
+        if rob_end_vec[1] < 0:
+            rl_angle = np.deg2rad(90)
+        else:
+            rl_angle = np.deg2rad(-90)
     else:
-        rl_angle = angle_robot - angle_end
+        angle_end = np.arctan(rob_end_vec[1]/rob_end_vec[0])
+        angle_robot = np.arctan(heading[1]/heading[0])
+
+        if angle_end > angle_robot:
+            rl_angle = angle_end - angle_robot
+        else:
+            rl_angle = angle_robot - angle_end
 
     # print("Angle End: " + str(angle_end))
     # print("Angle Robot: " + str(angle_robot))
