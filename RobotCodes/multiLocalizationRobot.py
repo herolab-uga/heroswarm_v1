@@ -167,7 +167,7 @@ def MovOnTheta(theta, distance):
 
     # Scales the margin angle with distance from the target (farther away less margin for error)
 
-    thetaMargin = 45 - distance / 116 * 45  # 116 - max distance possible between tag and robot
+    thetaMargin = 22.5 - distance / 232 * 22.5  # 116 - max distance possible between tag and robot
     error = -theta
     if not stpFlag and eStatus:
         try:
