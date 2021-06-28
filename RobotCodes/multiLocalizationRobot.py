@@ -202,7 +202,7 @@ def MovOnTheta(theta, distance):
                         # robot.turn_left(3)
             else:
                 print('Go Straight')
-                robot.forward()
+                # robot.forward()
         except Exception as e:
 
             # prev_theta = theta
