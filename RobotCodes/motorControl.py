@@ -12,8 +12,8 @@ class MotorControl:
         gpio.setup(40,gpio.IN)
         gpio.setup(3,gpio.OUT)
         gpio.setup(5,gpio.OUT)
-        self.m1=gpio.PWM(3,400)
-        self.m2=gpio.PWM(5,400)
+        self.m1=gpio.PWM(3,380)
+        self.m2=gpio.PWM(5,380)
         self.m1.start(0)
         self.m2.start(0)
         atexit.register(self.stop)
@@ -22,7 +22,7 @@ class MotorControl:
         gpio.cleanup()
     
     def MoveForward(self):
-        self.m1.ChangeDutyCycle(60)
+        self.m1.ChangeDutyCycle(97)
         self.m2.ChangeDutyCycle(3)
         
                 

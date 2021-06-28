@@ -20,7 +20,7 @@ class SwarmRobot:
         "meters":1
     }
 
-    def __init__(self,name,id,linear_speed,angular_speed,x=0.0,y=0.0,theta=0.0):
+    def __init__(self,name,id,linear_speed,angular_speed):
         # Names each robot
         self.name = name
         self.id = id
@@ -133,8 +133,9 @@ class SwarmRobot:
     def stop(self):
         self.mc.Stopper()
 
-    # Moves the Robot Forward
+    # Moves the Robot Forward if a distance is specified otherwise move forward continously
     def forward(self,distance=None,unit="in"):
+        
         if not distance == None:
             # Converts the distance to meters
             distance = distance * SwarmRobot.unit_conversion[unit]
@@ -151,7 +152,7 @@ class SwarmRobot:
         else:
             self.mc.MoveForward()
 
-    # Moves the Robot Backward
+    # Moves the Robot Backward if a distance is specified otherwise move backwards continously
     def backward(self,distance=None,unit="in"):
         if not distance == None:
             # Converts the distance to meters
@@ -175,6 +176,7 @@ class SwarmRobot:
     def turn_right(self,rate):
         self.mc.TankSteerRight(rate)
 
+    # For future implementation
     def turn(self,real=True,radians=True,angle=0):
         # Converts the angle to radians
         if radians:
@@ -226,6 +228,7 @@ class SwarmRobot:
         # Stopps the robot after turning
         self.mc.Stopper()
 
+    # For future implementation
     # Moves the robot to position [x,y]
     def move_to(self,x,y,return_theta=None,unit="in"):
         # Converts the coordinates to meters
