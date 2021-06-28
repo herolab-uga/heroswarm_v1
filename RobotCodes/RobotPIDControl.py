@@ -23,9 +23,9 @@ class PIDController:
         thetaError=self.setPoint-theta
         pidCorrection=self.PIDCorrection(thetaError)
         if(pidCorrection <0):
-            return 'turnRight'
-        elif(pidCorrection >0):
             return 'turnLeft'
+        elif(pidCorrection >0):
+            return 'turnRight'
             
 
 
