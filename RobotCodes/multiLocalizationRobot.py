@@ -252,7 +252,7 @@ def getTheta(startpoint, endpoint, heading):
     else:
         rl_angle = angle_robot - angle_end
 
-    if rl_angle > math.pi:
+    if rl_angle > math.pi and startpoint[1] > endpoint[1]:
         rl_angle += -2*math.pi
 
 
