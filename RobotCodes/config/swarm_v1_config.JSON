@@ -13,7 +13,7 @@
         "d":2.25
     },
     "devil": {
-        "id": 9,
+        "id": 7,
         "linear_speed": 0.3703,
         "angular_speed": 7.2885,
         "left_duty": 0.0,

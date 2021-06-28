@@ -186,12 +186,12 @@ def MovOnTheta(theta, distance,right):
                     print('PID')
                     # PID_out = PID.get_angle(errors)
                     # robot.turn_right(PID.get_speed(PID_out))
-                    robot.turn_right(0)
+                    robot.turn_right(3)
                 else:
                     # If theta outside +/- 90 degrees and less than zero turn right
                     # We have the most control over clockwise turns
                     print('Left')
-                    robot.turn_left(3)
+                    robot.turn_left(48)
             else:
                 print('Go Straight')
                 robot.forward()

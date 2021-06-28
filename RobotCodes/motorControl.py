@@ -10,10 +10,10 @@ class MotorControl:
         #self.PWMValue=pwmTime
         gpio.setmode(gpio.BOARD)
         gpio.setup(40,gpio.IN)
-        gpio.setup(33,gpio.OUT)
-        gpio.setup(32,gpio.OUT)
-        self.m1=gpio.PWM(33,30)
-        self.m2=gpio.PWM(32,30)
+        gpio.setup(3,gpio.OUT)
+        gpio.setup(5,gpio.OUT)
+        self.m1=gpio.PWM(3,400)
+        self.m2=gpio.PWM(5,400)
         self.m1.start(0)
         self.m2.start(0)
         atexit.register(self.stop)
@@ -22,7 +22,7 @@ class MotorControl:
         gpio.cleanup()
     
     def MoveForward(self):
-        self.m1.ChangeDutyCycle(12)
+        self.m1.ChangeDutyCycle(60)
         self.m2.ChangeDutyCycle(3)
         
                 
@@ -31,14 +31,14 @@ class MotorControl:
         self.m1.ChangeDutyCycle(3)
         self.m2.ChangeDutyCycle(12)
             
-    def TankSteerLeft(self,rate=3):
+    def TankSteerLeft(self,rate=1):
         self.m1.ChangeDutyCycle(rate)
         self.m2.ChangeDutyCycle(rate)
         
     
     def TankSteerRight(self,rate):
-        self.m1.ChangeDutyCycle(25-rate)
-        self.m2.ChangeDutyCycle(25-rate)
+        self.m1.ChangeDutyCycle(53+rate)
+        self.m2.ChangeDutyCycle(53+rate)
 
     def IncreaseSpeed(self):
         self.pwmSpeed+=1
