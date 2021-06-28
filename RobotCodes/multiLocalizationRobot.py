@@ -193,13 +193,7 @@ def MovOnTheta(theta, distance):
                 else:
                     # If theta outside +/- 90 degrees and less than zero turn right
                     # We have the most control over clockwise turns
-
-                    if theta > 0:
-                        print('Right')
-                        robot.turn_right(0)
-                    else:
-                        print('Left')
-                        robot.turn_left(3)
+                    robot.turn_right(0)
             else:
                 print('Go Straight')
                 robot.forward()
