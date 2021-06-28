@@ -10,8 +10,8 @@ class MotorControl:
         #self.PWMValue=pwmTime
         gpio.setmode(gpio.BOARD)
         gpio.setup(40,gpio.IN)
-        gpio.setup(3,gpio.OUT)
-        gpio.setup(5,gpio.OUT)
+        gpio.setup(33,gpio.OUT)
+        gpio.setup(35,gpio.OUT)
         self.m1=gpio.PWM(33,380)
         self.m2=gpio.PWM(35,380)
         self.m1.start(0)
