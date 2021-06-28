@@ -256,17 +256,17 @@ def getTheta(startpoint, endpoint, heading):
 
         # Try to get the angle of the robot
 
-        try:
-            angle_robot = np.arctan(heading_rob[1] / heading_rob[0])
-        except ZeroDivisionError:
+    try:
+        angle_robot = np.arctan(heading_rob[1] / heading_rob[0])
+    except ZeroDivisionError:
 
-            # If the robot's center and the robot's heading are on the same vertical line set the angle accordingly
-            # If the heading y value is smaller than the center it is -pi/2
+        # If the robot's center and the robot's heading are on the same vertical line set the angle accordingly
+        # If the heading y value is smaller than the center it is -pi/2
 
-            if heading[1] < startpoint[1]:
-                angle_robot = np.deg2rad(-90)
-            else:
-                angle_robot = np.deg2rad(90)
+        if heading[1] < startpoint[1]:
+            angle_robot = np.deg2rad(-90)
+        else:
+            angle_robot = np.deg2rad(90)
 
     # Calculates the rl_angle for the robot
 
