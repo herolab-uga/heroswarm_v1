@@ -188,18 +188,18 @@ def MovOnTheta(theta, distance):
 
                 if theta <= 90 and theta > thetaMargin:
                     print('PID')
-                    # PID_out = PID.get_angle(errors)
-                    # robot.turn_right(PID.get_speed(PID_out))
+                    PID_out = PID.get_angle(errors)
+                    robot.turn_right(PID.get_speed(PID_out))
                 else:
                     # If theta outside +/- 90 degrees and less than zero turn right
                     # We have the most control over clockwise turns
 
                     if theta > 0:
                         print('Right')
-                        # robot.turn_right(0)
+                        robot.turn_right(0)
                     else:
                         print('Left')
-                        # robot.turn_left(3)
+                        robot.turn_left(3)
             else:
                 print('Go Straight')
                 # robot.forward()
@@ -254,11 +254,6 @@ def getTheta(startpoint, endpoint, heading):
 
     if rl_angle > math.pi:
         rl_angle += -2*math.pi
-
-    # # If the heading is farther from the tag than the center the robot is facing the opposite direction
-
-    # if (rl_angle == math.pi or rl_angle == -math.pi) and distance(heading - endpoint) > dif_dist:
-    #     rl_angle = math.pi
 
 
     # Return the angle in degrees and the distance from the tag
