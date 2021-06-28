@@ -70,7 +70,7 @@ def main():
     global data
     CLIENT_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     CLIENT_SOCKET.connect((HOST, PORT))
-    print '1 Connected!!'
+    print('1 Connected!!')
     CLIENT_SOCKET.send(str(data['id']).encode('ascii'))
     query = 'o'
     CLIENT_SOCKET.send(query.encode('ascii'))
@@ -186,7 +186,7 @@ def MovOnTheta(theta, distance):
                 # If theta with in +/- 90 degrees of target heading use PID
 
                 if theta <= 90 and theta > 0:
-                    print 'PID'
+                    print('PID')
                     PID_out = PID.get_angle(errors)
                     robot.turn_right(PID.get_speed(PID_out))
                 else:
@@ -196,19 +196,19 @@ def MovOnTheta(theta, distance):
                     # We have the most control over clockwise turns
 
                     if theta < 0:
-                        print 'Right'
+                        print('Right')
                         robot.turn_right(0)
                     else:
-                        print 'Left'
+                        print('Left')
                         robot.turn_left(3)
             else:
-                print 'Go Straight'
+                print('Go Straight')
                 robot.forward()
-        except Exception, e:
+        except Exception as e:
 
             # prev_theta = theta
 
-            print e
+            print(e)
             robot.stop()
     else:
 
