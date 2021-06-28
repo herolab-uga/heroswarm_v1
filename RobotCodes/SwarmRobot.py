@@ -25,14 +25,6 @@ class SwarmRobot:
         self.name = name
         self.id = id
 
-        if theta < 0:
-            theta = 2*math.pi + theta
-        # Current Robot Position
-        self.current_pos = {
-            "x":x,
-            "y":y,
-            "theta":theta
-        }
         # Currenet Speed of bot this is set in the motor library for now
         self.current_speed = 0
         # Batttery Charge amount from 0 to 1
