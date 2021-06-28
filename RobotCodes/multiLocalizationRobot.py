@@ -268,12 +268,12 @@ def getTheta(startpoint, endpoint, heading):
             else:
                 angle_robot = np.deg2rad(90)
 
-        # Calculates the rl_angle for the robot
+    # Calculates the rl_angle for the robot
 
-        if angle_end > angle_robot:
-            rl_angle = angle_end - angle_robot
-        else:
-            rl_angle = angle_robot - angle_end
+    if angle_end > angle_robot:
+        rl_angle = angle_end - angle_robot
+    else:
+        rl_angle = angle_robot - angle_end
 
     # If the heading is farther from the tag than the center the robot is facing the opposite direction
 
