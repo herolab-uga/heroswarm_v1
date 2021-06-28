@@ -139,12 +139,12 @@ def setMotion(robotData, endPtData):
 
             # Gets the theta needed to correct heading and distance from target
 
-        (theta, distance) = getTheta(strtPt, endPt, headDir)
+        (theta, distance, right) = getTheta(strtPt, endPt, headDir)
 
             # robot.set_theta(robotData[1])
 
         if not theta is None:
-            MovOnTheta(theta, distance)
+            MovOnTheta(theta, distance, right)
         else:
             robot.stop()
     else:
@@ -158,7 +158,7 @@ def setMotion(robotData, endPtData):
         robot.stop()
 
 
-def MovOnTheta(theta, distance):
+def MovOnTheta(theta, distance,right):
     global errors
     global robot
     global prev_theta
@@ -180,31 +180,25 @@ def MovOnTheta(theta, distance):
             # print(error)
             # print("PID: " + str(PID_out))
             # If the robot heading is outside the target threshold (thetaMargin) turn the robot
-            if theta >= 180:
-                theta = 360 - theta
             print(theta)
-            # if np.abs(theta) > thetaMargin:
-            #     print(theta)
+            if theta > thetaMargin:
+                print(theta)
 
-            #     # If theta with in +/- 90 degrees of target heading use PID
+                # If theta with in +/- 90 degrees of target heading use PID
 
-            #     if theta <= 45 and theta > thetaMargin:
-            #         print('PID')
-            #         # PID_out = PID.get_angle(errors)
-            #         # robot.turn_right(PID.get_speed(PID_out))
-            #     else:
-            #         # If theta outside +/- 90 degrees and less than zero turn right
-            #         # We have the most control over clockwise turns
-
-            #         if theta > 0:
-            #             print('Right')
-            #             # robot.turn_right(0)
-            #         else:
-            #             print('Left')
-            #             # robot.turn_left(3)
-            # else:
-            #     print('Go Straight')
-            #     # robot.forward()
+                if right:
+                    print('PID')
+                    # PID_out = PID.get_angle(errors)
+                    # robot.turn_right(PID.get_speed(PID_out))
+                    robot.turn_right(0)
+                else:
+                    # If theta outside +/- 90 degrees and less than zero turn right
+                    # We have the most control over clockwise turns
+                    print('Left')
+                    robot.turn_left(3)
+            else:
+                print('Go Straight')
+                robot.forward()
         except Exception as e:
 
             # prev_theta = theta
@@ -251,14 +245,19 @@ def getTheta(startpoint, endpoint, heading):
 
     if angle_end > angle_robot:
         rl_angle = angle_end - angle_robot
-        print("Heading")
+        right = 0
     else:
         rl_angle = angle_robot - angle_end
-        print("Endpoint")
+        right = 1
+
+    if np.degrees(rl_angle) >= 180:
+                rl_angle = 360 - np.degree(rl_angle)
+    else:
+        rl_angle = np.degrees(rl_angle)
 
     # Return the angle in degrees and the distance from the tag
 
-    return (np.degrees(rl_angle), dif_dist)
+    return (rl_angle, dif_dist, right)
 
 
 if __name__ == '__main__':
