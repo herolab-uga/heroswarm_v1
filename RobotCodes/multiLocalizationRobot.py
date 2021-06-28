@@ -120,9 +120,9 @@ def MovOnTheta(theta, distance):
             print (theta)
             # If the robot heading is outside the target threshold (thetaMargin) turn the robot
             if theta > thetaMargin1:
-                robot.turn_right(46)
+                robot.turn_right(60)
             elif theta<thetaMargin2:
-                robot.turn_left(54)
+                robot.turn_left(40)
             else:
                 print('Go Straight')
                 robot.forward()
