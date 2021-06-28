@@ -251,14 +251,14 @@ def getTheta(startpoint, endpoint, heading):
 
     if angle_end > angle_robot:
         rl_angle = angle_end - angle_robot
-        right = False
+        print("Heading")
     else:
         rl_angle = angle_robot - angle_end
-        right = True
+        print("Endpoint")
 
     # Return the angle in degrees and the distance from the tag
 
-    return (np.degrees(rl_angle), dif_dist,right)
+    return (np.degrees(rl_angle), dif_dist)
 
 
 if __name__ == '__main__':
