@@ -129,7 +129,7 @@ def MovOnTheta(theta, distance):
             # If the robot heading is outside the target threshold (thetaMargin) turn the robot
             # This is a fuzzy controller
             if theta < thetaMargin1 and theta > thetaMargin2:
-                robot.forward()
+                # robot.forward()
                 print('Go Straight')
             else:
                 robot.stop()
