@@ -124,6 +124,7 @@ def MovOnTheta(theta, distance):
                 robot.forward()
                 print('Go Straight')
             else:
+                robot.stop()
                 print('Go PID')
                 
         except Exception as e:
