@@ -162,9 +162,7 @@ def Main():
 
                 # Labels are the position in inches
 
-                posString = \
-                    '({x:.2f},{y:.2f})'.format(x=center_meters[0],
-                        y=center_meters[1])
+                posString = '({x:.2f},{y:.2f})'.format(x=center_meters[0],y=center_meters[1])
                 if not detection.tag_id in reference_tags:
 
                     # Gets the forward direction
@@ -181,39 +179,13 @@ def Main():
                     dimg1 = draw1(dimg1, forwardDir, center, (0, 0,
                                   255))
                 centerTxt = center.ravel().astype(int).astype(str)
-                cv2.putText(
-                    dimg1,
-                    posString,
-                    tuple(center.ravel().astype(int) + 10),
-                    font,
-                    fontScale,
-                    (255, 0, 0),
-                    lineType,
-                    )
+                cv2.putText(dimg1,posString,tuple(center.ravel().astype(int) + 10),font,fontScale,(255, 0, 0),lineType,)
 
                 if detection.tag_id == int(endPtID):
-                    dimg1 = cv2.putText(
-                        dimg1,
-                        'End Point',
-                        tuple(center.ravel().astype(int)),
-                        font,
-                        0.8,
-                        fontColor,
-                        2,
-                        )
-                    dimg1 = cv2.circle(dimg1,
-                            tuple(center.ravel().astype(int)), 30, (0,
-                            128, 255), 2)
+                    dimg1 = cv2.putText(dimg1,'End Point',tuple(center.ravel().astype(int)),font,0.8,fontColor,2,)
+                    dimg1 = cv2.circle(dimg1,tuple(center.ravel().astype(int)), 30, (0,128, 255), 2)
                 else:
-                    cv2.putText(
-                        dimg1,
-                        'Id:' + str(detection.tag_id),
-                        tuple(center.ravel().astype(int)),
-                        font,
-                        0.8,
-                        (0, 0, 0),
-                        2,
-                        )
+                    cv2.putText(dimg1,'Id:' + str(detection.tag_id),tuple(center.ravel().astype(int)),font,0.8,(0, 0, 0),2,)
 
                 overlay = dimg1
                 if not detection.tag_id in reference_tags:
@@ -251,12 +223,7 @@ def Main():
         return
 
 
-def getTheta(
-    pt11,
-    pt12,
-    pt21,
-    pt22,
-    ):
+def getTheta(pt11,pt12,pt21,pt22,):
     vec1 = pt11 - pt12
     vec2 = pt22 - pt21
     vec12dt = math.degrees(math.atan2(np.cross(vec1, vec2),
@@ -264,24 +231,14 @@ def getTheta(
     return vec12dt
 
 
-def draw1ine(
-    img,
-    point1,
-    point2,
-    clr,
-    ):
+def draw1ine(img,point1,point2,clr,):
     corner1 = tuple(point1.ravel().astype(int))
     corner2 = tuple(point2.ravel().astype(int))
     img = cv2.line(img, corner2, corner1, clr, 1)
     return img
 
 
-def draw1(
-    img,
-    point1,
-    point2,
-    clr,
-    ):
+def draw1(img,point1,point2,clr,):
     corner1 = tuple(point1.ravel().astype(int))
     corner2 = tuple(point2.ravel().astype(int))
     img = cv2.arrowedLine(img, corner2, corner1, clr, 2)
