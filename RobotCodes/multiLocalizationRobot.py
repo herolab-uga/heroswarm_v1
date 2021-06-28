@@ -181,7 +181,7 @@ def MovOnTheta(theta, distance):
             # print("PID: " + str(PID_out))
             # If the robot heading is outside the target threshold (thetaMargin) turn the robot
             if theta >= 180:
-                theta -= 360
+                theta = 360 - theta
             print(theta)
             # if np.abs(theta) > thetaMargin:
             #     print(theta)
