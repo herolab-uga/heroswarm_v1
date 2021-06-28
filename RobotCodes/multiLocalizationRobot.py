@@ -180,12 +180,8 @@ def MovOnTheta(theta, distance,right):
             # print(error)
             # print("PID: " + str(PID_out))
             # If the robot heading is outside the target threshold (thetaMargin) turn the robot
-            print(theta)
             if theta > thetaMargin:
-                print(theta)
-
                 # If theta with in +/- 90 degrees of target heading use PID
-
                 if right:
                     print('PID')
                     # PID_out = PID.get_angle(errors)
