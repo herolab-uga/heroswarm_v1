@@ -185,7 +185,7 @@ def MovOnTheta(theta, distance):
 
                 # If theta with in +/- 90 degrees of target heading use PID
 
-                if theta <= 90 and theta > 0:
+                if theta >= 90 and theta < 0:
                     print('PID')
                     PID_out = PID.get_angle(errors)
                     robot.turn_right(PID.get_speed(PID_out))
