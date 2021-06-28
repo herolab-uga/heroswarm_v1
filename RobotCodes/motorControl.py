@@ -31,14 +31,14 @@ class MotorControl:
         self.m1.ChangeDutyCycle(3)
         self.m2.ChangeDutyCycle(12)
             
-    def TankSteerLeft(self,rate=1):
+    def TankSteerLeft(self,rate):
         self.m1.ChangeDutyCycle(rate)
         self.m2.ChangeDutyCycle(rate)
         
     
     def TankSteerRight(self,rate):
-        self.m1.ChangeDutyCycle(53+rate)
-        self.m2.ChangeDutyCycle(53+rate)
+        self.m1.ChangeDutyCycle(rate)
+        self.m2.ChangeDutyCycle(rate)
 
     def IncreaseSpeed(self):
         self.pwmSpeed+=1
