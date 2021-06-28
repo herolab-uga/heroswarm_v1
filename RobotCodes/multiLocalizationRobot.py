@@ -270,7 +270,7 @@ def getTheta(startpoint, endpoint, heading):
     # Calculates the rl_angle for the robot
 
     if angle_end > angle_robot:
-        rl_angle = -1 * (angle_end - angle_robot)
+        rl_angle = angle_end - angle_robot
     else:
         rl_angle = angle_robot - angle_end
 
