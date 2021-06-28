@@ -139,7 +139,7 @@ def setMotion(robotData, endPtData):
 
             # Gets the theta needed to correct heading and distance from target
 
-        (theta, distance, direction) = getTheta(strtPt, endPt, headDir)
+        (theta, distance) = getTheta(strtPt, endPt, headDir)
 
             # robot.set_theta(robotData[1])
 
