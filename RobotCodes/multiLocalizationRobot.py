@@ -255,10 +255,11 @@ def getTheta(startpoint, endpoint, heading):
     if rl_angle > math.pi:
         rl_angle += -2*math.pi
 
-    # If the heading is farther from the tag than the center the robot is facing the opposite direction
+    # # If the heading is farther from the tag than the center the robot is facing the opposite direction
 
-    if (rl_angle == math.pi or rl_angle == -math.pi) and distance(heading - endpoint) > dif_dist:
-        rl_angle = math.pi
+    # if (rl_angle == math.pi or rl_angle == -math.pi) and distance(heading - endpoint) > dif_dist:
+    #     rl_angle = math.pi
+
 
     # Return the angle in degrees and the distance from the tag
 
