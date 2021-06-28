@@ -167,7 +167,7 @@ def MovOnTheta(theta, distance):
 
     # Scales the margin angle with distance from the target (farther away less margin for error)
 
-    thetaMargin = 12.5 - distance / 232 * 12.5  # 116 - max distance possible between tag and robot
+    thetaMargin = 22.5 - distance / 232 * 22.5  # 116 - max distance possible between tag and robot
     error = -theta
     if not stpFlag and eStatus:
         try:
@@ -188,12 +188,18 @@ def MovOnTheta(theta, distance):
 
                 if theta <= 90 and theta > thetaMargin:
                     print('PID')
-                    PID_out = PID.get_angle(errors)
-                    robot.turn_right(PID.get_speed(PID_out))
+                    # PID_out = PID.get_angle(errors)
+                    # robot.turn_right(PID.get_speed(PID_out))
                 else:
                     # If theta outside +/- 90 degrees and less than zero turn right
                     # We have the most control over clockwise turns
-                    robot.turn_right(0)
+
+                    if theta > 0:
+                        print('Right')
+                        # robot.turn_right(0)
+                    else:
+                        print('Left')
+                        # robot.turn_left(3)
             else:
                 print('Go Straight')
                 robot.forward()
