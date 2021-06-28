@@ -114,6 +114,14 @@ def MovOnTheta(theta, distance):
     thetaMargin=20
     thetaMargin1=thetaMargin/2
     thetaMargin2=-thetaMargin/2
+
+    pidStartWindow=10
+    pidThetaMargin1=thetaMargin1+pidStartWindow
+    pidThetaMargin2=thetaMargin2-pidStartWindow
+
+    pidController1=PIDController(0.5,0)
+    # pidController2=PIDController(0.5,0)
+
     # error = -theta
     if not stpFlag and eStatus:
         try:
@@ -125,7 +133,7 @@ def MovOnTheta(theta, distance):
                 print('Go Straight')
             else:
                 robot.stop()
-                print('Go PID')
+                print(pidController1.get_correction(theta))
                 
         except Exception as e:
             print(e)

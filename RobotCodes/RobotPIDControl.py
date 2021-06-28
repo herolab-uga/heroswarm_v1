@@ -9,17 +9,36 @@ from numpy.lib.type_check import real
 from SwarmRobot import SwarmRobot
 
 class PIDController:
-    def __init__(self,parameters):
+    def __init__(self,parameters,setPoint):
     # This PID is for alignment with the endpoint
         init = 10 # Integral window
         diff = 5  # Differentiator
-
-        p_k = parameters['p']
-        i_k = parameters['i']
-        d_k = parameters['d']
-        max_speed = 15
+        self.p_k=parameters
+        self.setPoint=setPoint
+        # p_k = parameters['p']
+        # i_k = parameters['i']
+        # d_k = parameters['d']
+        # max_speed = 15
 
         # Computes the PID value usind the errors array
+        def get_correction(theta):
+            thetaError=setPoint-theta
+            pidCorrection=PIDCorrection(thetaError)
+            if(pidCorrection <0):
+                return 'turnRight'
+            elif(pidCorrection >0):
+                return 'turnLeft'
+            
+
+
+            
+        def PIDCorrection(thetaError):    
+
+            p_controller=self.p_k*thetaError
+            return p_controller*-1
+
+
+
         def get_angle(errors):
             p_control = PID.p_k * errors[0]
             i_control = PID.i_k * np.sum(errors)
