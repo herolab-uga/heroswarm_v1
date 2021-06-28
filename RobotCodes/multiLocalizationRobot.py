@@ -137,8 +137,8 @@ def getThetaDistance(startpoint, endpoint, heading):
     rob_end_vec = [float(endpoint[0]) - float(startpoint[0]),
                    float(endpoint[1]) - float(startpoint[1])]
     # Translates the heading of the robot to the be relative to robot center
-    heading_rob[0]=(float(heading[0]) - float(startpoint[0]))
-    heading_rob[1]=(float(heading[1]) - float(startpoint[1]))
+    heading_rob.append((float(heading[0]) - float(startpoint[0])))
+    heading_rob.append((float(heading[1]) - float(startpoint[1])))
     # Gets the rob_end_vec distance
     dif_dist=float(np.sqrt(float(rob_end_vec[0]) ** 2 + float(rob_end_vec[1]) ** 2))
     # If not a special case angle_end is described below
