@@ -247,7 +247,7 @@ def getTheta(startpoint, endpoint, heading):
         right = 1
 
     if np.degrees(rl_angle) >= 180:
-                rl_angle = 360 - np.degree(rl_angle)
+                rl_angle = 360 - np.degrees(rl_angle)
     else:
         rl_angle = np.degrees(rl_angle)
 
