@@ -180,29 +180,29 @@ def MovOnTheta(theta, distance):
             # print(error)
             # print("PID: " + str(PID_out))
             # If the robot heading is outside the target threshold (thetaMargin) turn the robot
+            print(theta)
+            # if np.abs(theta) > thetaMargin:
+            #     print(theta)
 
-            if np.abs(theta) > thetaMargin:
-                print(theta)
+            #     # If theta with in +/- 90 degrees of target heading use PID
 
-                # If theta with in +/- 90 degrees of target heading use PID
+            #     if theta <= 45 and theta > thetaMargin:
+            #         print('PID')
+            #         # PID_out = PID.get_angle(errors)
+            #         # robot.turn_right(PID.get_speed(PID_out))
+            #     else:
+            #         # If theta outside +/- 90 degrees and less than zero turn right
+            #         # We have the most control over clockwise turns
 
-                if theta <= 90 and theta > thetaMargin:
-                    print('PID')
-                    # PID_out = PID.get_angle(errors)
-                    # robot.turn_right(PID.get_speed(PID_out))
-                else:
-                    # If theta outside +/- 90 degrees and less than zero turn right
-                    # We have the most control over clockwise turns
-
-                    if theta > 0:
-                        print('Right')
-                        # robot.turn_right(0)
-                    else:
-                        print('Left')
-                        # robot.turn_left(3)
-            else:
-                print('Go Straight')
-                # robot.forward()
+            #         if theta > 0:
+            #             print('Right')
+            #             # robot.turn_right(0)
+            #         else:
+            #             print('Left')
+            #             # robot.turn_left(3)
+            # else:
+            #     print('Go Straight')
+            #     # robot.forward()
         except Exception as e:
 
             # prev_theta = theta
@@ -249,12 +249,10 @@ def getTheta(startpoint, endpoint, heading):
 
     if angle_end > angle_robot:
         rl_angle = angle_end - angle_robot
+        print("Heading")
     else:
         rl_angle = angle_robot - angle_end
-
-    if rl_angle > math.pi and startpoint[1] > endpoint[1]:
-        rl_angle += -2*math.pi
-
+        print("Endpoint")
 
     # Return the angle in degrees and the distance from the tag
 
