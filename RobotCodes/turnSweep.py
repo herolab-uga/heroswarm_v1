@@ -4,7 +4,7 @@ import time
 MovCnt=MC()
 
 
-for i in range(0,101):
+for i in range(40,70):
     print(i)
     MovCnt.TankSteerLeft(rate=i)
-    time.sleep(.5)
+    input()
