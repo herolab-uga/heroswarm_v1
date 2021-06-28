@@ -182,26 +182,24 @@ def MovOnTheta(theta, distance):
             # If the robot heading is outside the target threshold (thetaMargin) turn the robot
 
             if np.abs(theta) > thetaMargin:
-                # print(theta)
+                print(theta)
 
                 # If theta with in +/- 90 degrees of target heading use PID
 
                 if theta <= 90 and theta > thetaMargin:
                     print('PID')
-                    PID_out = PID.get_angle(errors)
-                    robot.turn_right(PID.get_speed(PID_out))
+                    # PID_out = PID.get_angle(errors)
+                    # robot.turn_right(PID.get_speed(PID_out))
                 else:
-
-                    # robot.turn_right(0)
                     # If theta outside +/- 90 degrees and less than zero turn right
                     # We have the most control over clockwise turns
 
                     if theta > 0:
                         print('Right')
-                        robot.turn_right(0)
+                        # robot.turn_right(0)
                     else:
                         print('Left')
-                        robot.turn_left(3)
+                        # robot.turn_left(3)
             else:
                 print('Go Straight')
                 # robot.forward()
