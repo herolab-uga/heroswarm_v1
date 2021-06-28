@@ -158,7 +158,7 @@ def setMotion(robotData, endPtData):
         robot.stop()
 
 
-def MovOnTheta(theta, distance, right):
+def MovOnTheta(theta, distance):
     global errors
     global robot
     global prev_theta
