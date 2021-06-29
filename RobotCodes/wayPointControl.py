@@ -68,36 +68,35 @@ def main():
         robotOdo = pickle.loads(robotOdoP)
         stpFlag=False
         (endPos,endPtPointer,stpFlag)=getEndPoint(robotOdo,endPtPointer,stpFlag)    
-
-
-
-        
         setMotion(robotOdo, endPos, stpFlag)
 
 def getEndPoint(robotodo,endPtPtr,stpFlag):
 
     if robotodo == None:
-        return (None,endPtPtr)
-    endPtX=wayPoints[endPtPtr][0]
-    endPtY=wayPoints[endPtPtr][1]
-    endPtDelay=wayPoint_delays[endPtPtr]
-
-    robotX = int(float(robotodo[0][0]))
-    robotY = int(float(robotodo[0][1]))
-    distToEndPt= math.sqrt((endPtX-robotX)**2+(endPtY-robotY)**2)
+        endPos=None
+    elif endPtPtr < len(wayPoints):
+        endPtX=wayPoints[endPtPtr][0]
+        endPtY=wayPoints[endPtPtr][1]
+        endPtDelay=wayPoint_delays[endPtPtr]
+        robotX = int(float(robotodo[0][0]))
+        robotY = int(float(robotodo[0][1]))
+        distToEndPt= math.sqrt((endPtX-robotX)**2+(endPtY-robotY)**2)
+        if(distToEndPt<2):
+            endPtPtr+=1
+            if endPtPtr < len(wayPoints):
+                # endPtX=wayPoints[endPtPtr][0]
+                # endPtY=wayPoints[endPtPtr][1]
+                stpFlag=False
+            else:
+                stpFlag=True
+        endPos=[(endPtX,endPtY)]
+        print('Pt'+str(endPtPtr)+'End Pt:'+str(endPos)+'Distance:'+str(distToEndPt))
+    else:
+        endPos=None
+    return(endPos,endPtPtr,stpFlag)
     
-    if(distToEndPt<1):
-        endPtPtr+=1
-        if endPtPtr < len(wayPoints):
-            endPtX=wayPoints[endPtPtr][0]
-            endPtY=wayPoints[endPtPtr][1]
-            stpFlag=False
-        else:
-            stpFlag=True
-
-    endPos=[(endPtX,endPtY)]
-    print('Pt'+str(endPtPtr)+'End Pt:'+str(endPos)+'Distance:'+str(distToEndPt))
-    return (endPos,endPtPtr,stpFlag)
+        
+    
 
 
 
