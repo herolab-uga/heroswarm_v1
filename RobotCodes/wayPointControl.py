@@ -32,7 +32,7 @@ left = data["left"]
 # (88,13),(80,24)]
 wayPoints=[(92,36),(88,13),(80,24)]
 wayPoint_delays=[0,0,0]
-finalTheta=135
+finalTheta=-135
 thetaMarginF=20
 # wayPoint_delays=[0,0,0,0,0,0]
 
