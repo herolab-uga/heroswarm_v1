@@ -152,9 +152,9 @@ def getThetaDistance(startpoint, endpoint, heading):
     heading_rob.append((float(heading[1]) - float(startpoint[1])))
 
 
-    heading_rob_unit= heading_rob / np.linalg.norm(heading_rob)
+    heading_rob_unit= heading_rob / (heading_rob**2).sum()**0.5 
 
-    rob_end_vec_unit= rob_end_vec / np.linalg.norm(rob_end_vec)
+    rob_end_vec_unit= rob_end_vec / (rob_end_vec**2).sum()**0.5
     # Gets the rob_end_vec distance
     dif_dist=float(np.sqrt(float(rob_end_vec[0]) ** 2 + float(rob_end_vec[1]) ** 2))
     # If not a special case angle_end is described below
