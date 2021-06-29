@@ -22,7 +22,7 @@ host = socket.gethostname()
 robot=None
 with open('config/swarm_v1_config.JSON', 'r') as file:
     data = json.load(file)[host]
-prevCommand='None'
+
 # Array that stores error values
 # errors = np.zeros((PID.init if PID.init > PID.diff else PID.diff + 1))
 
@@ -31,7 +31,6 @@ def main():
     # Initializing Variables
     global robot
     global data
-    global prevCommand
     query = 'o'
     # Instantiating the robot class drawing parameters from JSON
     robot = SwarmRobot(
@@ -108,7 +107,6 @@ def setMotion(robotData, endPtData):
 
 def MovOnTheta(theta, distance):
     global robot
-    global prevCommand
     stpFlag = False
     eStatus = True
     # Scales the margin angle with distance from the target (farther away less margin for error)
@@ -126,6 +124,7 @@ def MovOnTheta(theta, distance):
 
     # error = -theta
     theta=180-theta
+    
     print(theta)
     if not stpFlag and eStatus:
         try:
@@ -133,25 +132,19 @@ def MovOnTheta(theta, distance):
             # If the robot heading is outside the target threshold (thetaMargin) turn the robot
             # This is a fuzzy controller
             if theta < thetaMargin1 and theta > thetaMargin2:
-                if prevCommand !='Forward':
-                    robot.forward()
-                    prevCommand='Forward'
+                robot.forward()
                 # print('Go Straight')
             elif theta >=thetaMargin1:
-                if prevCommand !='Left':
-                    print('Turning Right')
-                    robot.turn_right(60)
-                    prevCommand='Right'
+                print('Turning Right')
+                robot.turn_right(60)
             elif theta <=thetaMargin2:
-                if prevCommand !='Left':
-                    robot.turn_left(51)
-                    print('Turning Left')
-                    prevCommand='Left'
+                robot.turn_left(48)
+                print('Turning Left')
             
                 
-            # elif (prevCommand!='Left'or prevCommand!='Right'or prevCommand!='Forward'):
+            # else:
             #     robot.stop()
-                # print(pidController1.get_correction(theta))
+            #     # print(pidController1.get_correction(theta))
                 
         except Exception as e:
             print(e)
