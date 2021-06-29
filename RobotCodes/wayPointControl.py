@@ -66,12 +66,16 @@ def main():
         CLIENT_SOCKET.send(query.encode('ascii'))
         robotOdoP = CLIENT_SOCKET.recv(4096)
         robotOdo = pickle.loads(robotOdoP)
-        
-        
         (endPos,endPtPointer,stpFlag)=getEndPoint(robotOdo,endPtPointer,stpFlag)
         #     
         setMotion(robotOdo, endPos, stpFlag)
         stpFlag=checkDelay(endPtPointer,stpFlag)
+
+def checkFinalRotation(endPtPtr,stpFlag):
+    if stpFlag and endPtPtr==len(wayPoint_delays)-1:
+        RotateToTheta()
+
+
 
 def checkDelay(endPtPtr,stpFlag):
     if stpFlag and endPtPtr<len(wayPoint_delays):
@@ -153,6 +157,32 @@ def setMotion(robotData, endPtData,stpFlag):
             robot.set_theta(robotData[1])
         robot.stop()
 
+def RotateToTheta(robotData,setPtTheta):
+    global robot
+    x = int(float(robotData[0][0]))
+    y = int(float(robotData[0][1]))
+    hx = int(float(robotData[0][2]))
+    hy = int(float(robotData[0][3]))
+    heading_rob=[]
+    thetaMargin=5
+    thetaMargin1=setPtTheta+thetaMargin
+    thetaMargin2=setPtTheta-thetaMargin
+    
+    heading_rob.append((float(hx) - float(x)))
+    heading_rob.append((float(hy) - float(y)))
+    robotTheta = np.arctan2(heading_rob[1],heading_rob[0])+math.pi # This has been verfied
+    if robotTheta < thetaMargin1 and robotTheta > thetaMargin2:
+        robot.stop()
+        # print('Go Straight')
+    elif robotTheta >=thetaMargin1:
+        # print('Turning Right')
+        robot.turn_right(60)
+    elif robotTheta <=thetaMargin2:
+        robot.turn_left(41)
+        # print('Turning Left')
+
+
+
 
 def MovOnTheta(theta, distance,stpFlag):
     global robot
@@ -163,17 +193,7 @@ def MovOnTheta(theta, distance,stpFlag):
     thetaMargin=40
     thetaMargin1=thetaMargin/2
     thetaMargin2=-thetaMargin/2
-
-    pidStartWindow=10
-    pidThetaMargin1=thetaMargin1+pidStartWindow
-    pidThetaMargin2=thetaMargin2-pidStartWindow
-
-    pidController1=PIDController(0.5,0)
-    # pidController2=PIDController(0.5,0)
-
-    # error = -theta
     theta=180-theta
-    
     # print(theta)
     if not stpFlag and eStatus:
         try:
@@ -189,12 +209,6 @@ def MovOnTheta(theta, distance,stpFlag):
             elif theta <=thetaMargin2:
                 robot.turn_left(41)
                 # print('Turning Left')
-            
-                
-            # else:
-            #     robot.stop()
-            #     # print(pidController1.get_correction(theta))
-                
         except Exception as e:
             print(e)
             robot.stop()
@@ -209,11 +223,7 @@ def getThetaDistance(startpoint, endpoint, heading):
     # Translates the heading of the robot to the be relative to robot center
     heading_rob.append((float(heading[0]) - float(startpoint[0])))
     heading_rob.append((float(heading[1]) - float(startpoint[1])))
-
-
     heading_rob_unit= np.divide(heading_rob , math.sqrt(heading_rob[0]**2+heading_rob[1]**2))
-
-
     rob_end_vec_unit= np.divide(rob_end_vec , math.sqrt(rob_end_vec[0]**2+rob_end_vec[1]**2))
     # Gets the rob_end_vec distance
     dif_dist=float(np.sqrt(float(rob_end_vec[0]) ** 2 + float(rob_end_vec[1]) ** 2))
@@ -223,29 +233,7 @@ def getThetaDistance(startpoint, endpoint, heading):
     # Try to get the angle of the robot
     angle_robot = np.arctan2(heading_rob[1],heading_rob[0])+math.pi # This has been verfied
     # print(np.degrees(angle_robot))
-    # Calculates the rl_angle for the robot
-    
-    
-    # if angle_end > angle_robot:
-    #     rl_angle=(angle_end-angle_robot)
-    #     endLeading = True
-    #     print(str(np.degrees(angle_end))+'+'+str(np.degrees(angle_robot))+'='+str(np.degrees(rl_angle))+', End Left')
-    # else:
-    #     rl_angle=(angle_robot-angle_end)
-    #     endLeading = False
-    #     print(str(np.degrees(angle_end))+'+'+str(np.degrees(angle_robot))+'='+str(np.degrees(rl_angle))+', End Right')
-    
-
     rl_angle=(math.degrees(np.arctan2(np.cross(heading_rob_unit,rob_end_vec_unit),np.dot(heading_rob_unit,rob_end_vec_unit))))+180
-    # print(str(np.degrees(angle_end))+'+'+str(np.degrees(angle_robot))+'='+str(rl_angle))
-    # Correction made on angle due to some inconsistensies (Should be sorted in the future)
-    # Returning the angle in degrees, the distance from the tag
-    # if np.degrees(rl_angle) >= 180:
-    #             rl_angle = 360 - np.degrees(rl_angle)
-    # else:
-    #     rl_angle = np.degrees(rl_angle)
-    # Defining one side as negative and other as positive.
-    # rl_angle= -rl_angle if endLeading else rl_angle
     return (rl_angle, dif_dist)
 
 
