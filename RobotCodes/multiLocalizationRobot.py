@@ -164,11 +164,11 @@ def getThetaDistance(startpoint, endpoint, heading):
     if angle_end > angle_robot:
         rl_angle=(angle_end-angle_robot)
         endLeading = True
-        # print('EndLeading')
+        print('End-Left')
     else:
         rl_angle=(angle_robot-angle_end)
         endLeading = False
-        # print('RobotLeading')
+        print('End-Right')
     print(str(np.degrees(angle_end))+'+'+str(np.degrees(angle_robot))+'='+str(np.degrees(rl_angle)))
     # Correction made on angle due to some inconsistensies (Should be sorted in the future)
     # Returning the angle in degrees, the distance from the tag
