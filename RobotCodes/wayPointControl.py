@@ -31,7 +31,7 @@ left = data["left"]
 wayPoints=[(92,36),(88,13),(80,24)]
 wayPoint_delays=[0,0,0]
 finalTheta=0
-thetaMargin1=20
+thetaMarginF=20
 # wayPoint_delays=[0,0,0,0,0,0]
 
 # Array that stores error values
@@ -171,8 +171,8 @@ def RotateToTheta(robotData,setPtTheta):
     hy = int(float(robotData[0][3]))
     heading_rob=[]
     
-    thetaMargin1=setPtTheta+ thetaMargin1
-    thetaMargin2=setPtTheta- thetaMargin1
+    thetaMargin1=setPtTheta+ thetaMarginF
+    thetaMargin2=setPtTheta- thetaMarginF
 
     heading_rob.append((float(hx) - float(x)))
     heading_rob.append((float(hy) - float(y)))
