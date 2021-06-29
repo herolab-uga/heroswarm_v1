@@ -234,10 +234,10 @@ def getThetaDistance(startpoint, endpoint, heading):
 
 def RotateToTheta(robotData,setPtTheta):
     global robot
-    x = int(float(robotData[0][0]))
-    y = int(float(robotData[0][1]))
-    hx = int(float(robotData[0][2]))
-    hy = int(float(robotData[0][3]))
+    x = (float(robotData[0][0]))
+    y = (float(robotData[0][1]))
+    hx = (float(robotData[0][2]))
+    hy = (float(robotData[0][3]))
     heading_rob=[]
     
     thetaMargin1=setPtTheta+ thetaMarginF
