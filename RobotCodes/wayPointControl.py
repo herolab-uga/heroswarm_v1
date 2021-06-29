@@ -182,7 +182,8 @@ def MovOnTheta(theta, distance,stpFlag,orientFlag):
     thetaMargin2=-thetaMargin/2
     theta=180-theta
     print(theta)
-    if not stpFlag and eStatus:
+    # if not stpFlag and eStatus:
+    if eStatus:
         try:
             # print (theta)
             # If the robot heading is outside the target threshold (thetaMargin) turn the robot
@@ -223,7 +224,7 @@ def getThetaDistance(startpoint, endpoint, heading):
     # Try to get the angle of the robot
     angle_robot = np.arctan2(heading_rob[1],heading_rob[0])+math.pi # This has been verfied
     # print(np.degrees(angle_robot))
-    print(endpoint)
+    # print(endpoint)
     rl_angle=(math.degrees(np.arctan2(np.cross(heading_rob_unit,rob_end_vec_unit),np.dot(heading_rob_unit,rob_end_vec_unit))))+180
     return (rl_angle, dif_dist)
 
