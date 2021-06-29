@@ -166,13 +166,14 @@ def RotateToTheta(robotData,setPtTheta):
     hx = int(float(robotData[0][2]))
     hy = int(float(robotData[0][3]))
     heading_rob=[]
-    thetaMargin=5
+    thetaMargin=10
     thetaMargin1=setPtTheta+thetaMargin
     thetaMargin2=setPtTheta-thetaMargin
 
     heading_rob.append((float(hx) - float(x)))
     heading_rob.append((float(hy) - float(y)))
     robotTheta = np.arctan2(heading_rob[1],heading_rob[0])+math.pi # This has been verfied
+    print(robotTheta)
     if robotTheta < thetaMargin1 and robotTheta > thetaMargin2:
         robot.stop()
         # print('Go Straight')
