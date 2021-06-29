@@ -89,7 +89,7 @@ def getEndPoint(robotodo,endPtPtr):
         endPtPtr+=1
         endPtX=wayPoints[endPtPtr][0]
         endPtY=wayPoints[endPtPtr][1]
-    endPos=(endPtX,endPtY)
+    endPos=[(endPtX,endPtY)]
     return (endPos,endPtPtr)
 
 
