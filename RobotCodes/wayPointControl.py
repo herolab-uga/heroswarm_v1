@@ -69,8 +69,18 @@ def main():
         
         
         (endPos,endPtPointer,stpFlag)=getEndPoint(robotOdo,endPtPointer,stpFlag)
-        # stpFlag=checkDelay(endPtPointer)    
+        #     
         setMotion(robotOdo, endPos, stpFlag)
+        stpFlag=checkDelay(endPtPointer,stpFlag)
+
+def checkDelay(endPtPtr,stpFlag):
+    if stpFlag and endPtPtr<len(wayPoint_delays):
+        time.sleep(wayPoint_delays[endPtPtr-1])
+        stpFlag=False
+    else:
+        return stpFlag
+
+
 
 def getEndPoint(robotodo,endPtPtr,stpFlag):
     if robotodo == None:
