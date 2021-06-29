@@ -160,7 +160,7 @@ def getThetaDistance(startpoint, endpoint, heading):
     # print(np.degrees(angle_robot))
     # Calculates the rl_angle for the robot
     rl_angle=(angle_robot-angle_end)
-    print(str(np.degrees(angle_end))+'+'+str(np.degrees(np.angle_robot))+'='+str(np.degrees(rl_angle)))
+    print(str(np.degrees(angle_end))+'+'+str(np.degrees(angle_robot))+'='+str(np.degrees(rl_angle)))
     if angle_end > angle_robot:
         endLeading = True
         # print('EndLeading')
