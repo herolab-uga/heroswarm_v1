@@ -120,7 +120,8 @@ def getEndPoint(robotodo,endPtPtr,stpFlag):
         print('Pt'+str(endPtPtr)+'End Pt:'+str(endPos)+'Distance:'+str(distToEndPt)+'Stop Flag:'+str(stpFlag))
     else:
         setPtTheta=finalTheta
-        endPos=[(math.cos(math.radians(setPtTheta)),math.sin(math.radians(setPtTheta)))]
+        scalarFactor=10
+        endPos=[(math.cos(math.radians(setPtTheta))*scalarFactor,math.sin(math.radians(setPtTheta))*scalarFactor)]
     return(endPos,endPtPtr,stpFlag)
     
         
