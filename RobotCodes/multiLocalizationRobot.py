@@ -23,6 +23,10 @@ robot=None
 with open('config/swarm_v1_config.JSON', 'r') as file:
     data = json.load(file)[host]
 
+# Gets the right and lift duty cycles from json
+right = data["right"]
+left = data["left"]
+
 # Array that stores error values
 # errors = np.zeros((PID.init if PID.init > PID.diff else PID.diff + 1))
 
@@ -38,6 +42,7 @@ def main():
         id=data['id'],
         linear_speed=data['linear_speed'],
         angular_speed=data['angular_speed'],
+        pwm_pins=data["pwm_pins"]
         )
 
     #Initializing Connection with Localization System

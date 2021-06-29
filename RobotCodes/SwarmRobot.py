@@ -20,7 +20,7 @@ class SwarmRobot:
         "meters":1
     }
 
-    def __init__(self,name,id,linear_speed,angular_speed):
+    def __init__(self,name,id,linear_speed,angular_speed,pwm_pins):
         # Names each robot
         self.name = name
         self.id = id
@@ -33,7 +33,7 @@ class SwarmRobot:
         self.linear_speed = linear_speed
         # Angular Speed in radians per second
         self.angular_speed = angular_speed
-        self.mc = motorControl.MotorControl()
+        self.mc = motorControl.MotorControl(pwm_pins)
         # self.mc.Stopper()
         # atexit.register(self.save)
 
