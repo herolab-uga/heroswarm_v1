@@ -75,7 +75,7 @@ def main():
         robotOdo = pickle.loads(robotOdoP)
         (endPos,endPtPointer,stpFlag)=getEndPoint(robotOdo,endPtPointer,stpFlag)
         #     
-        orientFlag=checkFinalRotation(endPtPointer,stpFlag,robotOdo)
+        # orientFlag=checkFinalRotation(endPtPointer,stpFlag,robotOdo)
         (orientFlag,stpFlag)=setMotion(robotOdo, endPos, stpFlag,orientFlag)
         stpFlag=checkDelay(endPtPointer,stpFlag)
         
