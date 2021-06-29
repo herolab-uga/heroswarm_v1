@@ -124,6 +124,7 @@ def MovOnTheta(theta, distance):
 
     # error = -theta
     theta=180-theta
+    print(theta)
     if not stpFlag and eStatus:
         try:
             # print (theta)
@@ -134,9 +135,9 @@ def MovOnTheta(theta, distance):
                 # print('Go Straight')
             elif theta >=thetaMargin1:
                 print('Turning Left')
-                robot.turn_left(97)
+                robot.turn_left(3)
             elif theta <=thetaMargin2:
-                robot.turn_right(3)
+                robot.turn_right(97)
                 print('Turning Right')
             
                 
