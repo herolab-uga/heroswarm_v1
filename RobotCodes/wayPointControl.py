@@ -27,7 +27,7 @@ with open('config/swarm_v1_config.JSON', 'r') as file:
 right = data["right"]
 left = data["left"]
 
-wayPoints=[(93,139),(95,109),(91,76),(92,36),(86,0),(80,24)]
+wayPoints=[(93,139),(95,109),(91,76),(92,36),(88,13),(80,24)]
 wayPoint_delays=[1,2,0,1,10]
 
 # Array that stores error values
@@ -86,7 +86,7 @@ def getEndPoint(robotodo,endPtPtr):
     robotY = int(float(robotodo[0][1]))
     distToEndPt= math.sqrt((endPtX-robotX)**2+(endPtY-robotY)**2)
     
-    if(distToEndPt<=2):
+    if(distToEndPt<=1):
         endPtPtr+=1
         endPtX=wayPoints[endPtPtr][0]
         endPtY=wayPoints[endPtPtr][1]
