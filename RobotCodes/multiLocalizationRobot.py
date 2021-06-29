@@ -170,10 +170,10 @@ def getThetaDistance(startpoint, endpoint, heading):
         # print('RobotLeading')
     # Correction made on angle due to some inconsistensies (Should be sorted in the future)
     # Returning the angle in degrees, the distance from the tag
-    if np.degrees(rl_angle) >= 180:
-                rl_angle = 360 - np.degrees(rl_angle)
-    else:
-        rl_angle = np.degrees(rl_angle)
+    # if np.degrees(rl_angle) >= 180:
+    #             rl_angle = 360 - np.degrees(rl_angle)
+    # else:
+    #     rl_angle = np.degrees(rl_angle)
     # Defining one side as negative and other as positive.
     # rl_angle= -rl_angle if endLeading else rl_angle
     return (np.degrees(rl_angle), dif_dist)
