@@ -75,6 +75,9 @@ def main():
         setMotion(robotOdo, endPos)
 
 def getEndPoint(robotodo,endPtPtr):
+
+    if robotodo == None:
+        return (None,endPtPtr)
     endPtX=wayPoints[endPtPtr][0]
     endPtY=wayPoints[endPtPtr][1]
     endPtDelay=wayPoint_delays[endPtPtr]
