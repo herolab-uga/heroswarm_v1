@@ -31,7 +31,7 @@ left = data["left"]
 # wayPoints=[(93,139),(95,109),(91,76),(92,36),(91,20),(80,24)]
 # (88,13),(80,24)]
 wayPoints=[(92,36),(88,13),(80,24)]
-wayPoint_delays=[10,0,0]
+wayPoint_delays=[0,0,0]
 finalTheta=135
 thetaMarginF=20
 # wayPoint_delays=[0,0,0,0,0,0]
@@ -75,7 +75,7 @@ def main():
         robotOdo = pickle.loads(robotOdoP)
         (endPos,endPtPointer,stpFlag)=getEndPoint(robotOdo,endPtPointer,stpFlag)
         #     
-        # orientFlag=checkFinalRotation(endPtPointer,stpFlag,robotOdo)
+        orientFlag=checkFinalRotation(endPtPointer,stpFlag,robotOdo)
         (orientFlag,stpFlag)=setMotion(robotOdo, endPos, stpFlag,orientFlag)
         stpFlag=checkDelay(endPtPointer,stpFlag)
         
@@ -120,8 +120,7 @@ def getEndPoint(robotodo,endPtPtr,stpFlag):
         print('Pt'+str(endPtPtr)+'End Pt:'+str(endPos)+'Distance:'+str(distToEndPt)+'Stop Flag:'+str(stpFlag))
     else:
         setPtTheta=finalTheta
-        scalarFactor=10
-        endPos=[(scalarFactor*math.cos(math.radians(setPtTheta)),scalarFactor*math.sin(math.radians(setPtTheta)))]
+        endPos=[(math.cos(math.radians(setPtTheta)),math.sin(math.radians(setPtTheta)))]
     return(endPos,endPtPtr,stpFlag)
     
         
@@ -172,7 +171,7 @@ def setMotion(robotData, endPtData,stpFlag,orientFlag):
             robot.set_theta(robotData[1])
         robot.stop()
     return (orientFlag,stpFlag)
-
+    
 def MovOnTheta(theta, distance,stpFlag,orientFlag):
     global robot
     # stpFlag = False
