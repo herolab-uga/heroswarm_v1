@@ -23,6 +23,8 @@ robot=None
 with open('config/swarm_v1_config.JSON', 'r') as file:
     data = json.load(file)[host]
 
+right = data["right"]
+left = data["left"]
 # Array that stores error values
 # errors = np.zeros((PID.init if PID.init > PID.diff else PID.diff + 1))
 
@@ -38,6 +40,7 @@ def main():
         id=data['id'],
         linear_speed=data['linear_speed'],
         angular_speed=data['angular_speed'],
+        pwm_pins=data["pwm_pins"]
         )
 
     #Initializing Connection with Localization System
@@ -141,9 +144,9 @@ def MovOnTheta(theta, distance):
                 # print('Go Straight')
             elif theta >=thetaMargin1:
                 print('Turning Right')
-                robot.turn_right(60)
+                robot.turn_right(right)
             elif theta <=thetaMargin2:
-                robot.turn_left(41)
+                robot.turn_left(left)
                 print('Turning Left')
             
                 
