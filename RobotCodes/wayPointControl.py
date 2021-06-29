@@ -178,7 +178,7 @@ def RotateToTheta(robotData,setPtTheta):
     # heading_rob_unit= np.divide(heading_rob , math.sqrt(heading_rob[0]**2+heading_rob[1]**2))
 
 
-    robotTheta = np.degrees(np.arctan2(heading_rob[1],heading_rob[0])+math.pi) # This has been verfied
+    robotTheta = np.degrees(np.arctan2(heading_rob[1],heading_rob[0])) # This has been verfied
     print(robotTheta)
     if robotTheta < thetaMargin1 and robotTheta > thetaMargin2:
         robot.stop()
