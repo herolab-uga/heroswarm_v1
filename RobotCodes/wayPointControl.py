@@ -32,7 +32,7 @@ wayPoints=[(93,139),(95,109),(91,76),(92,36),(91,20),(80,24)]
 # (88,13),(80,24)]
 # wayPoints=[(92,36),(88,13),(80,24)]
 wayPoint_delays=[0,0,0,0,0,0]
-finalTheta=2
+finalTheta=90
 thetaMarginF=20
 # wayPoint_delays=[0,0,0,0,0,0]
 
@@ -223,6 +223,7 @@ def getThetaDistance(startpoint, endpoint, heading):
     # Try to get the angle of the robot
     angle_robot = np.arctan2(heading_rob[1],heading_rob[0])+math.pi # This has been verfied
     # print(np.degrees(angle_robot))
+    
     rl_angle=(math.degrees(np.arctan2(np.cross(heading_rob_unit,rob_end_vec_unit),np.dot(heading_rob_unit,rob_end_vec_unit))))+180
     return (rl_angle, dif_dist)
 
