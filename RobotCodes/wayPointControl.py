@@ -86,13 +86,18 @@ def getEndPoint(robotodo,endPtPtr):
     robotY = int(float(robotodo[0][1]))
     distToEndPt= math.sqrt((endPtX-robotX)**2+(endPtY-robotY)**2)
     
-    if(distToEndPt<=1):
+    if(distToEndPt<1):
         endPtPtr+=1
-        endPtX=wayPoints[endPtPtr][0]
-        endPtY=wayPoints[endPtPtr][1]
+        if endPtPtr <= len(wayPoints):
+            endPtX=wayPoints[endPtPtr][0]
+            endPtY=wayPoints[endPtPtr][1]
+            stpFlag=False
+        else:
+            stpFlag=True
+
     endPos=[(endPtX,endPtY)]
     print('Pt'+str(endPtPtr)+'End Pt:'+str(endPos)+'Distance:'+str(distToEndPt))
-    return (endPos,endPtPtr)
+    return (endPos,endPtPtr,stpFlag)
 
 
 
@@ -101,7 +106,7 @@ def getEndPoint(robotodo,endPtPtr):
 
 
 
-def setMotion(robotData, endPtData):
+def setMotion(robotData, endPtData,stpFlag):
     global robot
     theta = None
 
@@ -129,7 +134,7 @@ def setMotion(robotData, endPtData):
         if theta is None:
             robot.stop()
         else:
-            MovOnTheta(theta, distance)
+            MovOnTheta(theta, distance,stpFlag)
         
     else:
         # If at the tagert, update the position of the robot object
@@ -140,9 +145,9 @@ def setMotion(robotData, endPtData):
         robot.stop()
 
 
-def MovOnTheta(theta, distance):
+def MovOnTheta(theta, distance,stpFlag):
     global robot
-    stpFlag = False
+    # stpFlag = False
     eStatus = True
     # Scales the margin angle with distance from the target (farther away less margin for error)
     #thetaMargin = 22.5 - distance / 232 * 22.5  # 116 - max distance possible between tag and robot
