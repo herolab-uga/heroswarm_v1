@@ -70,6 +70,7 @@ def main():
         #     
         setMotion(robotOdo, endPos, stpFlag)
         stpFlag=checkDelay(endPtPointer,stpFlag)
+        checkFinalRotation(endPtPointer,stpFlag)
 
 def checkFinalRotation(endPtPtr,stpFlag):
     if stpFlag and endPtPtr==len(wayPoint_delays)-1:
@@ -167,7 +168,7 @@ def RotateToTheta(robotData,setPtTheta):
     thetaMargin=5
     thetaMargin1=setPtTheta+thetaMargin
     thetaMargin2=setPtTheta-thetaMargin
-    
+
     heading_rob.append((float(hx) - float(x)))
     heading_rob.append((float(hy) - float(y)))
     robotTheta = np.arctan2(heading_rob[1],heading_rob[0])+math.pi # This has been verfied
