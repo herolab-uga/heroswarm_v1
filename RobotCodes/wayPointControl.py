@@ -77,7 +77,7 @@ def main():
 def checkFinalRotation(endPtPtr,stpFlag,robotOdo):
     if stpFlag and endPtPtr==len(wayPoint_delays):
         print('Rotating to theta')
-        RotateToTheta(robotOdo,0)
+        RotateToTheta(robotOdo,90)
 
 
 
@@ -185,9 +185,9 @@ def RotateToTheta(robotData,setPtTheta):
         # print('Go Straight')
     elif robotTheta >=thetaMargin1:
         # print('Turning Right')
-        robot.turn_right(58)
+        robot.turn_right(59)
     elif robotTheta <=thetaMargin2:
-        robot.turn_left(44)
+        robot.turn_left(42)
         # print('Turning Left')
 
 
