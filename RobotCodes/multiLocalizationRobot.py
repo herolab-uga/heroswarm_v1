@@ -196,7 +196,7 @@ def getThetaDistance(startpoint, endpoint, heading):
     #     rl_angle = np.degrees(rl_angle)
     # Defining one side as negative and other as positive.
     # rl_angle= -rl_angle if endLeading else rl_angle
-    return (np.degrees(rl_angle), dif_dist)
+    return (rl_angle, dif_dist)
 
 
 if __name__ == '__main__':
