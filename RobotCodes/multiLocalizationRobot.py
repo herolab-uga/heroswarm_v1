@@ -150,6 +150,11 @@ def getThetaDistance(startpoint, endpoint, heading):
     # Translates the heading of the robot to the be relative to robot center
     heading_rob.append((float(heading[0]) - float(startpoint[0])))
     heading_rob.append((float(heading[1]) - float(startpoint[1])))
+
+
+    heading_rob_unit= heading_rob / np.linalg.norm(heading_rob)
+
+    rob_end_vec_unit= rob_end_vec / np.linalg.norm(rob_end_vec)
     # Gets the rob_end_vec distance
     dif_dist=float(np.sqrt(float(rob_end_vec[0]) ** 2 + float(rob_end_vec[1]) ** 2))
     # If not a special case angle_end is described below
@@ -171,7 +176,7 @@ def getThetaDistance(startpoint, endpoint, heading):
     #     print(str(np.degrees(angle_end))+'+'+str(np.degrees(angle_robot))+'='+str(np.degrees(rl_angle))+', End Right')
     
 
-    rl_angle=(math.degrees(math.atan2(np.cross(heading_rob,rob_end_vec),np.dot(heading_rob,rob_end_vec))))+180
+    rl_angle=(math.degrees(math.atan2(np.cross(heading_rob_unit,rob_end_vec_unit),np.dot(heading_rob_unit,rob_end_vec_unit))))+180
     print(str(np.degrees(angle_end))+'+'+str(np.degrees(angle_robot))+'='+str(np.degrees(rl_angle)))
     # Correction made on angle due to some inconsistensies (Should be sorted in the future)
     # Returning the angle in degrees, the distance from the tag
