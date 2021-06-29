@@ -84,7 +84,9 @@ def getEndPoint(robotodo,endPtPtr):
     distToEndPt= math.sqrt((endPtX-robotX)**2+(endPtY-robotY)**2)
     if(distToEndPt<=1):
         endPtPtr+=1
-    endPos=wayPoints[endPtPtr]
+        endPtX=wayPoints[endPtPtr][0]
+        endPtY=wayPoints[endPtPtr][1]
+    endPos=(endPtX,endPtY)
     return (endPos,endPtPtr)
 
 
