@@ -67,7 +67,7 @@ def main():
         robotOdoP = CLIENT_SOCKET.recv(4096)
         robotOdo = pickle.loads(robotOdoP)
         stpFlag=False
-        (endPos,endPtPointer)=getEndPoint(robotOdo,endPtPointer,stpFlag)    
+        (endPos,endPtPointer,stpFlag)=getEndPoint(robotOdo,endPtPointer,stpFlag)    
 
 
 
