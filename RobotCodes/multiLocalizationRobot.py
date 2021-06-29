@@ -123,15 +123,21 @@ def MovOnTheta(theta, distance):
     # pidController2=PIDController(0.5,0)
 
     # error = -theta
+    theta=180-theta
     if not stpFlag and eStatus:
         try:
             # print (theta)
             # If the robot heading is outside the target threshold (thetaMargin) turn the robot
             # This is a fuzzy controller
             if theta < thetaMargin1 and theta > thetaMargin2:
-                # robot.forward()
+                robot.forward()
                 # print('Go Straight')
-                a=1
+            elif theta >=thetaMargin1:
+                robot.turn_left()
+            elif theta <=thetaMargin2:
+                robot.turn_right()
+            
+                
             else:
                 robot.stop()
                 # print(pidController1.get_correction(theta))
