@@ -22,7 +22,7 @@ host = socket.gethostname()
 robot=None
 with open('config/swarm_v1_config.JSON', 'r') as file:
     data = json.load(file)[host]
-
+prevCommand='None'
 # Array that stores error values
 # errors = np.zeros((PID.init if PID.init > PID.diff else PID.diff + 1))
 
@@ -31,6 +31,7 @@ def main():
     # Initializing Variables
     global robot
     global data
+    global prevCommand
     query = 'o'
     # Instantiating the robot class drawing parameters from JSON
     robot = SwarmRobot(
@@ -107,6 +108,7 @@ def setMotion(robotData, endPtData):
 
 def MovOnTheta(theta, distance):
     global robot
+    global prevCommand
     stpFlag = False
     eStatus = True
     # Scales the margin angle with distance from the target (farther away less margin for error)
@@ -131,14 +133,20 @@ def MovOnTheta(theta, distance):
             # If the robot heading is outside the target threshold (thetaMargin) turn the robot
             # This is a fuzzy controller
             if theta < thetaMargin1 and theta > thetaMargin2:
-                robot.forward()
+                if prevCommand !='Forward':
+                    robot.forward()
+                    prevCommand='Forward'
                 # print('Go Straight')
             elif theta >=thetaMargin1:
-                print('Turning Right')
-                robot.turn_right(60)
+                if prevCommand !='Left':
+                    print('Turning Right')
+                    robot.turn_right(60)
+                    prevCommand='Right'
             elif theta <=thetaMargin2:
-                robot.turn_left(51)
-                print('Turning Left')
+                if prevCommand !='Left':
+                    robot.turn_left(51)
+                    print('Turning Left')
+                    prevCommand='Left'
             
                 
             else:
