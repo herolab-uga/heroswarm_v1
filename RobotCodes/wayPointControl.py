@@ -143,13 +143,13 @@ def setMotion(robotData, endPtData,stpFlag,orientFlag):
         return
 
     if endPtData != None and robotData != None:
-        x = int(float(robotData[0][0]))
-        y = int(float(robotData[0][1]))
-        hx = int(float(robotData[0][2]))
-        hy = int(float(robotData[0][3]))
+        x = float(robotData[0][0])
+        y = float(robotData[0][1])
+        hx = float(robotData[0][2])
+        hy = float(robotData[0][3])
         # Gets the ending position (Position of the target location)
-        ex = (float(endPtData[0][0]))
-        ey = (float(endPtData[0][1]))
+        ex = float(endPtData[0][0])
+        ey = float(endPtData[0][1])
         # trgDist = math.sqrt((x - ex) ** 2) + (y - ey) ** 2
         strtPt = np.array([x, y])
         endPt = np.array([ex, ey])
