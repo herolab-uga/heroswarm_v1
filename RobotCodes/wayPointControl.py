@@ -31,7 +31,7 @@ left = data["left"]
 # wayPoints=[(93,139),(95,109),(91,76),(92,36),(91,20),(80,24)]
 # (88,13),(80,24)]
 wayPoints=[(92,36),(88,13),(80,24)]
-wayPoint_delays=[0,0,0]
+wayPoint_delays=[10,0,0]
 finalTheta=135
 thetaMarginF=20
 # wayPoint_delays=[0,0,0,0,0,0]
@@ -120,7 +120,8 @@ def getEndPoint(robotodo,endPtPtr,stpFlag):
         print('Pt'+str(endPtPtr)+'End Pt:'+str(endPos)+'Distance:'+str(distToEndPt)+'Stop Flag:'+str(stpFlag))
     else:
         setPtTheta=finalTheta
-        endPos=[(math.cos(math.radians(setPtTheta)),math.sin(math.radians(setPtTheta)))]
+        scalarFactor=10
+        endPos=[(scalarFactor*math.cos(math.radians(setPtTheta)),scalarFactor*math.sin(math.radians(setPtTheta)))]
     return(endPos,endPtPtr,stpFlag)
     
         
@@ -171,6 +172,7 @@ def setMotion(robotData, endPtData,stpFlag,orientFlag):
             robot.set_theta(robotData[1])
         robot.stop()
     return (orientFlag,stpFlag)
+
 def MovOnTheta(theta, distance,stpFlag,orientFlag):
     global robot
     # stpFlag = False
@@ -213,7 +215,7 @@ def MovOnTheta(theta, distance,stpFlag,orientFlag):
 def getThetaDistance(startpoint, endpoint, heading):
     heading_rob = []
     # Gets the vector that describes the motion needed for robot to get to end point
-    scalarFactor=100
+    scalarFactor=1
     rob_end_vec = [float(endpoint[0])*scalarFactor - float(startpoint[0]*scalarFactor),
                    float(endpoint[1])*scalarFactor - float(startpoint[1])*scalarFactor]
     # Translates the heading of the robot to the be relative to robot center
