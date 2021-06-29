@@ -111,7 +111,7 @@ def MovOnTheta(theta, distance):
     eStatus = True
     # Scales the margin angle with distance from the target (farther away less margin for error)
     #thetaMargin = 22.5 - distance / 232 * 22.5  # 116 - max distance possible between tag and robot
-    thetaMargin=30
+    thetaMargin=60
     thetaMargin1=thetaMargin/2
     thetaMargin2=-thetaMargin/2
 
@@ -134,9 +134,9 @@ def MovOnTheta(theta, distance):
                 # print('Go Straight')
             elif theta >=thetaMargin1:
                 print('Turning Left')
-                robot.turn_left(62)
+                robot.turn_left(97)
             elif theta <=thetaMargin2:
-                robot.turn_right(53)
+                robot.turn_right(3)
                 print('Turning Right')
             
                 
