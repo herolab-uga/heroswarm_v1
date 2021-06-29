@@ -27,10 +27,11 @@ with open('config/swarm_v1_config.JSON', 'r') as file:
 right = data["right"]
 left = data["left"]
 
-# wayPoints=[(93,139),(95,109),(91,76),(92,36),(88,13),(80,24)]
+wayPoints=[(93,139),(95,109),(91,76),(92,36),(91,20),(96,25),(80,24)]
+# (88,13),(80,24)]
 wayPoints=[(92,36),(88,13),(80,24)]
 wayPoint_delays=[0,0,0]
-finalTheta=0
+finalTheta=2
 thetaMarginF=20
 # wayPoint_delays=[0,0,0,0,0,0]
 
@@ -74,7 +75,7 @@ def main():
         #     
         setMotion(robotOdo, endPos, stpFlag)
         stpFlag=checkDelay(endPtPointer,stpFlag)
-        checkFinalRotation(endPtPointer,stpFlag,robotOdo)
+        # checkFinalRotation(endPtPointer,stpFlag,robotOdo)
 
 def checkFinalRotation(endPtPtr,stpFlag,robotOdo):
     if stpFlag and endPtPtr==len(wayPoint_delays):
