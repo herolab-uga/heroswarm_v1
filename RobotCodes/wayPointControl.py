@@ -27,11 +27,18 @@ with open('config/swarm_v1_config.JSON', 'r') as file:
 right = data["right"]
 left = data["left"]
 
-# wayPoints=[(93,139),(95,109),(91,76),(92,36),(91,20),(96,25),(80,24)]
+wayPoints=[(69,156),(69,137),(67,115),(65,91)]  # Upt 1
+# wayPoints=[(93,139),(95,109),(91,76),(92,36),(91,20),(96,25),(80,24)]  # Upt 2
+# wayPoints=[(93,139),(95,109),(91,76),(92,36),(91,20),(96,25),(80,24)]  # Upt 3
+# wayPoints=[(93,139),(95,109),(91,76),(92,36),(91,20),(96,25),(80,24)]  # Upt 4
+# wayPoints=[(93,139),(95,109),(91,76),(92,36),(91,20),(96,25),(80,24)]  # Upt 5
+# wayPoints=[(93,139),(95,109),(91,76),(92,36),(91,20),(96,25),(80,24)]  # Upt 6
+
+
 # wayPoints=[(93,139),(95,109),(91,76),(92,36),(91,20),(80,24)]
 # (88,13),(80,24)]
 wayPoints=[(92,36),(88,13),(80,24)]
-wayPoint_delays=[0,0,0]
+wayPoint_delays=[0,0,0,0]
 finalTheta=-135
 thetaMarginF=20
 # wayPoint_delays=[0,0,0,0,0,0]
@@ -223,6 +230,8 @@ def getThetaDistance(startpoint, endpoint, heading):
     heading_rob.append((float(heading[1]) - float(startpoint[1])))
     heading_rob_unit= np.divide(heading_rob , math.sqrt(heading_rob[0]**2+heading_rob[1]**2))
     rob_end_vec_unit= np.divide(rob_end_vec , math.sqrt(rob_end_vec[0]**2+rob_end_vec[1]**2))
+
+    
     # Gets the rob_end_vec distance
     dif_dist=float(np.sqrt(float(rob_end_vec[0]) ** 2 + float(rob_end_vec[1]) ** 2))
     # If not a special case angle_end is described below
