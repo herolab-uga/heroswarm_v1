@@ -31,6 +31,7 @@ left = data["left"]
 wayPoints=[(92,36),(88,13),(80,24)]
 wayPoint_delays=[0,0,0]
 finalTheta=179
+thetaMargin=15
 # wayPoint_delays=[0,0,0,0,0,0]
 
 # Array that stores error values
@@ -169,7 +170,7 @@ def RotateToTheta(robotData,setPtTheta):
     hx = int(float(robotData[0][2]))
     hy = int(float(robotData[0][3]))
     heading_rob=[]
-    thetaMargin=10
+    
     thetaMargin1=setPtTheta+thetaMargin
     thetaMargin2=setPtTheta-thetaMargin
 
@@ -179,16 +180,16 @@ def RotateToTheta(robotData,setPtTheta):
     # heading_rob_unit= np.divide(heading_rob , math.sqrt(heading_rob[0]**2+heading_rob[1]**2))
 
 
-    robotTheta = np.degrees(np.arctan2(heading_rob[1],heading_rob[0])) # This has been verfied
+    robotTheta = np.degrees(np.arctan2(heading_rob[1],heading_rob[0]))+180 # This has been verfied
     print(robotTheta)
     if robotTheta < thetaMargin1 and robotTheta > thetaMargin2:
         robot.stop()
         # print('Go Straight')
     elif robotTheta >=thetaMargin1:
         # print('Turning Right')
-        robot.turn_right(59)
+        robot.turn_right(60)
     elif robotTheta <=thetaMargin2:
-        robot.turn_left(42)
+        robot.turn_left(41)
         # print('Turning Left')
 
 
