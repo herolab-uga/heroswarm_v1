@@ -67,11 +67,12 @@ def main():
         robotOdoP = CLIENT_SOCKET.recv(4096)
         robotOdo = pickle.loads(robotOdoP)
         stpFlag=False
-        (endPos,endPtPointer,stpFlag)=getEndPoint(robotOdo,endPtPointer,stpFlag)    
+        
+        (endPos,endPtPointer,stpFlag)=getEndPoint(robotOdo,endPtPointer,stpFlag)
+        # stpFlag=checkDelay(endPtPointer)    
         setMotion(robotOdo, endPos, stpFlag)
 
 def getEndPoint(robotodo,endPtPtr,stpFlag):
-
     if robotodo == None:
         endPos=None
     elif endPtPtr < len(wayPoints):
@@ -83,12 +84,10 @@ def getEndPoint(robotodo,endPtPtr,stpFlag):
         distToEndPt= math.sqrt((endPtX-robotX)**2+(endPtY-robotY)**2)
         if(distToEndPt<2):
             endPtPtr+=1
-            if endPtPtr < len(wayPoints):
-                # endPtX=wayPoints[endPtPtr][0]
-                # endPtY=wayPoints[endPtPtr][1]
-                stpFlag=False
-            else:
-                stpFlag=True
+            # if endPtPtr < len(wayPoints):
+            #     stpFlag=False
+            # else:
+            stpFlag=True
         endPos=[(endPtX,endPtY)]
         print('Pt'+str(endPtPtr)+'End Pt:'+str(endPos)+'Distance:'+str(distToEndPt))
     else:
