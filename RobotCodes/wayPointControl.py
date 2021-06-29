@@ -85,7 +85,8 @@ def getEndPoint(robotodo,endPtPtr):
     robotX = int(float(robotodo[0][0]))
     robotY = int(float(robotodo[0][1]))
     distToEndPt= math.sqrt((endPtX-robotX)**2+(endPtY-robotY)**2)
-    if(distToEndPt<=1):
+    print('Pt'+str(endPtPtr)+'Distance:'+str(distToEndPt))
+    if(distToEndPt<=5):
         endPtPtr+=1
         endPtX=wayPoints[endPtPtr][0]
         endPtY=wayPoints[endPtPtr][1]
@@ -158,7 +159,7 @@ def MovOnTheta(theta, distance):
     # error = -theta
     theta=180-theta
     
-    print(theta)
+    # print(theta)
     if not stpFlag and eStatus:
         try:
             # print (theta)
@@ -168,11 +169,11 @@ def MovOnTheta(theta, distance):
                 robot.forward()
                 # print('Go Straight')
             elif theta >=thetaMargin1:
-                print('Turning Right')
+                # print('Turning Right')
                 robot.turn_right(60)
             elif theta <=thetaMargin2:
                 robot.turn_left(41)
-                print('Turning Left')
+                # print('Turning Left')
             
                 
             # else:
