@@ -63,6 +63,11 @@ def main():
         CLIENT_SOCKET.send(query.encode('ascii'))
         endPosP = CLIENT_SOCKET.recv(4096)
         endPos = pickle.loads(endPosP)
+        query = 't'
+        CLIENT_SOCKET.send(query.encode('ascii'))
+        tagP = CLIENT_SOCKET.recv(4096)
+        tag = pickle.loads(tagP)
+        print(tag)
         setMotion(robotOdo, endPos)
 
 
