@@ -73,7 +73,7 @@ def main():
         checkFinalRotation(endPtPointer,stpFlag)
 
 def checkFinalRotation(endPtPtr,stpFlag):
-    if stpFlag and endPtPtr==len(wayPoint_delays)-1:
+    if stpFlag and endPtPtr==len(wayPoint_delays):
         print('Rotating to theta')
         RotateToTheta()
 
