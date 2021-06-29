@@ -208,11 +208,14 @@ def MovOnTheta(theta, distance,stpFlag,orientFlag):
     else:
         robot.stop()
     return (orientFlag,stpFlag)
+
+
 def getThetaDistance(startpoint, endpoint, heading):
     heading_rob = []
     # Gets the vector that describes the motion needed for robot to get to end point
-    rob_end_vec = [float(endpoint[0]) - float(startpoint[0]),
-                   float(endpoint[1]) - float(startpoint[1])]
+    scalarFactor=100
+    rob_end_vec = [float(endpoint[0])*scalarFactor - float(startpoint[0]*scalarFactor),
+                   float(endpoint[1])*scalarFactor - float(startpoint[1])*scalarFactor]
     # Translates the heading of the robot to the be relative to robot center
     heading_rob.append((float(heading[0]) - float(startpoint[0])))
     heading_rob.append((float(heading[1]) - float(startpoint[1])))
