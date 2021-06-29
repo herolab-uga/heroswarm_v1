@@ -88,7 +88,7 @@ def getEndPoint(robotodo,endPtPtr,stpFlag):
     
     if(distToEndPt<1):
         endPtPtr+=1
-        if endPtPtr <= len(wayPoints):
+        if endPtPtr < len(wayPoints):
             endPtX=wayPoints[endPtPtr][0]
             endPtY=wayPoints[endPtPtr][1]
             stpFlag=False
