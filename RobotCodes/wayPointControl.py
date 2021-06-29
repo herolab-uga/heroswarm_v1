@@ -60,13 +60,13 @@ def main():
 #     while robotOdo is None:
 #         continue
     endPtPointer=0
-
+    stpFlag=False
     while True:
         query = 'o'
         CLIENT_SOCKET.send(query.encode('ascii'))
         robotOdoP = CLIENT_SOCKET.recv(4096)
         robotOdo = pickle.loads(robotOdoP)
-        stpFlag=False
+        
         
         (endPos,endPtPointer,stpFlag)=getEndPoint(robotOdo,endPtPointer,stpFlag)
         # stpFlag=checkDelay(endPtPointer)    
@@ -84,10 +84,11 @@ def getEndPoint(robotodo,endPtPtr,stpFlag):
         distToEndPt= math.sqrt((endPtX-robotX)**2+(endPtY-robotY)**2)
         if(distToEndPt<2):
             endPtPtr+=1
+            stpFlag=True
             # if endPtPtr < len(wayPoints):
             #     stpFlag=False
             # else:
-            stpFlag=True
+            
         endPos=[(endPtX,endPtY)]
         print('Pt'+str(endPtPtr)+'End Pt:'+str(endPos)+'Distance:'+str(distToEndPt)+'Stop Flag:'+str(stpFlag))
     else:
