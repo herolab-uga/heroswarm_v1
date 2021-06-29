@@ -89,7 +89,7 @@ def getEndPoint(robotodo,endPtPtr,stpFlag):
             # else:
             stpFlag=True
         endPos=[(endPtX,endPtY)]
-        print('Pt'+str(endPtPtr)+'End Pt:'+str(endPos)+'Distance:'+str(distToEndPt))
+        print('Pt'+str(endPtPtr)+'End Pt:'+str(endPos)+'Distance:'+str(distToEndPt)+'Stop Flag:'+str(stpFlag))
     else:
         endPos=None
     return(endPos,endPtPtr,stpFlag)
