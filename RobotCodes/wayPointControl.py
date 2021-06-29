@@ -70,12 +70,12 @@ def main():
         #     
         setMotion(robotOdo, endPos, stpFlag)
         stpFlag=checkDelay(endPtPointer,stpFlag)
-        checkFinalRotation(endPtPointer,stpFlag)
+        checkFinalRotation(endPtPointer,stpFlag,robotOdo)
 
-def checkFinalRotation(endPtPtr,stpFlag):
+def checkFinalRotation(endPtPtr,stpFlag,robotOdo):
     if stpFlag and endPtPtr==len(wayPoint_delays):
         print('Rotating to theta')
-        RotateToTheta()
+        RotateToTheta(robotOdo,0)
 
 
 
