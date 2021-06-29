@@ -125,15 +125,16 @@ def MovOnTheta(theta, distance):
     # error = -theta
     if not stpFlag and eStatus:
         try:
-            print (theta)
+            # print (theta)
             # If the robot heading is outside the target threshold (thetaMargin) turn the robot
             # This is a fuzzy controller
             if theta < thetaMargin1 and theta > thetaMargin2:
                 # robot.forward()
-                print('Go Straight')
+                # print('Go Straight')
+                a=1
             else:
                 robot.stop()
-                print(pidController1.get_correction(theta))
+                # print(pidController1.get_correction(theta))
                 
         except Exception as e:
             print(e)
@@ -153,17 +154,19 @@ def getThetaDistance(startpoint, endpoint, heading):
     dif_dist=float(np.sqrt(float(rob_end_vec[0]) ** 2 + float(rob_end_vec[1]) ** 2))
     # If not a special case angle_end is described below
     angle_end = np.degrees(np.arctan2(rob_end_vec[1],rob_end_vec[0]))
+    # print(angle_end)
     # Try to get the angle of the robot
     angle_robot = np.degrees(np.arctan2(heading[1],heading[0]))
+    print(angle_robot)
     # Calculates the rl_angle for the robot
     if angle_end > angle_robot:
         rl_angle = angle_end - angle_robot
         endLeading = True
-        print('EndLeading')
+        # print('EndLeading')
     else:
         rl_angle = angle_robot - angle_end
         endLeading = False
-        print('RobotLeading')
+        # print('RobotLeading')
     # Correction made on angle due to some inconsistensies (Should be sorted in the future)
     # Returning the angle in degrees, the distance from the tag
     # if np.degrees(rl_angle) >= 180:
