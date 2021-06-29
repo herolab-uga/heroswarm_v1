@@ -67,6 +67,7 @@ def main():
 #         continue
     endPtPointer=0
     stpFlag=False
+    orientFlag=False
     while True:
         query = 'o'
         CLIENT_SOCKET.send(query.encode('ascii'))
@@ -74,14 +75,18 @@ def main():
         robotOdo = pickle.loads(robotOdoP)
         (endPos,endPtPointer,stpFlag)=getEndPoint(robotOdo,endPtPointer,stpFlag)
         #     
-        setMotion(robotOdo, endPos, stpFlag)
+        orientFlag=checkFinalRotation(endPtPointer,stpFlag,robotOdo)
+        setMotion(robotOdo, endPos, stpFlag,orientFlag)
         stpFlag=checkDelay(endPtPointer,stpFlag)
-        # checkFinalRotation(endPtPointer,stpFlag,robotOdo)
+        
 
 def checkFinalRotation(endPtPtr,stpFlag,robotOdo):
     if stpFlag and endPtPtr==len(wayPoint_delays):
         print('Rotating to theta')
-        RotateToTheta(robotOdo,finalTheta)
+        orientFlag=True
+    else:
+        orientFlag=False
+    return orientFlag 
 
 
 
@@ -114,7 +119,8 @@ def getEndPoint(robotodo,endPtPtr,stpFlag):
         endPos=[(endPtX,endPtY)]
         print('Pt'+str(endPtPtr)+'End Pt:'+str(endPos)+'Distance:'+str(distToEndPt)+'Stop Flag:'+str(stpFlag))
     else:
-        endPos=None
+        setPtTheta=finalTheta
+        endPos=(math.cos(math.radians(setPtTheta)),math.sin(math.radians(setPtTheta)))
     return(endPos,endPtPtr,stpFlag)
     
         
@@ -127,7 +133,7 @@ def getEndPoint(robotodo,endPtPtr,stpFlag):
 
 
 
-def setMotion(robotData, endPtData,stpFlag):
+def setMotion(robotData, endPtData,stpFlag,orientFlag):
     global robot
     theta = None
 
@@ -155,7 +161,7 @@ def setMotion(robotData, endPtData,stpFlag):
         if theta is None:
             robot.stop()
         else:
-            MovOnTheta(theta, distance,stpFlag)
+            MovOnTheta(theta, distance,stpFlag,orientFlag)
         
     else:
         # If at the tagert, update the position of the robot object
@@ -165,39 +171,7 @@ def setMotion(robotData, endPtData,stpFlag):
             robot.set_theta(robotData[1])
         robot.stop()
 
-def RotateToTheta(robotData,setPtTheta):
-    global robot
-    x = int(float(robotData[0][0]))
-    y = int(float(robotData[0][1]))
-    hx = int(float(robotData[0][2]))
-    hy = int(float(robotData[0][3]))
-    heading_rob=[]
-    
-    thetaMargin1=setPtTheta+ thetaMarginF
-    thetaMargin2=setPtTheta- thetaMarginF
-
-    heading_rob.append((float(hx) - float(x)))
-    heading_rob.append((float(hy) - float(y)))
-
-    # heading_rob_unit= np.divide(heading_rob , math.sqrt(heading_rob[0]**2+heading_rob[1]**2))
-
-
-    robotTheta = np.degrees(np.arctan2(heading_rob[1],heading_rob[0]))+180 # This has been verfied
-    print(robotTheta)
-    if robotTheta < thetaMargin1 and robotTheta > thetaMargin2:
-        robot.stop()
-        # print('Go Straight')
-    elif robotTheta >=thetaMargin1:
-        # print('Turning Right')
-        robot.turn_right(60)
-    elif robotTheta <=thetaMargin2:
-        robot.turn_left(41)
-        # print('Turning Left')
-
-
-
-
-def MovOnTheta(theta, distance,stpFlag):
+def MovOnTheta(theta, distance,stpFlag,orientFlag):
     global robot
     # stpFlag = False
     eStatus = True
@@ -214,7 +188,10 @@ def MovOnTheta(theta, distance,stpFlag):
             # If the robot heading is outside the target threshold (thetaMargin) turn the robot
             # This is a fuzzy controller
             if theta < thetaMargin1 and theta > thetaMargin2:
-                robot.forward()
+                if not orientFlag:
+                    robot.forward()
+                else:
+                    robot.stop()
                 # print('Go Straight')
             elif theta >=thetaMargin1:
                 # print('Turning Right')
@@ -248,6 +225,38 @@ def getThetaDistance(startpoint, endpoint, heading):
     # print(np.degrees(angle_robot))
     rl_angle=(math.degrees(np.arctan2(np.cross(heading_rob_unit,rob_end_vec_unit),np.dot(heading_rob_unit,rob_end_vec_unit))))+180
     return (rl_angle, dif_dist)
+
+
+
+def RotateToTheta(robotData,setPtTheta):
+    global robot
+    x = int(float(robotData[0][0]))
+    y = int(float(robotData[0][1]))
+    hx = int(float(robotData[0][2]))
+    hy = int(float(robotData[0][3]))
+    heading_rob=[]
+    
+    thetaMargin1=setPtTheta+ thetaMarginF
+    thetaMargin2=setPtTheta- thetaMarginF
+
+    heading_rob.append((float(hx) - float(x)))
+    heading_rob.append((float(hy) - float(y)))
+
+    # heading_rob_unit= np.divide(heading_rob , math.sqrt(heading_rob[0]**2+heading_rob[1]**2))
+
+
+    robotTheta = np.degrees(np.arctan2(heading_rob[1],heading_rob[0]))+180 # This has been verfied
+    print(robotTheta)
+    if robotTheta < thetaMargin1 and robotTheta > thetaMargin2:
+        robot.stop()
+        # print('Go Straight')
+    elif robotTheta >=thetaMargin1:
+        # print('Turning Right')
+        robot.turn_right(60)
+    elif robotTheta <=thetaMargin2:
+        robot.turn_left(41)
+        # print('Turning Left')
+
 
 
 if __name__ == '__main__':
