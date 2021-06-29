@@ -76,7 +76,7 @@ def main():
         (endPos,endPtPointer,stpFlag)=getEndPoint(robotOdo,endPtPointer,stpFlag)
         #     
         orientFlag=checkFinalRotation(endPtPointer,stpFlag,robotOdo)
-        setMotion(robotOdo, endPos, stpFlag,orientFlag)
+        (orientFlag,stpFlag)=setMotion(robotOdo, endPos, stpFlag,orientFlag)
         stpFlag=checkDelay(endPtPointer,stpFlag)
         
 
@@ -161,7 +161,7 @@ def setMotion(robotData, endPtData,stpFlag,orientFlag):
         if theta is None:
             robot.stop()
         else:
-            MovOnTheta(theta, distance,stpFlag,orientFlag)
+            (orientFlag,stpFlag)=MovOnTheta(theta, distance,stpFlag,orientFlag)
         
     else:
         # If at the tagert, update the position of the robot object
@@ -170,7 +170,7 @@ def setMotion(robotData, endPtData,stpFlag,orientFlag):
             robot.set_y(endPtData[0][1])
             robot.set_theta(robotData[1])
         robot.stop()
-
+    return (orientFlag,stpFlag)
 def MovOnTheta(theta, distance,stpFlag,orientFlag):
     global robot
     # stpFlag = False
@@ -193,6 +193,8 @@ def MovOnTheta(theta, distance,stpFlag,orientFlag):
                     robot.forward()
                 else:
                     robot.stop()
+                    orientFlag=False
+                    stpFlag=True
                 # print('Go Straight')
             elif theta >=thetaMargin1:
                 # print('Turning Right')
@@ -205,7 +207,7 @@ def MovOnTheta(theta, distance,stpFlag,orientFlag):
             robot.stop()
     else:
         robot.stop()
-
+    return (orientFlag,stpFlag)
 def getThetaDistance(startpoint, endpoint, heading):
     heading_rob = []
     # Gets the vector that describes the motion needed for robot to get to end point
