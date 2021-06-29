@@ -6,14 +6,14 @@ class MotorControl:
     m1=""
     m2=""
     pwmSpeed=50
-    def __init__(self):
+    def __init__(self,pwm_pins=[33,35]):
         #self.PWMValue=pwmTime
         gpio.setmode(gpio.BOARD)
         gpio.setup(40,gpio.IN)
-        gpio.setup(33,gpio.OUT)
-        gpio.setup(35,gpio.OUT)
-        self.m1=gpio.PWM(33,420)
-        self.m2=gpio.PWM(35,420)
+        gpio.setup(pwm_pins[0],gpio.OUT)
+        gpio.setup(pwm_pins[1],gpio.OUT)
+        self.m1=gpio.PWM(pwm_pins[0],400)
+        self.m2=gpio.PWM(pwm_pins[1],400)
         self.m1.start(0)
         self.m2.start(0)
         atexit.register(self.stop)
