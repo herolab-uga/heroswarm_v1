@@ -27,7 +27,8 @@ with open('config/swarm_v1_config.JSON', 'r') as file:
 right = data["right"]
 left = data["left"]
 
-wayPoints=[(93,139),(95,109),(91,76),(92,36),(88,13),(80,24)]
+# wayPoints=[(93,139),(95,109),(91,76),(92,36),(88,13),(80,24)]
+wayPoints=[(92,36),(88,13),(80,24)]
 wayPoint_delays=[0,0,0,0,0,0]
 
 # Array that stores error values
@@ -166,7 +167,7 @@ def RotateToTheta(robotData,setPtTheta):
     hx = int(float(robotData[0][2]))
     hy = int(float(robotData[0][3]))
     heading_rob=[]
-    thetaMargin=10
+    thetaMargin=20
     thetaMargin1=setPtTheta+thetaMargin
     thetaMargin2=setPtTheta-thetaMargin
 
@@ -183,9 +184,9 @@ def RotateToTheta(robotData,setPtTheta):
         # print('Go Straight')
     elif robotTheta >=thetaMargin1:
         # print('Turning Right')
-        robot.turn_right(60)
+        robot.turn_right(58)
     elif robotTheta <=thetaMargin2:
-        robot.turn_left(41)
+        robot.turn_left(44)
         # print('Turning Left')
 
 
