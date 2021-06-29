@@ -30,6 +30,7 @@ left = data["left"]
 # wayPoints=[(93,139),(95,109),(91,76),(92,36),(88,13),(80,24)]
 wayPoints=[(92,36),(88,13),(80,24)]
 wayPoint_delays=[0,0,0]
+finalTheta=179
 # wayPoint_delays=[0,0,0,0,0,0]
 
 # Array that stores error values
@@ -77,7 +78,7 @@ def main():
 def checkFinalRotation(endPtPtr,stpFlag,robotOdo):
     if stpFlag and endPtPtr==len(wayPoint_delays):
         print('Rotating to theta')
-        RotateToTheta(robotOdo,90)
+        RotateToTheta(robotOdo,finalTheta)
 
 
 
@@ -168,7 +169,7 @@ def RotateToTheta(robotData,setPtTheta):
     hx = int(float(robotData[0][2]))
     hy = int(float(robotData[0][3]))
     heading_rob=[]
-    thetaMargin=20
+    thetaMargin=10
     thetaMargin1=setPtTheta+thetaMargin
     thetaMargin2=setPtTheta-thetaMargin
 
