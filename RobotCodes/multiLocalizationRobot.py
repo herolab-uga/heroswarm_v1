@@ -153,10 +153,10 @@ def getThetaDistance(startpoint, endpoint, heading):
     # Gets the rob_end_vec distance
     dif_dist=float(np.sqrt(float(rob_end_vec[0]) ** 2 + float(rob_end_vec[1]) ** 2))
     # If not a special case angle_end is described below
-    angle_end = np.degrees(np.arctan2(rob_end_vec[1],rob_end_vec[0]))
+    angle_end = np.arctan2(rob_end_vec[1],rob_end_vec[0]))
     # print(angle_end)
     # Try to get the angle of the robot
-    angle_robot = np.degrees(np.arctan2(heading[1],heading[0]))
+    angle_robot = np.arctan2(heading[1],heading[0]))
     print(angle_robot)
     # Calculates the rl_angle for the robot
     if angle_end > angle_robot:
@@ -175,7 +175,7 @@ def getThetaDistance(startpoint, endpoint, heading):
     #     rl_angle = np.degrees(rl_angle)
     # Defining one side as negative and other as positive.
     # rl_angle= -rl_angle if endLeading else rl_angle
-    return (rl_angle, dif_dist)
+    return (np.degree(rl_angle), dif_dist)
 
 
 if __name__ == '__main__':
