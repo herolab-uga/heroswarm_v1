@@ -66,15 +66,15 @@ def main():
         CLIENT_SOCKET.send(query.encode('ascii'))
         robotOdoP = CLIENT_SOCKET.recv(4096)
         robotOdo = pickle.loads(robotOdoP)
-
-        (endPos,endPtPointer)=getEndPoint(robotOdo,endPtPointer)    
+        stpFlag=False
+        (endPos,endPtPointer)=getEndPoint(robotOdo,endPtPointer,stpFlag)    
 
 
 
         
         setMotion(robotOdo, endPos)
 
-def getEndPoint(robotodo,endPtPtr):
+def getEndPoint(robotodo,endPtPtr,stpFlag):
 
     if robotodo == None:
         return (None,endPtPtr)
