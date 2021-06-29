@@ -171,7 +171,7 @@ def getThetaDistance(startpoint, endpoint, heading):
     #     print(str(np.degrees(angle_end))+'+'+str(np.degrees(angle_robot))+'='+str(np.degrees(rl_angle))+', End Right')
     
 
-    rl_angle=(math.degrees(math.atan2(np.cross(angle_robot,angle_end),np.dot(angle_robot,angle_end))))+180
+    rl_angle=(math.degrees(math.atan2(np.cross(heading_rob,rob_end_vec),np.dot(heading_rob,rob_end_vec))))+180
     print(str(np.degrees(angle_end))+'+'+str(np.degrees(angle_robot))+'='+str(np.degrees(rl_angle)))
     # Correction made on angle due to some inconsistensies (Should be sorted in the future)
     # Returning the angle in degrees, the distance from the tag
