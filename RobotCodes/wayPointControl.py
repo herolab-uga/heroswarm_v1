@@ -72,7 +72,7 @@ def main():
 
 
         
-        setMotion(robotOdo, endPos)
+        setMotion(robotOdo, endPos, stpFlag)
 
 def getEndPoint(robotodo,endPtPtr,stpFlag):
 
