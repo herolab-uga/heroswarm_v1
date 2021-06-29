@@ -29,7 +29,8 @@ left = data["left"]
 
 # wayPoints=[(93,139),(95,109),(91,76),(92,36),(88,13),(80,24)]
 wayPoints=[(92,36),(88,13),(80,24)]
-wayPoint_delays=[0,0,0,0,0,0]
+wayPoint_delay=[0,0,0]
+# wayPoint_delays=[0,0,0,0,0,0]
 
 # Array that stores error values
 # errors = np.zeros((PID.init if PID.init > PID.diff else PID.diff + 1))
