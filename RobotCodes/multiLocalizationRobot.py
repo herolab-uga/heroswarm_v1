@@ -135,7 +135,7 @@ def MovOnTheta(theta, distance):
                 # print('Go Straight')
             elif theta >=thetaMargin1:
                 print('Turning Right')
-                robot.turn_right(59)
+                robot.turn_right(60)
             elif theta <=thetaMargin2:
                 robot.turn_left(45)
                 print('Turning Left')
