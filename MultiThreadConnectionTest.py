@@ -17,7 +17,7 @@ import time
 # Handling through dictionaries
 
 odoData = {'robot1': 170, 'robot2': 650}
-endPtID = '4'
+endPtIDs = ['5','10','4']
 
 # Sets up variables to store the x and posistions of the reference tags
 
@@ -28,7 +28,7 @@ rotation_matrix = None
 transform_matrix = []
 
 
-def QueryHandler(query, clientID):
+def QueryHandler(query, clientID,endPtID):
     global odoData
     if query == 'a':
         requestedData = odoData
@@ -36,31 +36,33 @@ def QueryHandler(query, clientID):
         requestedData = odoData.get(clientID)
     elif query == 'e':
         requestedData = odoData.get(endPtID)
+    elif query == 't':
+        requestedData = endPtID
     else:
         requestedData = 'nah'
 
     return requestedData
 
-
-def find_connections(SERVER_SOCKET):
-    while True:
-        (clientConnection, addr) = SERVER_SOCKET.accept()
-        clientThread = threading.Thread(target=ThreadedConnection,
-                args=(clientConnection, ))
-        clientThread.start()
-
-
-def ThreadedConnection(connectedClient):
+def ThreadedConnection(connectedClient,count):
+    start_up_num = count
+    global endPtIDs
     try:
         clientID = connectedClient.recv(1024).decode('ascii')
         while True:
-            dataToSend = \
-                QueryHandler(connectedClient.recv(1024).decode('ascii'
-                             ), clientID)
+            dataToSend = QueryHandler(connectedClient.recv(1024).decode('ascii'), clientID,endPtIDs[start_up_num])
             dataToSendP = pickle.dumps(dataToSend)
             connectedClient.send(dataToSendP)
     except BrokenPipeError:
         return
+
+def find_connections(SERVER_SOCKET):
+    count = 0
+    while True:
+        (clientConnection, addr) = SERVER_SOCKET.accept()
+        clientThread = threading.Thread(target=ThreadedConnection,
+                args=(clientConnection,count ))
+        clientThread.start()
+        count += 1
 
 
 def Main():
@@ -181,7 +183,7 @@ def Main():
                 centerTxt = center.ravel().astype(int).astype(str)
                 cv2.putText(dimg1,posString,tuple(center.ravel().astype(int) + 10),font,fontScale,(255, 0, 0),lineType,)
 
-                if detection.tag_id == int(endPtID):
+                if detection.tag_id in [int(x) for x in endPtIDs]:
                     dimg1 = cv2.putText(dimg1,'End Point',tuple(center.ravel().astype(int)),font,0.8,fontColor,2,)
                     dimg1 = cv2.circle(dimg1,tuple(center.ravel().astype(int)), 30, (0,128, 255), 2)
                 else:
@@ -192,15 +194,12 @@ def Main():
 
                     # Gets the center position, heading vector and current angle of all none reference tags
 
-                    odoData1[str(detection.tag_id)] = \
-                        [tuple(center_meters)
-                         + tuple(forwardDir_meters), angle]
+                    odoData1[str(detection.tag_id)] = [tuple(center_meters)+ tuple(forwardDir_meters), angle]
                 else:
 
                     # Only gets the center of reference tags
 
-                    odoData1[str(detection.tag_id)] = \
-                        [tuple(center_meters)]
+                    odoData1[str(detection.tag_id)] = [tuple(center_meters)]
             if len(detections) == 0 and odoData1 == 0:
                 overlay = frame
                 odoData = odoData1.copy()
