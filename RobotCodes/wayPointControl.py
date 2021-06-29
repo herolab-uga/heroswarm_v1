@@ -181,7 +181,7 @@ def MovOnTheta(theta, distance,stpFlag,orientFlag):
     thetaMargin1=thetaMargin/2
     thetaMargin2=-thetaMargin/2
     theta=180-theta
-    # print(theta)
+    print(theta)
     if not stpFlag and eStatus:
         try:
             # print (theta)
