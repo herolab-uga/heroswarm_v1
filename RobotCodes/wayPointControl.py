@@ -120,7 +120,7 @@ def getEndPoint(robotodo,endPtPtr,stpFlag):
         print('Pt'+str(endPtPtr)+'End Pt:'+str(endPos)+'Distance:'+str(distToEndPt)+'Stop Flag:'+str(stpFlag))
     else:
         setPtTheta=finalTheta
-        endPos=(math.cos(math.radians(setPtTheta)),math.sin(math.radians(setPtTheta)))
+        endPos=[(math.cos(math.radians(setPtTheta)),math.sin(math.radians(setPtTheta)))]
     return(endPos,endPtPtr,stpFlag)
     
         
@@ -148,8 +148,8 @@ def setMotion(robotData, endPtData,stpFlag,orientFlag):
         hx = int(float(robotData[0][2]))
         hy = int(float(robotData[0][3]))
         # Gets the ending position (Position of the target location)
-        ex = int(float(endPtData[0][0]))
-        ey = int(float(endPtData[0][1]))
+        ex = (float(endPtData[0][0]))
+        ey = (float(endPtData[0][1]))
         # trgDist = math.sqrt((x - ex) ** 2) + (y - ey) ** 2
         strtPt = np.array([x, y])
         endPt = np.array([ex, ey])
