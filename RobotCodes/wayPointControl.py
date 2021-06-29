@@ -27,7 +27,7 @@ with open('config/swarm_v1_config.JSON', 'r') as file:
 right = data["right"]
 left = data["left"]
 
-wayPoints=[(93,139),(96,109),(97,76),(92,36),(80,24)]
+wayPoints=[(93,139),(95,109),(91,76),(92,36),(80,24)]
 wayPoint_delays=[1,2,0,1,10]
 
 # Array that stores error values
