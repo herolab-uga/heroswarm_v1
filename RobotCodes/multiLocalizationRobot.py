@@ -111,7 +111,7 @@ def MovOnTheta(theta, distance):
     eStatus = True
     # Scales the margin angle with distance from the target (farther away less margin for error)
     #thetaMargin = 22.5 - distance / 232 * 22.5  # 116 - max distance possible between tag and robot
-    thetaMargin=20
+    thetaMargin=30
     thetaMargin1=thetaMargin/2
     thetaMargin2=-thetaMargin/2
 
@@ -133,9 +133,11 @@ def MovOnTheta(theta, distance):
                 robot.forward()
                 # print('Go Straight')
             elif theta >=thetaMargin1:
-                robot.turn_left(53)
+                print('Turning Left')
+                robot.turn_left(62)
             elif theta <=thetaMargin2:
-                robot.turn_right(62)
+                robot.turn_right(53)
+                print('Turning Right')
             
                 
             else:
@@ -184,7 +186,7 @@ def getThetaDistance(startpoint, endpoint, heading):
     
 
     rl_angle=(math.degrees(np.arctan2(np.cross(heading_rob_unit,rob_end_vec_unit),np.dot(heading_rob_unit,rob_end_vec_unit))))+180
-    print(str(np.degrees(angle_end))+'+'+str(np.degrees(angle_robot))+'='+str(rl_angle))
+    # print(str(np.degrees(angle_end))+'+'+str(np.degrees(angle_robot))+'='+str(rl_angle))
     # Correction made on angle due to some inconsistensies (Should be sorted in the future)
     # Returning the angle in degrees, the distance from the tag
     # if np.degrees(rl_angle) >= 180:
