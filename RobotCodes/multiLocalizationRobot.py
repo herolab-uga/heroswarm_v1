@@ -149,8 +149,8 @@ def MovOnTheta(theta, distance):
                     prevCommand='Left'
             
                 
-            else:
-                robot.stop()
+            # elif (prevCommand!='Left'or prevCommand!='Right'or prevCommand!='Forward'):
+            #     robot.stop()
                 # print(pidController1.get_correction(theta))
                 
         except Exception as e:
