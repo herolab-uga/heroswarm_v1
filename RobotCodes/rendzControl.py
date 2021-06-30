@@ -117,7 +117,7 @@ def EndPointRend(allOdoData):
     ysum=0
     tagCntr=1
     for tag in range(3,20):
-
+        print(tag in allOdoData)
         if(tag in allOdoData):
             thisOdo=allOdoData(tag)
             print('odo'+str(thisOdo))
@@ -157,7 +157,7 @@ def MovOnTheta(theta, distance):
     # error = -theta
     theta=180-theta
     
-    print(theta)
+    # print(theta)
     if not stpFlag and eStatus:
         try:
             # print (theta)
