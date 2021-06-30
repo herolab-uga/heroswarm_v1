@@ -117,16 +117,17 @@ def EndPointRend(allOdoData):
     ysum=0
     tagCntr=1
     for tags in range(3,20):
-        tag=str(tags)
-        if(tag in allOdoData):
-            thisOdo=allOdoData.get(tag)
-            print('odo'+str(thisOdo))
-            xs=thisOdo[0][0]
-            ys=thisOdo[0][1]
-            print('xs'+str(xs))
-            xsum+=xs
-            ysum+=ys
-            tagCntr+=1
+        if tags !=robot.id:
+            tag=str(tags)
+            if(tag in allOdoData):
+                thisOdo=allOdoData.get(tag)
+                print('odo'+str(thisOdo))
+                xs=thisOdo[0][0]
+                ys=thisOdo[0][1]
+                print('xs'+str(xs))
+                xsum+=xs
+                ysum+=ys
+                tagCntr+=1
     print(tagCntr)
     meanX=xsum/tagCntr
     meanY=ysum/tagCntr
