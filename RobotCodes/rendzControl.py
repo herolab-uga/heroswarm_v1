@@ -116,8 +116,8 @@ def EndPointRend(allOdoData):
     xsum=0
     ysum=0
     tagCntr=1
-    for tag in range(3,20):
-        print(tag in allOdoData)
+    for tags in range(3,20):
+        tag=str(tags)
         if(tag in allOdoData):
             thisOdo=allOdoData(tag)
             print('odo'+str(thisOdo))
