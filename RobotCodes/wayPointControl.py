@@ -80,13 +80,13 @@ def main():
         CLIENT_SOCKET.send(query.encode('ascii'))
         robotOdoP = CLIENT_SOCKET.recv(4096)
         robotOdo = pickle.loads(robotOdoP)
-        if robotOdo != None:
-            (endPos,endPtPointer,stpFlag)=getEndPoint(robotOdo,endPtPointer,stpFlag)
-            #     
-            orientFlag=checkFinalRotation(endPtPointer,stpFlag,robotOdo)
-            (orientFlag,stpFlag)=setMotion(robotOdo, endPos, stpFlag,orientFlag)
-            stpFlag=checkDelay(endPtPointer,stpFlag)
-        
+        # if robotOdo != None:
+        (endPos,endPtPointer,stpFlag)=getEndPoint(robotOdo,endPtPointer,stpFlag)
+        #     
+        orientFlag=checkFinalRotation(endPtPointer,stpFlag,robotOdo)
+        (orientFlag,stpFlag)=setMotion(robotOdo, endPos, stpFlag,orientFlag)
+        stpFlag=checkDelay(endPtPointer,stpFlag)
+    
 
 def checkFinalRotation(endPtPtr,stpFlag,robotOdo):
     if stpFlag and endPtPtr==len(wayPoint_delays):
