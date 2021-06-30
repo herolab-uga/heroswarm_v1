@@ -1,6 +1,6 @@
 {
     "jgil": {
-        "id": 7,
+        "id": 8,
         "linear_speed": 0.3591,
         "angular_speed": 7.0686,
         "left_duty": 0.0,
@@ -10,10 +10,29 @@
         "theta": 0.0,
         "p":0.5,
         "i":0.65,
-        "d":2.25
+        "d":2.25,
+        "pwm_pins":[33,35],
+        "left":41,
+        "right":60
+    },
+    "hero": {
+        "id": 13,
+        "linear_speed": 0.3591,
+        "angular_speed": 7.0686,
+        "left_duty": 0.0,
+        "right_duty": 0.0,
+        "x_pos": 0.0,
+        "y_pos": 0.0,
+        "theta": 0.0,
+        "p":0.5,
+        "i":0.65,
+        "d":2.25,
+        "pwm_pins":[33,35],
+        "left":41,
+        "right":60
     },
     "devil": {
-        "id": 7,
+        "id": 12,
         "linear_speed": 0.3703,
         "angular_speed": 7.2885,
         "left_duty": 0.0,
@@ -23,10 +42,13 @@
         "theta": 0.0,
         "p":0.5,
         "i":0.65,
-        "d":2.25
+        "d":2.25,
+        "pwm_pins":[3,5],
+        "left":41,
+        "right":60
     },
     "hedwig": {
-        "id": 7,
+        "id": 15,
         "linear_speed": 0.3458,
         "angular_speed": 6.8066,
         "left_duty": 0.0,
@@ -36,7 +58,10 @@
         "theta": 0.0,
         "p":0.5,
         "i":0.1,
-        "d":2.25
+        "d":2.25,
+        "pwm_pins":[33,35],
+        "left":41,
+        "right":60
     },
     "thalaiva": {
         "id": 4,
@@ -49,7 +74,7 @@
         "theta": 0.0
     },
     "dawg": {
-        "id": 5,
+        "id": 4,
         "linear_speed": 0.3990,
         "angular_speed": 7.8540,
         "left_duty": 0.0,
@@ -59,7 +84,7 @@
         "theta": 0.0
     },
     "hiro": {
-        "id": 6,
+        "id": 9,
         "linear_speed": 0.3591,
         "angular_speed": 7.0686,
         "left_duty": 0.0,
