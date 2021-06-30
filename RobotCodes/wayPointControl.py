@@ -129,7 +129,7 @@ def getEndPoint(robotodo,endPtPtr,stpFlag):
         robotX = float(robotodo[0][0])
         robotY = float(robotodo[0][1])
         scalarFactor=1000000000
-        endPos=[(robotX+math.cos(math.radians(finalTheta))*scalarFactor,robotY+math.sin(math.radians(finalTheta))*scalarFactor)]
+        endPos=[(robotX+math.cos(math.radians(finalTheta)),robotY+math.sin(math.radians(finalTheta)))]
     return(endPos,endPtPtr,stpFlag)
     
         
