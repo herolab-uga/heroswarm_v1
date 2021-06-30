@@ -116,9 +116,10 @@ def EndPointRend(allOdoData):
     xsum=0
     ysum=0
     tagCntr=1
-    for tags in range(3,len(allOdoData)):
-        if(tags in allOdoData):
-            thisOdo=allOdoData(tags)
+    for tag in range(3,len(allOdoData)):
+        if(tag in allOdoData):
+            thisOdo=allOdoData(tag)
+            print(thisOdo)
             xs=thisOdo[0]
             ys=thisOdo[1]
             print('xs'+str(xs))
@@ -129,7 +130,7 @@ def EndPointRend(allOdoData):
     meanX=xsum/tagCntr
     meanY=ysum/tagCntr
     print('Means:'+str(meanX)+','+str(meanY))
-    print(allOdoData)
+    # print(allOdoData)
     return(meanX,meanY)
 
 
