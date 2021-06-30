@@ -26,9 +26,9 @@ with open('config/swarm_v1_config.JSON', 'r') as file:
 # Gets the right and lift duty cycles from json
 right = data["right"]
 left = data["left"]
-
+wayPoints=[(70,140)]
 # wayPoints=[(69,156),(69,137),(67,115),(65,91)]  # Upt 1
-wayPoints=[(61,155),(61,135),(60,114),(58,77),(61,76),(65,56)]  # Upt 2
+# wayPoints=[(61,155),(61,135),(60,114),(58,77),(61,76),(65,56)]  # Upt 2
 # wayPoints=[(93,139),(95,109),(91,76),(92,36),(91,20),(96,25),(80,24)]  # Upt 3
 # wayPoints=[(93,139),(95,109),(91,76),(92,36),(91,20),(96,25),(80,24)]  # Upt 4
 # wayPoints=[(93,139),(95,109),(91,76),(92,36),(91,20),(96,25),(80,24)]  # Upt 5
@@ -38,7 +38,7 @@ wayPoints=[(61,155),(61,135),(60,114),(58,77),(61,76),(65,56)]  # Upt 2
 # wayPoints=[(93,139),(95,109),(91,76),(92,36),(91,20),(80,24)]
 # (88,13),(80,24)]
 # wayPoints=[(92,36),(88,13),(80,24)]
-wayPoint_delays=[0,0,0,0,0,0]
+wayPoint_delays=[0]
 finalTheta=-135
 thetaMarginF=20
 # wayPoint_delays=[0,0,0,0,0,0]
@@ -126,9 +126,10 @@ def getEndPoint(robotodo,endPtPtr,stpFlag):
         endPos=[(endPtX,endPtY)]
         print('Pt'+str(endPtPtr)+'End Pt:'+str(endPos)+'Distance:'+str(distToEndPt)+'Stop Flag:'+str(stpFlag))
     else:
-        setPtTheta=finalTheta
+        robotX = (float(robotodo[0][0]))
+        robotY = (float(robotodo[0][1]))
         scalarFactor=1000000000
-        endPos=[(math.cos(math.radians(finalTheta))*scalarFactor,math.sin(math.radians(finalTheta))*scalarFactor)]
+        endPos=[robotX+(math.cos(math.radians(finalTheta))*scalarFactor,robotY+math.sin(math.radians(finalTheta))*scalarFactor)]
     return(endPos,endPtPtr,stpFlag)
     
         
