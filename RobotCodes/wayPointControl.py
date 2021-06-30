@@ -26,21 +26,21 @@ with open('config/swarm_v1_config.JSON', 'r') as file:
 # Gets the right and lift duty cycles from json
 right = data["right"]
 left = data["left"]
-wayPoints=[(77,55),(73,47),(67,41),(64,37)]                 #-90             # Upt 1
-wayPoints=[(51,61),(57,54),(55,46),(55,35),(58,28),(63,24)] #-45             # Upt 2
-wayPoints=[(85,6),(75,8),(69,12),(68,17)]                    #0               # Upt 3
-wayPoints=[(87,14),(87,16),(77,16)]                            #180             # Upt 4
-wayPoints=[(85,23),(79,24)]                                    #-135            # Upt 5
-wayPoints=[(84,55),(82,46),(81,36)]                          #-90             # Upt 6
+# wayPoints=[(77,55),(73,47),(67,41),(64,37)]                 #-90             # Upt 1
+# wayPoints=[(51,61),(57,54),(55,46),(55,35),(58,28),(63,24)] #-45             # Upt 2
+# wayPoints=[(85,6),(75,8),(69,12),(68,17)]                    #0               # Upt 3
+# wayPoints=[(87,14),(87,16),(77,16)]                            #180             # Upt 4
+# wayPoints=[(85,23),(79,24)]                                    #-135            # Upt 5
+# wayPoints=[(84,55),(82,46),(81,36)]                          #-90             # Upt 6
 
 
 # wayPoints=[(93,139),(95,109),(91,76),(92,36),(91,20),(80,24)]
 # (88,13),(80,24)]
 # wayPoints=[(92,36),(88,13),(80,24)]
-wayPoint_delays=[0]
-finalTheta=90
+# wayPoint_delays=[0]
+finalTheta=-90
 thetaMarginF=20
-# wayPoint_delays=[0,0,0,0,0,0]
+wayPoint_delays=[0,0,0]
 
 # Array that stores error values
 # errors = np.zeros((PID.init if PID.init > PID.diff else PID.diff + 1))
@@ -147,7 +147,7 @@ def setMotion(robotData, endPtData,stpFlag,orientFlag):
     # Ensures there is robotData to evaluate if not return 
     # (Future implementation should include Kalman Filter here)
     if robotData == None or robotData[1] == None:
-        return
+        return (None,stpFlag)
 
     if endPtData != None and robotData != None:
         x = float(robotData[0][0])
