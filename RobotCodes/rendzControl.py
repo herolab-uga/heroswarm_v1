@@ -53,7 +53,7 @@ def main():
 #    # Waits for sever to send odom info to robot
 #     while robotOdo is None:
 #         continue
-
+    stpFlag=False
 
     while True:
         query = 'o'
@@ -66,13 +66,15 @@ def main():
         allOdoP = CLIENT_SOCKET.recv(4096)
         allOdo = pickle.loads(allOdoP)
         # print(allOdo)
+        
         setMotion(robotOdo, allOdo)
+
 
 
 def setMotion(robotData, allOdoData):
     global robot
     theta = None
-
+    stpFlag=False
     # Ensures there is robotData to evaluate if not return 
     # (Future implementation should include Kalman Filter here)
     if robotData == None or robotData[1] == None:
@@ -88,7 +90,7 @@ def setMotion(robotData, allOdoData):
 
         # Compute end 
         (ex,ey)=EndPointRend(allOdoData)
-
+        stpFlag=checkEndPointDist(stpFlag)
         
         # trgDist = math.sqrt((x - ex) ** 2) + (y - ey) ** 2
         strtPt = np.array([x, y])
@@ -101,7 +103,7 @@ def setMotion(robotData, allOdoData):
         if theta is None:
             robot.stop()
         else:
-            MovOnTheta(theta, distance)
+            MovOnTheta(theta, distance,stpFlag)
         
     else:
         # If at the tagert, update the position of the robot object
@@ -139,12 +141,14 @@ def EndPointRend(allOdoData):
     # print(allOdoData)
     return(meanX,meanY)
 
+def checkEndPointDist(stopFlag):
+    return False
 
 
 
-def MovOnTheta(theta, distance):
+
+def MovOnTheta(theta, distance,stpFlag):
     global robot
-    stpFlag = False
     eStatus = True
     # Scales the margin angle with distance from the target (farther away less margin for error)
     #thetaMargin = 22.5 - distance / 232 * 22.5  # 116 - max distance possible between tag and robot
