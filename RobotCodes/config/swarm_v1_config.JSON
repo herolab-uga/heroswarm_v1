@@ -97,13 +97,16 @@
         "right":60
     },
     "baymax": {
-        "id": 7,
+        "id": 13,
         "linear_speed": 0.3458,
         "angular_speed": 6.8066,
         "left_duty": 0.0,
         "right_duty": 0.0,
         "x_pos": 0.0,
         "y_pos": 0.0,
-        "theta": 0.0
+        "theta": 0.0,
+        "pwm_pins":[33,35],
+        "left":41,
+        "right":60
     }
 }
