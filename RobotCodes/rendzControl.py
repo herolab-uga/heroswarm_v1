@@ -125,6 +125,7 @@ def EndPointRend(allOdoData):
     print(tagCntr)
     meanX=xsum/tagCntr
     meanY=ysum/tagCntr
+    print('Means:'+str(meanX)+','+str(meanY))
     print(allOdoData)
     return(meanX,meanY)
 
