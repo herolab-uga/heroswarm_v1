@@ -17,7 +17,7 @@ import time
 # Handling through dictionaries
 
 odoData = {'robot1': 170, 'robot2': 650}
-endPtID = '4'
+endPtID = '500'
 
 # Sets up variables to store the x and posistions of the reference tags
 
@@ -108,8 +108,8 @@ def Main():
     try:
         try:
             cap = cv2.VideoCapture(0)
-            cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
-            cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
+            cap.set(cv2.CAP_PROP_FRAME_WIDTH, 3840 )
+            cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 2160)
         except ValueError:
             cap = cv2.VideoCapture(options.device_or_movie)
 
@@ -122,6 +122,7 @@ def Main():
         while True:
             odoData1.clear()
             (success, frame) = cap.read()
+            print(frame.shape)
             if not success:
                 break
             gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
