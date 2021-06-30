@@ -143,12 +143,13 @@ def EndPointRend(allOdoData):
 
 def checkEndPointDist(robotX,robotY,endPtX,endPtY):
     distanceThreshold=2
-    distanceReal=math.sqrt((robotX-endPtX)**2+(robotY-endPtY)**2)
-    print('Distance:'+str(distanceReal))
-    if distanceReal<=distanceThreshold:
-        return True
-    else:
-        return False
+    if endPtX==None or endPtY==None or robotX==None or robotY==None:
+        distanceReal=math.sqrt((robotX-endPtX)**2+(robotY-endPtY)**2)
+        print('Distance:'+str(distanceReal))
+        if distanceReal<=distanceThreshold:
+            return True
+        else:
+            return False
 
 
 
