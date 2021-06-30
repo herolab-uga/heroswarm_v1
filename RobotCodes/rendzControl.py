@@ -123,10 +123,10 @@ def EndPointRend(allOdoData):
             tag=str(tags)
             if(tag in allOdoData):
                 thisOdo=allOdoData.get(tag)
-                print('odo'+str(thisOdo))
+                # print('odo'+str(thisOdo))
                 xs=thisOdo[0][0]
                 ys=thisOdo[0][1]
-                print('xs'+str(xs))
+                # print('xs'+str(xs))
                 xsum+=xs
                 ysum+=ys
                 tagCntr+=1
@@ -137,7 +137,7 @@ def EndPointRend(allOdoData):
     else:
         meanX=None
         meanY=None
-    print('Means:'+str(meanX)+','+str(meanY))
+    # print('Means:'+str(meanX)+','+str(meanY))
     # print(allOdoData)
     return(meanX,meanY)
 
@@ -182,11 +182,11 @@ def MovOnTheta(theta, distance,stpFlag):
                 robot.forward()
                 # print('Go Straight')
             elif theta >=thetaMargin1:
-                print('Turning Right')
+                # print('Turning Right')
                 robot.turn_right(60)
             elif theta <=thetaMargin2:
                 robot.turn_left(41)
-                print('Turning Left')
+                # print('Turning Left')
             
                 
             # else:
