@@ -115,13 +115,14 @@ def setMotion(robotData, allOdoData):
 def EndPointRend(allOdoData):
     xsum=0
     ysum=0
-    tagCntr=0
+    tagCntr=1
     for tags in range(3,len(allOdoData)):
         if(tags in allOdoData):
             (xs,ys)=allOdoData(tags)
             xsum+=xs
             ysum+=ys
             tagCntr+=1
+    print(tagCntr)
     meanX=xsum/tagCntr
     meanY=ysum/tagCntr
     print(allOdoData)
