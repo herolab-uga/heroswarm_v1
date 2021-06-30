@@ -39,7 +39,7 @@ wayPoints=[(76,120)]
 # (88,13),(80,24)]
 # wayPoints=[(92,36),(88,13),(80,24)]
 wayPoint_delays=[0]
-finalTheta=0
+finalTheta=90
 thetaMarginF=20
 # wayPoint_delays=[0,0,0,0,0,0]
 
