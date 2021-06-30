@@ -59,6 +59,7 @@ def main():
         CLIENT_SOCKET.send(query.encode('ascii'))
         robotOdoP = CLIENT_SOCKET.recv(4096)
         robotOdo = pickle.loads(robotOdoP)
+        print(robotOdo)
         query = 'a'
         CLIENT_SOCKET.send(query.encode('ascii'))
         allOdoP = CLIENT_SOCKET.recv(4096)
