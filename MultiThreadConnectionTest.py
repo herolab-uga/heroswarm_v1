@@ -17,7 +17,7 @@ import time
 # Handling through dictionaries
 
 odoData = {'robot1': 170, 'robot2': 650}
-endPtIDs = ['6','18','17','5','19']
+endPtIDs = ['6','18','17','5','19','16']
 
 # Sets up variables to store the x and posistions of the reference tags
 
