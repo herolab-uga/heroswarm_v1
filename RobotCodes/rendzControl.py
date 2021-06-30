@@ -121,8 +121,8 @@ def EndPointRend(allOdoData):
         if(tag in allOdoData):
             thisOdo=allOdoData.get(tag)
             print('odo'+str(thisOdo))
-            xs=thisOdo[0]
-            ys=thisOdo[1]
+            xs=thisOdo[0][0]
+            ys=thisOdo[0][1]
             print('xs'+str(xs))
             xsum+=xs
             ysum+=ys
