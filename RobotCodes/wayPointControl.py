@@ -26,7 +26,7 @@ with open('config/swarm_v1_config.JSON', 'r') as file:
 # Gets the right and lift duty cycles from json
 right = data["right"]
 left = data["left"]
-wayPoints=[(70,140)]
+wayPoints=[(76,120)]
 # wayPoints=[(69,156),(69,137),(67,115),(65,91)]  # Upt 1
 # wayPoints=[(61,155),(61,135),(60,114),(58,77),(61,76),(65,56)]  # Upt 2
 # wayPoints=[(93,139),(95,109),(91,76),(92,36),(91,20),(96,25),(80,24)]  # Upt 3
