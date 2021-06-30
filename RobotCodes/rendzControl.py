@@ -19,9 +19,14 @@ host = socket.gethostname()
 # Opens the json file that stores the robots configuation data
 
 # Global Variables initialization here
+# Global Variables initialization here
 robot=None
 with open('config/swarm_v1_config.JSON', 'r') as file:
-    data = json.load(file)[host]
+ data = json.load(file)[host]
+ 
+# Gets the right and lift duty cycles from json
+right = data["right"]
+left = data["left"]
 
 # Array that stores error values
 # errors = np.zeros((PID.init if PID.init > PID.diff else PID.diff + 1))
@@ -38,6 +43,7 @@ def main():
         id=data['id'],
         linear_speed=data['linear_speed'],
         angular_speed=data['angular_speed'],
+        pwm_pins=data["pwm_pins"]
         )
 
     #Initializing Connection with Localization System
@@ -161,7 +167,7 @@ def MovOnTheta(theta, distance,stpFlag):
     eStatus = True
     # Scales the margin angle with distance from the target (farther away less margin for error)
     #thetaMargin = 22.5 - distance / 232 * 22.5  # 116 - max distance possible between tag and robot
-    thetaMargin=40
+    thetaMargin=60
     thetaMargin1=thetaMargin/2
     thetaMargin2=-thetaMargin/2
 
