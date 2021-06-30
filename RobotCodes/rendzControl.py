@@ -117,7 +117,7 @@ def EndPointRend(allOdoData):
     ysum=0
     tagCntr=0
     for tags in range(3,len(allOdoData)):
-        if(allOdoData.ContainsKey(tags)):
+        if(tags in allOdoData):
             (xs,ys)=allOdoData(tags)
             xsum+=xs
             ysum+=ys
