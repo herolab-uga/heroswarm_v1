@@ -90,7 +90,7 @@ def setMotion(robotData, allOdoData):
 
         # Compute end 
         (ex,ey)=EndPointRend(allOdoData)
-        stpFlag=checkEndPointDist(stpFlag)
+        stpFlag=checkEndPointDist()
         
         # trgDist = math.sqrt((x - ex) ** 2) + (y - ey) ** 2
         strtPt = np.array([x, y])
@@ -141,8 +141,8 @@ def EndPointRend(allOdoData):
     # print(allOdoData)
     return(meanX,meanY)
 
-def checkEndPointDist(stopFlag):
-    return False
+def checkEndPointDist():
+    return True
 
 
 
