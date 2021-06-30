@@ -148,7 +148,7 @@ def setMotion(robotData, endPtData,stpFlag,orientFlag):
     # Ensures there is robotData to evaluate if not return 
     # (Future implementation should include Kalman Filter here)
     if robotData == None or robotData[1] == None:
-        return
+        return (None,stpFlag)
 
     if endPtData != None and robotData != None:
         x = float(robotData[0][0])
