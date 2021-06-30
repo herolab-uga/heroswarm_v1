@@ -45,8 +45,9 @@ def main():
     PORT = 12346
     CLIENT_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     CLIENT_SOCKET.connect((HOST, PORT))
-    print('Connection Successfull!!')
     CLIENT_SOCKET.send(str(data['id']).encode('ascii'))
+    print('Connection Successfull!!')
+    
     # Initializing Robot
 # This may not be required**
 #    # Waits for sever to send odom info to robot
