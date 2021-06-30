@@ -121,7 +121,7 @@ def EndPointRend(allOdoData):
             thisOdo=allOdoData(tags)
             xs=thisOdo[0]
             ys=thisOdo[1]
-            print(xs)
+            print('xs'+str(xs))
             xsum+=xs
             ysum+=ys
             tagCntr+=1
