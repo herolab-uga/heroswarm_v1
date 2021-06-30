@@ -203,26 +203,31 @@ def MovOnTheta(theta, distance,stpFlag):
         robot.stop()
 
 def getThetaDistance(startpoint, endpoint, heading):
-    heading_rob = []
-    # Gets the vector that describes the motion needed for robot to get to end point
-    rob_end_vec = [float(endpoint[0]) - float(startpoint[0]),
-                   float(endpoint[1]) - float(startpoint[1])]
-    # Translates the heading of the robot to the be relative to robot center
-    heading_rob.append((float(heading[0]) - float(startpoint[0])))
-    heading_rob.append((float(heading[1]) - float(startpoint[1])))
+    
+    if endpoint[0]!=None and endpoint[1]!=None:
+        heading_rob = []
+        # Gets the vector that describes the motion needed for robot to get to end point
 
-    heading_rob_unit= np.divide(heading_rob , math.sqrt(heading_rob[0]**2+heading_rob[1]**2))
-    rob_end_vec_unit= np.divide(rob_end_vec , math.sqrt(rob_end_vec[0]**2+rob_end_vec[1]**2))
-    # Gets the rob_end_vec distance
-    dif_dist=float(np.sqrt(float(rob_end_vec[0]) ** 2 + float(rob_end_vec[1]) ** 2))
-    # If not a special case angle_end is described below
-    angle_end = np.arctan2(rob_end_vec[1],rob_end_vec[0]) +math.pi# This has been verfied
-    # print(np.degrees(angle_end))
-    # Try to get the angle of the robot
-    angle_robot = np.arctan2(heading_rob[1],heading_rob[0])+math.pi # This has been verfied
-    rl_angle=(math.degrees(np.arctan2(np.cross(heading_rob_unit,rob_end_vec_unit),np.dot(heading_rob_unit,rob_end_vec_unit))))+180
+        rob_end_vec = [float(endpoint[0]) - float(startpoint[0]),
+                    float(endpoint[1]) - float(startpoint[1])]
+        # Translates the heading of the robot to the be relative to robot center
+        heading_rob.append((float(heading[0]) - float(startpoint[0])))
+        heading_rob.append((float(heading[1]) - float(startpoint[1])))
 
-    return (rl_angle, dif_dist)
+        heading_rob_unit= np.divide(heading_rob , math.sqrt(heading_rob[0]**2+heading_rob[1]**2))
+        rob_end_vec_unit= np.divide(rob_end_vec , math.sqrt(rob_end_vec[0]**2+rob_end_vec[1]**2))
+        # Gets the rob_end_vec distance
+        dif_dist=float(np.sqrt(float(rob_end_vec[0]) ** 2 + float(rob_end_vec[1]) ** 2))
+        # If not a special case angle_end is described below
+        angle_end = np.arctan2(rob_end_vec[1],rob_end_vec[0]) +math.pi# This has been verfied
+        # print(np.degrees(angle_end))
+        # Try to get the angle of the robot
+        angle_robot = np.arctan2(heading_rob[1],heading_rob[0])+math.pi # This has been verfied
+        rl_angle=(math.degrees(np.arctan2(np.cross(heading_rob_unit,rob_end_vec_unit),np.dot(heading_rob_unit,rob_end_vec_unit))))+180
+
+        return (rl_angle, dif_dist)
+    else:
+        return None
 
 
 if __name__ == '__main__':
