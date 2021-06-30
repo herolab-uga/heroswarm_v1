@@ -120,7 +120,7 @@ def EndPointRend(allOdoData):
 
         if(tag in allOdoData):
             thisOdo=allOdoData(tag)
-            print(thisOdo)
+            print('odo'+str(thisOdo))
             xs=thisOdo[0]
             ys=thisOdo[1]
             print('xs'+str(xs))
