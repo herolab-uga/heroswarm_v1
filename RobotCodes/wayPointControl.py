@@ -26,22 +26,22 @@ with open('config/swarm_v1_config.JSON', 'r') as file:
 # Gets the right and lift duty cycles from json
 right = data["right"]
 left = data["left"]
-wayPoints=[(76,120)]
-wayPoints=[(77,137),(73,117),(69,103),(65,92)]                 #-90             # Upt 1
-wayPoints=[(62,152),(58,137),(56,117),(56,87),(59,70),(64,58)] #-45             # Upt 2
-wayPoints=[(87,14),(77,19),(70,30),(69,42)]                    #0               # Upt 3
-wayPoints=[(89,35),(82,37),(78,40)]                            #180             # Upt 4
-wayPoints=[(88,56),(81,59)]                                    #-135            # Upt 5
+# wayPoints=[(76,120)]
+# wayPoints=[(77,137),(73,117),(69,103),(65,92)]                 #-90             # Upt 1
+# wayPoints=[(62,152),(58,137),(56,117),(56,87),(59,70),(64,58)] #-45             # Upt 2
+# wayPoints=[(87,14),(77,19),(70,30),(69,42)]                    #0               # Upt 3
+# wayPoints=[(89,35),(82,37),(78,40)]                            #180             # Upt 4
+# wayPoints=[(88,56),(81,59)]                                    #-135            # Upt 5
 wayPoints=[(86,137),(84,115),(83,91)]                          #-90             # Upt 6
 
 
 # wayPoints=[(93,139),(95,109),(91,76),(92,36),(91,20),(80,24)]
 # (88,13),(80,24)]
 # wayPoints=[(92,36),(88,13),(80,24)]
-wayPoint_delays=[0]
-finalTheta=90
+# wayPoint_delays=[0]
+finalTheta=-90
 thetaMarginF=20
-# wayPoint_delays=[0,0,0,0,0,0]
+wayPoint_delays=[0,0,0]
 
 # Array that stores error values
 # errors = np.zeros((PID.init if PID.init > PID.diff else PID.diff + 1))
