@@ -142,7 +142,7 @@ def EndPointRend(allOdoData):
     return(meanX,meanY)
 
 def checkEndPointDist():
-    return True
+    return False
 
 
 
