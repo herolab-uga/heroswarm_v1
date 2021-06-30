@@ -187,7 +187,7 @@ def MovOnTheta(theta, distance,stpFlag,orientFlag):
     eStatus = True
     # Scales the margin angle with distance from the target (farther away less margin for error)
     #thetaMargin = 22.5 - distance / 232 * 22.5  # 116 - max distance possible between tag and robot
-    thetaMargin=40
+    thetaMargin=20
     thetaMargin1=thetaMargin/2
     thetaMargin2=-thetaMargin/2
     theta=180-theta
