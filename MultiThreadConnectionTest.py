@@ -93,8 +93,7 @@ def Main():
 
     # Starts a thread that looks for connections form the swarmbots
 
-    connection_thread = threading.Thread(target=find_connections,
-            args=(SERVER_SOCKET, ))
+    connection_thread = threading.Thread(target=find_connections,args=(SERVER_SOCKET, ))
     connection_thread.start()
 
     # Localization Code Here
@@ -109,7 +108,7 @@ def Main():
     options = parser.parse_args()
     try:
         try:
-            cap = cv2.VideoCapture(0)
+            cap = cv2.VideoCapture(-1)
             cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
             cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
         except ValueError:
@@ -206,8 +205,6 @@ def Main():
             elif odoData1:
 
                 odoData = odoData1.copy()
-
-            # print('frame')
 
             cv2.imshow(window, overlay)
             cv2.waitKey(1)
