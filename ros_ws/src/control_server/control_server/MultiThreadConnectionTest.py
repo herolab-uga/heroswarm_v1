@@ -1,16 +1,24 @@
-from __future__ import division
-from __future__ import print_function
-from argparse import ArgumentParser
-import threading
-import getch
-import socket, pickle
-import cv2
-import apriltag
-import math
-import numpy as np
-import time
+from __future__ import division, print_function
 
-        
+import math
+import threading
+import time
+from argparse import ArgumentParser
+
+import apriltag
+import cv2
+import getch
+import numpy as np
+
+import rclpy
+from rclpy import Node
+from nav_msgs.msg import Odometry
+from geometry_msgs.msg import Twist
+
+class ConnectionServer(Node):
+    def __init__(self):
+        self.bot_connections = []
+        return True
 
 # Handling through dictionaries
 odoData={'robot1': 170, 'robot2': 650} 
@@ -33,15 +41,7 @@ def QueryHandler(query,clientID):
     return requestedData
 
 
-def ThreadedConnection(connectedClient):
-    clientID=connectedClient.recv(1024).decode('ascii')
-    while True:
-        dataToSend=QueryHandler(connectedClient.recv(1024).decode('ascii'),clientID)
-        dataToSendP=pickle.dumps(dataToSend)
-        connectedClient.send(dataToSendP)
-
 def Main():
-    maxBots=3
     global odoData
     print(odoData)
     odoData1={'robot1': 170, 'robot2': 650}
@@ -53,12 +53,6 @@ def Main():
     endpt=[0,0]
 
     endptFlag=True
-    HOST = '192.168.1.77'  # The server's hostname or IP address
-    PORT=12346
-    SERVER_SOCKET= socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    SERVER_SOCKET.bind((HOST,PORT))
-    print("Socket Bound to Port ",PORT)
-    SERVER_SOCKET.listen(5)
     cnnCntr=0
     while True:
         
